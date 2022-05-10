@@ -60,7 +60,7 @@ namespace GUI_form
             }
             catch
             {
-                label1.Text = "Discord 경로가 잘못되었습니다..";
+                label1.Text = "Discord 경로가 잘못되었습니다.";
             }
             
         }
@@ -68,7 +68,7 @@ namespace GUI_form
         //Steam
         private void button3_Click(object sender, EventArgs e)
         {
-            string url = @"";
+            string url = @"C:\Program Files (x86)\Steam\Steam.exe";
             try
             {
                 if (!url.Equals("") && url != null)

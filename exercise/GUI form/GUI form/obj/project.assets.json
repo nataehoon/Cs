@@ -8,7 +8,7 @@
     "net6.0-windows7.0": []
   },
   "packageFolders": {
-    "C:\\Users\\EBSoft\\.nuget\\packages\\": {}
+    "C:\\Users\\skxog\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
@@ -16,18 +16,16 @@
       "projectUniqueName": "D:\\workspace\\Cs\\exercise\\GUI form\\GUI form\\GUI form.csproj",
       "projectName": "GUI form",
       "projectPath": "D:\\workspace\\Cs\\exercise\\GUI form\\GUI form\\GUI form.csproj",
-      "packagesPath": "C:\\Users\\EBSoft\\.nuget\\packages\\",
+      "packagesPath": "C:\\Users\\skxog\\.nuget\\packages\\",
       "outputPath": "D:\\workspace\\Cs\\exercise\\GUI form\\GUI form\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\EBSoft\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "C:\\Users\\skxog\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net6.0-windows"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {

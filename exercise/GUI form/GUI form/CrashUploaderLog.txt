@@ -1,0 +1,6 @@
+[2022-05-10T21:37:24] [7120:6076:20220510,213724.503:ERROR main_win.inl:27] Initializing windows game crash uploader logging
+[2022-05-10T21:37:24] [7120:6076:20220510,213724.524:ERROR GameCrashUploader.cpp:47] GetUserStreamSources
+[2022-05-10T21:38:43] [2392:8056:20220510,213843.822:ERROR main_win.inl:27] Initializing windows game crash uploader logging
+[2022-05-10T21:38:43] [2392:8056:20220510,213843.843:ERROR GameCrashUploader.cpp:47] GetUserStreamSources
+[2022-05-10T21:39:00] [13788:9452:20220510,213900.577:ERROR main_win.inl:27] Initializing windows game crash uploader logging
+[2022-05-10T21:39:00] [13788:9452:20220510,213900.597:ERROR GameCrashUploader.cpp:47] GetUserStreamSources
