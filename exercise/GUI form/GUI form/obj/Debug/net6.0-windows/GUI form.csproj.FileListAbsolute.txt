@@ -1,0 +1,18 @@
+D:\workspace\Cs\exercise\GUI form\GUI form\bin\Debug\net6.0-windows\GUI form.exe
+D:\workspace\Cs\exercise\GUI form\GUI form\bin\Debug\net6.0-windows\GUI form.deps.json
+D:\workspace\Cs\exercise\GUI form\GUI form\bin\Debug\net6.0-windows\GUI form.runtimeconfig.json
+D:\workspace\Cs\exercise\GUI form\GUI form\bin\Debug\net6.0-windows\GUI form.dll
+D:\workspace\Cs\exercise\GUI form\GUI form\bin\Debug\net6.0-windows\GUI form.pdb
+D:\workspace\Cs\exercise\GUI form\GUI form\obj\Debug\net6.0-windows\GUI form.csproj.AssemblyReference.cache
+D:\workspace\Cs\exercise\GUI form\GUI form\obj\Debug\net6.0-windows\GUI_form.Form1.resources
+D:\workspace\Cs\exercise\GUI form\GUI form\obj\Debug\net6.0-windows\GUI_form.Properties.Resources.resources
+D:\workspace\Cs\exercise\GUI form\GUI form\obj\Debug\net6.0-windows\GUI form.csproj.GenerateResource.cache
+D:\workspace\Cs\exercise\GUI form\GUI form\obj\Debug\net6.0-windows\GUI form.GeneratedMSBuildEditorConfig.editorconfig
+D:\workspace\Cs\exercise\GUI form\GUI form\obj\Debug\net6.0-windows\GUI form.AssemblyInfoInputs.cache
+D:\workspace\Cs\exercise\GUI form\GUI form\obj\Debug\net6.0-windows\GUI form.AssemblyInfo.cs
+D:\workspace\Cs\exercise\GUI form\GUI form\obj\Debug\net6.0-windows\GUI form.csproj.CoreCompileInputs.cache
+D:\workspace\Cs\exercise\GUI form\GUI form\obj\Debug\net6.0-windows\GUI form.dll
+D:\workspace\Cs\exercise\GUI form\GUI form\obj\Debug\net6.0-windows\refint\GUI form.dll
+D:\workspace\Cs\exercise\GUI form\GUI form\obj\Debug\net6.0-windows\GUI form.pdb
+D:\workspace\Cs\exercise\GUI form\GUI form\obj\Debug\net6.0-windows\GUI form.genruntimeconfig.cache
+D:\workspace\Cs\exercise\GUI form\GUI form\obj\Debug\net6.0-windows\ref\GUI form.dll
