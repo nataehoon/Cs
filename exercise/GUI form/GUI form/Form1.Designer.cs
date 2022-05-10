@@ -48,12 +48,17 @@
             // 
             // label1
             // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label1.ForeColor = System.Drawing.Color.Cyan;
-            this.label1.Location = new System.Drawing.Point(222, 319);
+            this.label1.Location = new System.Drawing.Point(185, 330);
+            this.label1.Margin = new System.Windows.Forms.Padding(0);
             this.label1.Name = "label1";
+            this.label1.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.label1.Size = new System.Drawing.Size(0, 21);
             this.label1.TabIndex = 4;
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -65,7 +70,7 @@
             this.tabControl1.Location = new System.Drawing.Point(-5, -1);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(637, 400);
+            this.tabControl1.Size = new System.Drawing.Size(640, 402);
             this.tabControl1.TabIndex = 5;
             // 
             // tabPage1
@@ -79,7 +84,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 24);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(629, 372);
+            this.tabPage1.Size = new System.Drawing.Size(632, 374);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Dev. tool";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -100,7 +105,8 @@
             // 
             this.button8.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button8.BackgroundImage")));
             this.button8.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button8.Location = new System.Drawing.Point(429, 99);
+            this.button8.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button8.Location = new System.Drawing.Point(436, 99);
             this.button8.Name = "button8";
             this.button8.Size = new System.Drawing.Size(136, 117);
             this.button8.TabIndex = 3;
@@ -111,7 +117,8 @@
             // 
             this.button6.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button6.BackgroundImage")));
             this.button6.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button6.Location = new System.Drawing.Point(239, 99);
+            this.button6.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button6.Location = new System.Drawing.Point(246, 99);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(136, 117);
             this.button6.TabIndex = 1;
@@ -122,7 +129,8 @@
             // 
             this.button5.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button5.BackgroundImage")));
             this.button5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button5.Location = new System.Drawing.Point(54, 99);
+            this.button5.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button5.Location = new System.Drawing.Point(61, 99);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(136, 117);
             this.button5.TabIndex = 0;
@@ -138,10 +146,11 @@
             this.tabPage2.Controls.Add(this.button2);
             this.tabPage2.Controls.Add(this.button3);
             this.tabPage2.Controls.Add(this.button1);
+            this.tabPage2.ForeColor = System.Drawing.Color.White;
             this.tabPage2.Location = new System.Drawing.Point(4, 24);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(629, 372);
+            this.tabPage2.Size = new System.Drawing.Size(632, 374);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Game";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -150,7 +159,8 @@
             // 
             this.button4.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button4.BackgroundImage")));
             this.button4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button4.Location = new System.Drawing.Point(428, 58);
+            this.button4.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button4.Location = new System.Drawing.Point(443, 58);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(108, 96);
             this.button4.TabIndex = 3;
@@ -161,9 +171,10 @@
             // 
             this.button2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button2.BackgroundImage")));
             this.button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button2.Location = new System.Drawing.Point(114, 212);
+            this.button2.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button2.Location = new System.Drawing.Point(129, 212);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(376, 86);
+            this.button2.Size = new System.Drawing.Size(376, 99);
             this.button2.TabIndex = 1;
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
@@ -172,7 +183,8 @@
             // 
             this.button3.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button3.BackgroundImage")));
             this.button3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button3.Location = new System.Drawing.Point(247, 58);
+            this.button3.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button3.Location = new System.Drawing.Point(262, 58);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(108, 96);
             this.button3.TabIndex = 2;
@@ -183,7 +195,8 @@
             // 
             this.button1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button1.BackgroundImage")));
             this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button1.Location = new System.Drawing.Point(62, 58);
+            this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button1.Location = new System.Drawing.Point(77, 58);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(108, 96);
             this.button1.TabIndex = 0;
