@@ -1,5 +1,0 @@
-D:\workspace\Cs\obj\Debug\net6.0\Cs.csproj.AssemblyReference.cache
-D:\workspace\Cs\obj\Debug\net6.0\GUI_form.Form1.resources
-D:\workspace\Cs\obj\Debug\net6.0\Cs.exercise.GUI_form.GUI_form.Properties.Resources.resources
-D:\workspace\Cs\obj\Debug\net6.0\GUI.Form1.resources
-D:\workspace\Cs\obj\Debug\net6.0\Cs.csproj.GenerateResource.cache

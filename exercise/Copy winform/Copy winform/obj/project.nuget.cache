@@ -1,0 +1,17 @@
+{
+  "version": 2,
+  "dgSpecHash": "gqpvVGNA8GGa+6lVG+7LhLlKgqufVzlKssvvtJ7ySWWnuc6zAIFao/S467EWg2h3DEu+l6cJJPb5QFuTV25DRg==",
+  "success": true,
+  "projectFilePath": "D:\\workspace\\Cs\\exercise\\Copy winform\\Copy winform\\Copy RPA.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\EBSoft\\.nuget\\packages\\dotnetseleniumextras.waithelpers\\3.11.0\\dotnetseleniumextras.waithelpers.3.11.0.nupkg.sha512",
+    "C:\\Users\\EBSoft\\.nuget\\packages\\newtonsoft.json\\12.0.3\\newtonsoft.json.12.0.3.nupkg.sha512",
+    "C:\\Users\\EBSoft\\.nuget\\packages\\opencvsharp4\\4.5.5.20211231\\opencvsharp4.4.5.5.20211231.nupkg.sha512",
+    "C:\\Users\\EBSoft\\.nuget\\packages\\selenium.support\\4.1.1\\selenium.support.4.1.1.nupkg.sha512",
+    "C:\\Users\\EBSoft\\.nuget\\packages\\selenium.webdriver\\4.1.1\\selenium.webdriver.4.1.1.nupkg.sha512",
+    "C:\\Users\\EBSoft\\.nuget\\packages\\selenium.webdriver.chromedriver\\101.0.4951.4100\\selenium.webdriver.chromedriver.101.0.4951.4100.nupkg.sha512",
+    "C:\\Users\\EBSoft\\.nuget\\packages\\system.memory\\4.5.4\\system.memory.4.5.4.nupkg.sha512",
+    "C:\\Users\\EBSoft\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\6.0.0\\system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}

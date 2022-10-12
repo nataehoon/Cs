@@ -1,0 +1,24 @@
+D:\workspace\Cs\exercise\Copy winform\Copy winform\bin\Debug\net6.0-windows\Copy RPA.exe
+D:\workspace\Cs\exercise\Copy winform\Copy winform\bin\Debug\net6.0-windows\Copy RPA.deps.json
+D:\workspace\Cs\exercise\Copy winform\Copy winform\bin\Debug\net6.0-windows\Copy RPA.runtimeconfig.json
+D:\workspace\Cs\exercise\Copy winform\Copy winform\bin\Debug\net6.0-windows\Copy RPA.dll
+D:\workspace\Cs\exercise\Copy winform\Copy winform\bin\Debug\net6.0-windows\Copy RPA.pdb
+D:\workspace\Cs\exercise\Copy winform\Copy winform\bin\Debug\net6.0-windows\Newtonsoft.Json.dll
+D:\workspace\Cs\exercise\Copy winform\Copy winform\bin\Debug\net6.0-windows\WebDriver.dll
+D:\workspace\Cs\exercise\Copy winform\Copy winform\obj\Debug\net6.0-windows\Copy RPA.csproj.AssemblyReference.cache
+D:\workspace\Cs\exercise\Copy winform\Copy winform\obj\Debug\net6.0-windows\Copy_winform.Form1.resources
+D:\workspace\Cs\exercise\Copy winform\Copy winform\obj\Debug\net6.0-windows\Copy RPA.csproj.GenerateResource.cache
+D:\workspace\Cs\exercise\Copy winform\Copy winform\obj\Debug\net6.0-windows\Copy RPA.GeneratedMSBuildEditorConfig.editorconfig
+D:\workspace\Cs\exercise\Copy winform\Copy winform\obj\Debug\net6.0-windows\Copy RPA.AssemblyInfoInputs.cache
+D:\workspace\Cs\exercise\Copy winform\Copy winform\obj\Debug\net6.0-windows\Copy RPA.AssemblyInfo.cs
+D:\workspace\Cs\exercise\Copy winform\Copy winform\obj\Debug\net6.0-windows\Copy RPA.csproj.CoreCompileInputs.cache
+D:\workspace\Cs\exercise\Copy winform\Copy winform\obj\Debug\net6.0-windows\Copy RPA.csproj.CopyComplete
+D:\workspace\Cs\exercise\Copy winform\Copy winform\obj\Debug\net6.0-windows\Copy RPA.dll
+D:\workspace\Cs\exercise\Copy winform\Copy winform\obj\Debug\net6.0-windows\refint\Copy RPA.dll
+D:\workspace\Cs\exercise\Copy winform\Copy winform\obj\Debug\net6.0-windows\Copy RPA.pdb
+D:\workspace\Cs\exercise\Copy winform\Copy winform\obj\Debug\net6.0-windows\Copy RPA.genruntimeconfig.cache
+D:\workspace\Cs\exercise\Copy winform\Copy winform\obj\Debug\net6.0-windows\ref\Copy RPA.dll
+D:\workspace\Cs\exercise\Copy winform\Copy winform\bin\Debug\net6.0-windows\SeleniumExtras.WaitHelpers.dll
+D:\workspace\Cs\exercise\Copy winform\Copy winform\bin\Debug\net6.0-windows\WebDriver.Support.dll
+D:\workspace\Cs\exercise\Copy winform\Copy winform\bin\Debug\net6.0-windows\OpenCvSharp.dll
+D:\workspace\Cs\exercise\Copy winform\Copy winform\obj\Debug\net6.0-windows\Copy_winform.Form2.resources
