@@ -1,0 +1,68 @@
+﻿@page "/boarddetail/{bono:int}"
+
+<hr />
+
+<div style="margin-left:2%;width:95%">
+    <div style="display:inline-block;width:45%;text-align:left">
+        <h4>@board.Title</h4>
+    </div>
+    <div style="display:inline-block;width:10%;text-align:right">
+        <p>@board.Id</p>
+    </div>
+    <div style="display:inline-block;width:33%;text-align:right">
+        <p>@board.Regdate.ToShortDateString()</p>
+    </div>
+</div>
+
+
+<hr />
+<div style="margin:5% 0 10% 5%">
+    @board.Content
+</div>
+
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+
+<div style="display:flex;justify-content:flex-end;margin-right:10%">
+@if (id == board.Id)
+{
+    <button type="button" class="btn btn-warning" @onclick="@(() => navigationManager.NavigateTo("/boardform/" + board.Boardtype + "/" +board.Bono + "/" + id))">수정</button>
+    <button type="button" class="btn btn-danger" @onclick="@(async () => {await BoardService.DeleteBoardAsync(board.Bono);})">삭제</button>
+}
+else
+{
+    <button type="button" class="btn btn-success" @onclick="@(async () => {await BoardService.UpdateRecommendAsync(bono, "up");})">추천</button>
+    @board.Recommend
+    <button type="button" class="btn btn-danger" @onclick="@(async () => {await BoardService.UpdateRecommendAsync(bono, "down");})">비추천</button>
+}
+</div>
+
+<br />
+<br />
+<br />
+<Commentview></Commentview>
+
+@code {
+    [Parameter]
+    public int bono { get; set; }
+    [Parameter]
+    public string? id { get; set; }
+
+    Board board = new Board();
+
+    protected override async Task OnInitializedAsync()
+    {
+        id = await sessionStorage.GetItemAsStringAsync("loginfo");
+        board = await BoardService.GetBoardByBonoAsync(bono);
+    }
+}

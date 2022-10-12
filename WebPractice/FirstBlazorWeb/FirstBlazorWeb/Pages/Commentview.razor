@@ -1,0 +1,9 @@
+﻿<h3>Comment</h3>
+
+@code {
+    private List<Comment> comments{ get; set; }
+
+    public async Task OnInitializedAsync(int bono){
+        comments = await CommentService.GetCommentsByBonoAsync(bono);
+    }
+}

@@ -1,0 +1,43 @@
+﻿@page "/memberview"
+@page "/memberview/{id}"
+
+@if (member != null)
+{
+    @if (member.Resposibility == "총책임자")
+    {
+        <h3>Member Infomation</h3>
+        @foreach (var memberlist in members) {
+            @if(memberlist.Id != "admin"){
+                <p>@memberlist.Id / @memberlist.Name / @memberlist.Nick / @memberlist.Resposibility</p>
+            }
+        }
+    }
+    <h3>My Infomation</h3>
+
+    <p>@member.Id</p>
+    <p>@member.Name</p>
+    <p>@member.Nick</p>
+    <p>@member.Resposibility</p>
+
+    <button type="button" @onclick="@(() => {navigationManager.NavigateTo("/memberform/" + member.Id, forceLoad:true);})">정보 수정</button>
+}
+else
+{
+    <h3>Login required</h3>
+}
+
+@code {
+    [Parameter]
+    public string? id { get; set; }
+
+    private List<Member> members { get; set; } = null!;
+    private Member? member { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        id = await sessionStorage.GetItemAsStringAsync("loginfo");
+        navigationManager.NavigateTo("/memberview/" + id);
+        member = await MemberService.GetMemberByIdAsync(id);
+        members = await MemberService.GetMembersAsync();
+    }
+}

@@ -1,0 +1,108 @@
+is_global = true
+build_property.TargetFramework = net6.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = FirstBlazorWeb
+build_property.RootNamespace = FirstBlazorWeb
+build_property.ProjectDir = C:\Users\skxog\source\repos\FirstBlazorWeb\FirstBlazorWeb\
+build_property.RazorLangVersion = 6.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = C:\Users\skxog\source\repos\FirstBlazorWeb\FirstBlazorWeb
+build_property._RazorSourceGeneratorDebug = 
+
+[C:/Users/skxog/source/repos/FirstBlazorWeb/FirstBlazorWeb/App.razor]
+build_metadata.AdditionalFiles.TargetPath = QXBwLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/skxog/source/repos/FirstBlazorWeb/FirstBlazorWeb/Pages/Boarddetail.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQm9hcmRkZXRhaWwucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/skxog/source/repos/FirstBlazorWeb/FirstBlazorWeb/Pages/Boardform.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQm9hcmRmb3JtLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/skxog/source/repos/FirstBlazorWeb/FirstBlazorWeb/Pages/Boardview.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQm9hcmR2aWV3LnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/skxog/source/repos/FirstBlazorWeb/FirstBlazorWeb/Pages/Charts.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2hhcnRzLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/skxog/source/repos/FirstBlazorWeb/FirstBlazorWeb/Pages/Commentview.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ29tbWVudHZpZXcucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/skxog/source/repos/FirstBlazorWeb/FirstBlazorWeb/Pages/ExerciselogDetailView.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXhlcmNpc2Vsb2dEZXRhaWxWaWV3LnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/skxog/source/repos/FirstBlazorWeb/FirstBlazorWeb/Pages/ExerciselogForm.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXhlcmNpc2Vsb2dGb3JtLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/skxog/source/repos/FirstBlazorWeb/FirstBlazorWeb/Pages/Exerciselogview.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXhlcmNpc2Vsb2d2aWV3LnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/skxog/source/repos/FirstBlazorWeb/FirstBlazorWeb/Pages/Healthchartform.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSGVhbHRoY2hhcnRmb3JtLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/skxog/source/repos/FirstBlazorWeb/FirstBlazorWeb/Pages/Healthchartview.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSGVhbHRoY2hhcnR2aWV3LnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/skxog/source/repos/FirstBlazorWeb/FirstBlazorWeb/Pages/Index.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5kZXgucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/skxog/source/repos/FirstBlazorWeb/FirstBlazorWeb/Pages/Logform.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTG9nZm9ybS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/skxog/source/repos/FirstBlazorWeb/FirstBlazorWeb/Pages/Login.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTG9naW4ucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/skxog/source/repos/FirstBlazorWeb/FirstBlazorWeb/Pages/Memberform.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTWVtYmVyZm9ybS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/skxog/source/repos/FirstBlazorWeb/FirstBlazorWeb/Pages/Memberview.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTWVtYmVydmlldy5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/skxog/source/repos/FirstBlazorWeb/FirstBlazorWeb/Shared/SurveyPrompt.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXFN1cnZleVByb21wdC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/skxog/source/repos/FirstBlazorWeb/FirstBlazorWeb/_Imports.razor]
+build_metadata.AdditionalFiles.TargetPath = X0ltcG9ydHMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/skxog/source/repos/FirstBlazorWeb/FirstBlazorWeb/Shared/MainLayout.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE1haW5MYXlvdXQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-sczog3ly88
+
+[C:/Users/skxog/source/repos/FirstBlazorWeb/FirstBlazorWeb/Shared/NavMenu.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE5hdk1lbnUucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-2p68e3yiei
+
+[C:/Users/skxog/source/repos/FirstBlazorWeb/FirstBlazorWeb/Pages/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXJyb3IuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/skxog/source/repos/FirstBlazorWeb/FirstBlazorWeb/Pages/_Host.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX0hvc3QuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/skxog/source/repos/FirstBlazorWeb/FirstBlazorWeb/Pages/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX0xheW91dC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 

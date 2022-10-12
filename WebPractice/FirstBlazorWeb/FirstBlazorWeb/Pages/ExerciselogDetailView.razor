@@ -1,0 +1,27 @@
+﻿@page "/exerciselog/{id}/{exno:int}"
+
+@if(exerciselog == null)
+{
+    <p>....Loading....</p>
+}
+else
+{
+    @exerciselog.Exdate
+
+    <button class="btn btn-warning" @onclick="@(() => navigationManager.NavigateTo("/logform/"+id+"/"+exerciselog.Exno))">수정</button>
+    <button class="btn btn-danger" @onclick="async () => {await ExerciselogService.DeleteExerciselogAsync(exerciselog.Exno);}">삭제</button>
+}
+@code {
+    [Parameter]
+    public int exno { get; set; }
+
+    [Parameter]
+    public string id { set; get; } = null!;
+
+    private Exerciselog exerciselog { get; set; } = null!;
+
+    protected override async Task OnInitializedAsync()
+    {
+        exerciselog = await ExerciselogService.GetExerciselogByExnoAsync((int)exno);
+    }
+}

@@ -1,0 +1,64 @@
+﻿@page "/boardform/{boardtype}/{id}"
+@page "/boardform/{boardtype}/{bono:int}/{id}"
+
+<h3>Boardform</h3>
+
+<EditForm Model="board" OnSubmit="HandleOnSubmit">
+    <InputNumber id="bono" @bind-Value="board.Bono" class="form-control"></InputNumber>
+    <InputText id="id" @bind-Value="@board.Id" class="form-control" hidden></InputText>
+    <InputDate id="regdate" @bind-Value="@board.Regdate" class="form-control" hidden></InputDate>
+    <div>
+        <label for="boardtype">게시판 타입</label>
+        <InputText id="boardtype" @bind-Value="board.Boardtype" class="form-control" disabled="false"></InputText>
+    </div>
+    <div>
+        <label for="title">글제목</label>
+        <InputText id="title" @bind-Value="board.Title" class="form-control"></InputText>
+    </div>
+    <div>
+        <label for="attachfile">첨부파일</label>
+        <InputText id="attachfile" @bind-Value="board.Attachfile" class="form-control"></InputText>
+    </div>
+    <div>
+        <label for="contetn">글내용</label>
+        <InputTextArea id="content" @bind-Value="board.Content" class="form-control"></InputTextArea>
+    </div>
+    <button type="submit" class="btn btn-primary">@btnText</button>
+</EditForm>
+
+@code {
+    [Parameter]
+    public string id { get; set; } = null!;
+    [Parameter]
+    public int? bono { get; set; }
+    [Parameter]
+    public string boardtype { get; set; } = null!;
+    public string btnText = string.Empty;
+
+    Board board = new Board();
+
+    protected override void OnInitialized(){
+        btnText = bono == null ? "등록" : "수정";
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        id = await sessionStorage.GetItemAsStringAsync("loginfo");
+        if(bono != null){
+            board = await BoardService.GetBoardByBonoAsync((int)bono);
+        }else{
+            board.Id = id;
+        }
+        board.Boardtype = boardtype;
+    }
+
+    private async void HandleOnSubmit(){
+        if(btnText.Equals("등록")){
+            board.Regdate = DateTime.Now;
+
+            await BoardService.CreateBoardAsync(board);
+        }else{
+            await BoardService.UpdateBoardAsync(board, (int)bono);
+        }
+    }
+}

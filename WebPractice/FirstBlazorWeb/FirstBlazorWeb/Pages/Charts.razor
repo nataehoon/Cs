@@ -1,0 +1,42 @@
+﻿@page "/chart"
+@page "/chart/{id}/ex"
+@page "/chart/{id}/health"
+
+@if(id == null){
+    <h3>Login required</h3>
+}
+else
+{
+    <h3>Chart</h3>
+
+    <div class="nav">
+        <div class="navbar-toggler" style="cursor:pointer" @onclick="@(() => {navigationManager.NavigateTo("/chart/" + id + "/ex"); flag=0;})">
+            운동 차트
+        </div>
+        <div class="navbar-toggler" style="cursor:pointer" @onclick="@(() => {navigationManager.NavigateTo("/chart/" + id + "/health"); flag=1;})">
+            건강 차트
+        </div>
+    </div>
+    <hr />
+
+    @if (flag == 0){
+        @*<ExerciselogData></ExerciselogData>*@
+    }
+    else{
+        @*<HealthchartData></HealthchartData>*@
+    }
+
+}
+
+@code {
+    [Parameter]
+    public string? id { get; set; }
+
+    int flag = 0;
+
+    protected override async Task OnInitializedAsync()
+    {
+        id = await sessionStorage.GetItemAsStringAsync("loginfo");
+        
+    }
+}

@@ -1,0 +1,478 @@
+﻿@page "/logform/{id}"
+@page "/logform/{id}/{exno:int}"
+
+<h3>ExerciselogForm</h3>
+
+<EditForm Model="exerciselog" OnSubmit="HandleSubmit">
+    <InputNumber id="exno" @bind-Value="exerciselog.Exno" class="form-control"></InputNumber>
+    <InputText id="id" @bind-Value="exerciselog.Id" class="form-control" hidden></InputText>
+    <div>
+        <label for="exdate">운동 일자</label>
+        <InputDate id="exdate" @bind-Value="exerciselog.Exdate" class="form-control"></InputDate>
+    </div>
+    <div>
+        <label for="extype">운동 타입</label>
+        <InputSelect id="extype" @bind-Value="exerciselog.Extype" class="form-control">
+            <option value="-" selected>선택하세요</option>
+            <option value="웨이트">웨이트</option>
+            <option value="필라테스">필라테스</option>
+            <option value="요가">요가</option>
+            <option value="맨몸운동">맨몸운동</option>
+            <option value="스트레칭">스트레칭</option>
+        </InputSelect>
+    </div>
+    <div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>운동 이름</th>
+                    <th>운동 횟수</th>
+                    <th>운동 강도</th>
+                    <th>운동 세트수</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td align="right">
+                        <button type="button" class="btn btn-success" @onclick="@(() => {if(cnt < 20){cnt++;}})"><span class="oi oi-plus"></span></button>
+                        @if (cnt > 1)
+                        {
+                            <button type="button" class="btn btn-danger" @onclick="@(() => {if(cnt > 1){cnt--;}})"><span class="oi oi-minus"></span></button>
+                        }
+                    </td>
+                </tr>
+                @if(cnt > 0)
+                {
+                    <tr>
+                        <td>
+                            <InputText id="exname" @bind-Value="exerciselog.Exname" class="form-control"></InputText>
+                        </td>
+                        <td>
+                            <InputText id="exrep" @bind-Value="exerciselog.Exrep" class="form-control"></InputText>
+                        </td>
+                        <td>
+                            <InputText id="exinten" @bind-Value="exerciselog.Exinten" class="form-control"></InputText>
+                        </td>
+                        <td>
+                            <InputText id="exset" @bind-Value="exerciselog.Exset" class="form-control"></InputText>
+                        </td>
+                    </tr>
+                }
+                @if (cnt > 1)
+                {
+                    <tr>
+                        <td>
+                            <InputText id="exname" @bind-Value="name2" class="form-control"></InputText>
+                        </td>
+                        <td>
+                            <InputText id="exrep" @bind-Value="rep2" class="form-control"></InputText>
+                        </td>
+                        <td>
+                            <InputText id="exinten" @bind-Value="inten2" class="form-control"></InputText>
+                        </td>
+                        <td>
+                            <InputText id="exset" @bind-Value="set2" class="form-control"></InputText>
+                        </td>
+                    </tr>
+                }
+                @if (cnt > 2)
+                {
+                    <tr>
+                        <td>
+                            <InputText id="exname" @bind-Value="name3" class="form-control"></InputText>
+                        </td>
+                        <td>
+                            <InputText id="exrep" @bind-Value="rep3" class="form-control"></InputText>
+                        </td>
+                        <td>
+                            <InputText id="exinten" @bind-Value="inten3" class="form-control"></InputText>
+                        </td>
+                        <td>
+                            <InputText id="exset" @bind-Value="set3" class="form-control"></InputText>
+                        </td>
+                    </tr>
+                }
+                @if (cnt > 3)
+                {
+                    <tr>
+                        <td>
+                            <InputText id="exname" @bind-Value="name4" class="form-control"></InputText>
+                        </td>
+                        <td>
+                            <InputText id="exrep" @bind-Value="rep4" class="form-control"></InputText>
+                        </td>
+                        <td>
+                            <InputText id="exinten" @bind-Value="inten4" class="form-control"></InputText>
+                        </td>
+                        <td>
+                            <InputText id="exset" @bind-Value="set4" class="form-control"></InputText>
+                        </td>
+                    </tr>
+                }
+                @if (cnt > 4)
+                {
+                    <tr>
+                        <td>
+                            <InputText id="exname" @bind-Value="name5" class="form-control"></InputText>
+                        </td>
+                        <td>
+                            <InputText id="exrep" @bind-Value="rep5" class="form-control"></InputText>
+                        </td>
+                        <td>
+                            <InputText id="exinten" @bind-Value="inten5" class="form-control"></InputText>
+                        </td>
+                        <td>
+                            <InputText id="exset" @bind-Value="set5" class="form-control"></InputText>
+                        </td>
+                    </tr>
+                }
+                @if (cnt > 5)
+                {
+                    <tr>
+                        <td>
+                            <InputText id="exname" @bind-Value="name6" class="form-control"></InputText>
+                        </td>
+                        <td>
+                            <InputText id="exrep" @bind-Value="rep6" class="form-control"></InputText>
+                        </td>
+                        <td>
+                            <InputText id="exinten" @bind-Value="inten6" class="form-control"></InputText>
+                        </td>
+                        <td>
+                            <InputText id="exset" @bind-Value="set6" class="form-control"></InputText>
+                        </td>
+                    </tr>
+                }
+                @if (cnt > 6)
+                {
+                    <tr>
+                        <td>
+                            <InputText id="exname" @bind-Value="name7" class="form-control"></InputText>
+                        </td>
+                        <td>
+                            <InputText id="exrep" @bind-Value="rep7" class="form-control"></InputText>
+                        </td>
+                        <td>
+                            <InputText id="exinten" @bind-Value="inten7" class="form-control"></InputText>
+                        </td>
+                        <td>
+                            <InputText id="exset" @bind-Value="set7" class="form-control"></InputText>
+                        </td>
+                    </tr>
+                }
+                @if (cnt > 7)
+                {
+                    <tr>
+                        <td>
+                            <InputText id="exname" @bind-Value="name8" class="form-control"></InputText>
+                        </td>
+                        <td>
+                            <InputText id="exrep" @bind-Value="rep8" class="form-control"></InputText>
+                        </td>
+                        <td>
+                            <InputText id="exinten" @bind-Value="inten8" class="form-control"></InputText>
+                        </td>
+                        <td>
+                            <InputText id="exset" @bind-Value="set8" class="form-control"></InputText>
+                        </td>
+                    </tr>
+                }
+                @if (cnt > 8)
+                {
+                    <tr>
+                        <td>
+                            <InputText id="exname" @bind-Value="name9" class="form-control"></InputText>
+                        </td>
+                        <td>
+                            <InputText id="exrep" @bind-Value="rep9" class="form-control"></InputText>
+                        </td>
+                        <td>
+                            <InputText id="exrep" @bind-Value="inten9" class="form-control"></InputText>
+                        </td>
+                        <td>
+                            <InputText id="exrep" @bind-Value="set9" class="form-control"></InputText>
+                        </td>
+                    </tr>
+                }
+                @if (cnt > 9)
+                {
+                    <tr>
+                        <td>
+                            <InputText id="exname" @bind-Value="name10" class="form-control"></InputText>
+                        </td>
+                        <td>
+                            <InputText id="exrep" @bind-Value="rep10" class="form-control"></InputText>
+                        </td>
+                        <td>
+                            <InputText id="exrep" @bind-Value="inten10" class="form-control"></InputText>
+                        </td>
+                        <td>
+                            <InputText id="exrep" @bind-Value="set10" class="form-control"></InputText>
+                        </td>
+                    </tr>
+                }
+                @if (cnt > 10)
+                {
+                    <tr>
+                        <td>
+                            <InputText id="exname" @bind-Value="name11" class="form-control"></InputText>
+                        </td>
+                        <td>
+                            <InputText id="exrep" @bind-Value="rep11" class="form-control"></InputText>
+                        </td>
+                        <td>
+                            <InputText id="exrep" @bind-Value="inten11" class="form-control"></InputText>
+                        </td>
+                        <td>
+                            <InputText id="exrep" @bind-Value="set11" class="form-control"></InputText>
+                        </td>
+                    </tr>
+                }
+                @if (cnt > 11)
+                {
+                    <tr>
+                        <td>
+                            <InputText id="exname" @bind-Value="name12" class="form-control"></InputText>
+                        </td>
+                        <td>
+                            <InputText id="exrep" @bind-Value="rep12" class="form-control"></InputText>
+                        </td>
+                        <td>
+                            <InputText id="exrep" @bind-Value="inten12" class="form-control"></InputText>
+                        </td>
+                        <td>
+                            <InputText id="exrep" @bind-Value="set12" class="form-control"></InputText>
+                        </td>
+                    </tr>
+                }
+                @if (cnt > 12)
+                {
+                    <tr>
+                        <td>
+                            <InputText id="exname" @bind-Value="name13" class="form-control"></InputText>
+                        </td>
+                        <td>
+                            <InputText id="exrep" @bind-Value="rep13" class="form-control"></InputText>
+                        </td>
+                        <td>
+                            <InputText id="exrep" @bind-Value="inten13" class="form-control"></InputText>
+                        </td>
+                        <td>
+                            <InputText id="exrep" @bind-Value="set13" class="form-control"></InputText>
+                        </td>
+                    </tr>
+                }
+                @if (cnt > 13)
+                {
+                    <tr>
+                        <td>
+                            <InputText id="exname" @bind-Value="name14" class="form-control"></InputText>
+                        </td>
+                        <td>
+                            <InputText id="exrep" @bind-Value="rep14" class="form-control"></InputText>
+                        </td>
+                        <td>
+                            <InputText id="exrep" @bind-Value="inten14" class="form-control"></InputText>
+                        </td>
+                        <td>
+                            <InputText id="exrep" @bind-Value="set14" class="form-control"></InputText>
+                        </td>
+                    </tr>
+                }
+                @if (cnt > 14)
+                {
+                    <tr>
+                        <td>
+                            <InputText id="exname" @bind-Value="name15" class="form-control"></InputText>
+                        </td>
+                        <td>
+                            <InputText id="exrep" @bind-Value="rep15" class="form-control"></InputText>
+                        </td>
+                        <td>
+                            <InputText id="exrep" @bind-Value="inten15" class="form-control"></InputText>
+                        </td>
+                        <td>
+                            <InputText id="exrep" @bind-Value="set15" class="form-control"></InputText>
+                        </td>
+                    </tr>
+                }
+                @if (cnt > 15)
+                {
+                    <tr>
+                        <td>
+                            <InputText id="exname" @bind-Value="name16" class="form-control"></InputText>
+                        </td>
+                        <td>
+                            <InputText id="exrep" @bind-Value="rep16" class="form-control"></InputText>
+                        </td>
+                        <td>
+                            <InputText id="exrep" @bind-Value="inten16" class="form-control"></InputText>
+                        </td>
+                        <td>
+                            <InputText id="exrep" @bind-Value="set16" class="form-control"></InputText>
+                        </td>
+                    </tr>
+                }
+                @if (cnt > 16)
+                {
+                    <tr>
+                        <td>
+                            <InputText id="exname" @bind-Value="name17" class="form-control"></InputText>
+                        </td>
+                        <td>
+                            <InputText id="exrep" @bind-Value="rep17" class="form-control"></InputText>
+                        </td>
+                        <td>
+                            <InputText id="exrep" @bind-Value="inten17" class="form-control"></InputText>
+                        </td>
+                        <td>
+                            <InputText id="exrep" @bind-Value="set17" class="form-control"></InputText>
+                        </td>
+                    </tr>
+                }
+                @if (cnt > 17)
+                {
+                    <tr>
+                        <td>
+                            <InputText id="exname" @bind-Value="name18" class="form-control"></InputText>
+                        </td>
+                        <td>
+                            <InputText id="exrep" @bind-Value="rep18" class="form-control"></InputText>
+                        </td>
+                        <td>
+                            <InputText id="exrep" @bind-Value="inten18" class="form-control"></InputText>
+                        </td>
+                        <td>
+                            <InputText id="exrep" @bind-Value="set18" class="form-control"></InputText>
+                        </td>
+                    </tr>
+                }
+                @if (cnt > 18)
+                {
+                    <tr>
+                        <td>
+                            <InputText id="exname" @bind-Value="name19" class="form-control"></InputText>
+                        </td>
+                        <td>
+                            <InputText id="exrep" @bind-Value="rep19" class="form-control"></InputText>
+                        </td>
+                        <td>
+                            <InputText id="exrep" @bind-Value="inten19" class="form-control"></InputText>
+                        </td>
+                        <td>
+                            <InputText id="exrep" @bind-Value="set19" class="form-control"></InputText>
+                        </td>
+                    </tr>
+                }
+                @if (cnt > 19)
+                {
+                    <tr>
+                        <td>
+                            <InputText id="exname" @bind-Value="name20" class="form-control"></InputText>
+                        </td>
+                        <td>
+                            <InputText id="exrep" @bind-Value="rep20" class="form-control"></InputText>
+                        </td>
+                        <td>
+                            <InputText id="exrep" @bind-Value="inten20" class="form-control"></InputText>
+                        </td>
+                        <td>
+                            <InputText id="exrep" @bind-Value="set20" class="form-control"></InputText>
+                        </td>
+                    </tr>
+                }
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td align="right"><label for="extime">총 운동 시간</label></td>
+                    <td>
+                            
+                        <InputNumber id="extime" @bind-Value="exerciselog.Extime" class="form-control"></InputNumber>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div>
+        <label for="memo">메모</label>
+        <InputTextArea id="memo" @bind-Value="exerciselog.Memo" class="form-control" style="height:250px"></InputTextArea>
+    </div>
+    <hr />
+    <div>
+        <button type="submit" class="btn btn-primary">@btnText</button>
+    </div>
+    
+</EditForm>
+
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+
+@code {
+    [Parameter]
+    public string id { get; set; } = null!;
+
+    [Parameter]
+    public int? exno{ get; set; }
+
+    Exerciselog exerciselog = new Exerciselog();
+
+    private string btnText = "";
+    private string content = "";
+
+    private int cnt = 1;
+    private string? name2,name3,name4,name5,name6,name7,name8,name9,name10,name11,name12,name13,name14,name15,name16,name17,name18,name19,name20;
+    private string? rep2,rep3,rep4,rep5,rep6,rep7,rep8,rep9,rep10,rep11,rep12,rep13,rep14,rep15,rep16,rep17,rep18,rep19,rep20;
+    private string? inten2,inten3,inten4,inten5,inten6,inten7,inten8,inten9,inten10,inten11,inten12,inten13,inten14,inten15,inten16,inten17,inten18,inten19,inten20;
+    private string? set2, set3, set4, set5, set6, set7, set8, set9, set10, set11, set12, set13, set14, set15, set16, set17, set18, set19, set20;
+
+    protected override void OnInitialized()
+    {
+        btnText = exno == null ? "저장" : "수정";
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        if(exno != null){
+            exerciselog = await ExerciselogService.GetExerciselogByExnoAsync((int)exno);
+
+        }
+
+        id = await sessionStorage.GetItemAsStringAsync("loginfo");
+        exerciselog.Id = id;
+
+    }
+
+    async Task HandleSubmit()
+    {
+        if(btnText.Equals("수정"))
+        {
+            await ExerciselogService.UpdateExerciselogAsync(exerciselog, (int)exno);
+        }
+        else
+        {
+            exerciselog.Exname = exerciselog.Exname + "," + name2 + "," + name3 + "," + name4 + "," + name5 + "," + name6 + "," + name7 + "," + name8 + "," + name9 + "," + name10 + "," + name11 + "," + name12 + "," + name13 + "," + name14 + "," + name15 + "," + name16 + "," + name17 + "," + name18 + "," + name19 + "," + name20;
+            exerciselog.Exrep = exerciselog.Exrep + "," + rep2 + "," + rep3 + "," + rep4 + "," + rep5 + "," + rep6 + "," + rep7 + "," + rep8 + "," + rep9 + "," + rep10 + "," + rep11 + "," + rep12 + "," + rep13 + "," + rep14 + "," + rep15 + "," + rep16 + "," + rep17 + "," + rep18 + "," + rep19 + "," + rep20;
+            exerciselog.Exinten = exerciselog.Exinten + "," + inten2 + "," + inten3 + "," + inten4 + "," + inten5 + "," + inten6 + "," + inten7 + "," + inten8 + "," + inten9 + "," + inten10 + "," + inten11 + "," + inten12 + "," + inten13 + "," + inten14 + "," + inten15 + "," + inten16 + "," + inten17 + "," + inten18 + "," + inten19 + "," + inten20;
+            exerciselog.Exset = exerciselog.Exset + "," + set2 + "," + set3 + "," + set4 + "," + set5 + "," + set6 + "," + set7 + "," + set8 + "," + set9 + "," + set10 + "," + set11 + "," + set12 + "," + set13 + "," + set14 + "," + set15 + "," + set16 + "," + set17 + "," + set18 + "," + set19 + "," + set20;
+
+            exerciselog.Exname = exerciselog.Exname.Substring(0, exerciselog.Exname.Length - (20 - cnt));
+            exerciselog.Exrep = exerciselog.Exrep.Substring(0, exerciselog.Exrep.Length - (20 - cnt));
+            exerciselog.Exinten = exerciselog.Exinten.Substring(0, exerciselog.Exinten.Length - (20 - cnt));
+            exerciselog.Exset = exerciselog.Exset.Substring(0, exerciselog.Exset.Length - (20 - cnt));
+
+            await ExerciselogService.CreateExerciselogAsync(exerciselog);
+        }
+    }
+}

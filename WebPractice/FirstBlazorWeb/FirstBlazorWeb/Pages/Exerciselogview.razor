@@ -1,0 +1,71 @@
+﻿@page "/exerciselog"
+@page "/exerciselog/{id}"
+
+<style>
+    .head{
+        text-align:left;
+    }
+</style>
+
+@if(id == null)
+{
+    <h3>Login required</h3>
+}
+else
+{
+    @if(exerciselogs != null)
+    {
+        <h3 class="head">ExerciseLog</h3>
+        <div style="display:flex;justify-content:flex-end;margin-right:7%;">
+            <button class="btn btn-primary" @onclick="CreateLog">등록</button>
+        </div>
+        <div class="card-group" style="display:flex;justify-content:flex-start;margin:5%">
+        @foreach(var exerciselog in exerciselogs)
+            {
+                <div style="width:18rem;margin-bottom:3%;">
+                    <div style="border:1px solid;border-color:antiquewhite;margin-right:10%;">
+                        <img class="card-img-top" src="" alt="Card image cap">
+                        <br/>
+                        <div class="card-body" style="cursor:pointer;" @onclick=@(() => navigationManager.NavigateTo("/exerciselog/"+id+"/"+exerciselog.Exno))>
+                            <h4 class="card-title">@exerciselog.Extype</h4>
+                            <p style="margin-bottom:3px;">@exerciselog.Exname</p>
+                            <p>@exerciselog.Exdate.ToString().Substring(0,10)</p>
+                        </div>
+                        <div style="display:flex;justify-content:flex-end">
+                            <button class="btn btn-warning" @onclick="@(() => navigationManager.NavigateTo("/logform/"+id+"/"+exerciselog.Exno))">수정</button>
+                            <button class="btn btn-danger" @onclick="async () => {await ExerciselogService.DeleteExerciselogAsync(exerciselog.Exno);}">삭제</button>
+                        </div>
+                    </div>
+                </div>
+        }
+        </div>
+    }
+    else
+    {
+
+    }
+}
+
+@code {
+    [Parameter]
+    public string id { get; set; } = null!;
+
+    private List<Exerciselog>? exerciselogs { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        id = await sessionStorage.GetItemAsStringAsync("loginfo");
+        await MemberService.GetMemberByIdAsync(id);
+        exerciselogs = await ExerciselogService.GetExerciselogByIdAsync(id);
+        if(id != null){
+            navigationManager.NavigateTo("/exerciselog/" + id);
+        }
+        
+    }
+    public void CreateLog()
+    {
+        navigationManager.NavigateTo("/logform/"+id);
+    }
+
+
+}

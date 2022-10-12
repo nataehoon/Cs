@@ -1,0 +1,149 @@
+﻿@page "/healthchart"
+@page "/healthchart/{id}"
+
+<style>
+    .btns{
+        display:flex;
+        justify-content:flex-end;
+        margin-right: 5%;
+    }
+    .table{
+        border:solid 1px;
+        border-color:lightgray;
+    }
+    td{
+        width:100px;
+        height:50px;
+    }
+</style>
+
+@if(id == null)
+{
+    <h3>Login required</h3>
+}
+else
+{
+    <h3>Healthchart</h3>
+    <div style="display:flex;justify-content:flex-end;margin-right: 7%">
+        <button type="button" class="btn btn-primary" @onclick=@(() => navigationManager.NavigateTo("/healthchartform/"+id))>등록</button>
+    </div>
+    <div class="card-group">
+        @if (healthchart != null)
+        {
+        <div class="card-body">
+            <table class="table" width="200px">
+                <h4>@healthchart.Regdate.GetValueOrDefault().ToShortDateString()</h4>
+                <tr>
+                    <td>이름 : @member.Name 님</td>
+                    <td>나이 : @member.Age 세</td>
+                </tr>
+                <tr>
+                    <td>성별 : @member.Gender</td>
+                    <td>몸무게 : @healthchart.Weight kg</td>
+                </tr>
+                <tr>
+                    <td>키 : @healthchart.Height cm</td>
+                    <td>직업 형태 : @healthchart.Jobtype</td>
+                </tr>
+                <tr>
+                    <td>지방량 : @healthchart.Fat kg</td>
+                    <td>근육량 : @healthchart.Muscle kg</td>
+                </tr>
+                <tr>
+                    <td>체지방률 : @(@healthchart.Weight / @healthchart.Fat) %</td>
+                    <td>Total Cholesterol : @healthchart.Totalcho mg/dl</td>
+                </tr>
+                <tr>
+                    <td>HDL : @healthchart.Hdl mg/dl</td>
+                    <td>LDL : @healthchart.Ldl mg/dl</td>
+                </tr>
+                <tr>
+                    <td>BUN : @healthchart.Bun mg/dl</td>
+                    <td>Creatinine : @healthchart.Crtn mg/dl</td>
+                </tr>
+                <tr>
+                    <td>Glucose Fasting : @healthchart.Glufa mg/dl</td>
+                    <td>Glucose Fasting : @healthchart.Gluhemo %</td>
+                </tr>
+            </table>
+            <div class="btns">
+                <button type="button" class="btn btn-warning" @onclick=@(() => navigationManager.NavigateTo("/healthchartform/"+id+"/"+healthchart.Heno))>수정</button>
+                <button type="button" class="btn btn-danger" @onclick=@(async () => {await HealthchartService.DeleteHealthchartAsync(healthchart.Heno);})>삭제</button>
+            </div>
+        </div>
+        }        
+        <div class="card-body">
+        @if (Xhealthcharts != null)
+        {
+            <table class="table" width="200px">
+                <h4>@Xhealthcharts.Regdate.GetValueOrDefault().ToShortDateString()</h4>
+                <tr>
+                    <td>이름 : @member.Name 님</td>
+                    <td>나이 : @member.Age 세</td>
+                </tr>
+                <tr>
+                    <td>성별 : @member.Gender</td>
+                    <td>몸무게 : @Xhealthcharts.Weight kg</td>
+                </tr>
+                <tr>
+                    <td>키 : @Xhealthcharts.Height cm</td>
+                    <td>직업 형태 : @Xhealthcharts.Jobtype</td>
+                </tr>
+                <tr>
+                    <td>지방량 : @Xhealthcharts.Fat kg</td>
+                    <td>근육량 : @Xhealthcharts.Muscle kg</td>
+                </tr>
+                <tr>
+                    <td>체지방률 : @(@Xhealthcharts.Weight / @Xhealthcharts.Fat) %</td>
+                    <td>Total Cholesterol : @Xhealthcharts.Totalcho mg/dl</td>
+                </tr>
+                <tr>
+                    <td>HDL : @Xhealthcharts.Hdl mg/dl</td>
+                        <td>LDL : @Xhealthcharts.Ldl mg/dl</td>
+                </tr>
+                <tr>
+                    <td>BUN : @Xhealthcharts.Bun mg/dl</td>
+                    <td>Creatinine : @Xhealthcharts.Crtn mg/dl</td>
+                </tr>
+                <tr>
+                    <td>Glucose Fasting : @Xhealthcharts.Glufa mg/dl</td>
+                    <td>Glucose Fasting : @Xhealthcharts.Gluhemo %</td>
+                </tr>
+            </table>
+            <div class="btns">
+                <button type="button" class="btn btn-warning" @onclick=@(() => navigationManager.NavigateTo("/healthchartform/"+id+"/"+Xhealthcharts.Heno))>수정</button>
+                @*<button type="button" class="btn btn-danger" @onclick=@(async () => {await HealthchartService.DeleteHealthchartAsync(Xhealthcharts.Heno);})>삭제</button>*@
+            </div>
+        }
+        </div>
+    </div>
+}
+
+@code {
+    [Parameter]
+    public string? id { get; set; }
+
+    private Healthchart? healthchart { get; set; }
+    private Member member { get; set; } = null!;
+    private Healthchart? Xhealthcharts { get; set; }
+
+
+    string mehiresult = string.Empty;
+    string postresult = string.Empty;
+
+    protected override async Task OnInitializedAsync()
+    {
+        id = await sessionStorage.GetItemAsStringAsync("loginfo");
+        if(id != null){
+            member = await MemberService.GetMemberByIdAsync(id);
+            var result = await HealthchartService.GetAllHealthchartByIdAsync(id);
+            healthchart = await HealthchartService.GetHealthchartByHenoAsync(result.Count() - 1);
+            if ((result.Count()) - 2 >= 0)
+            {
+                Xhealthcharts = await HealthchartService.GetHealthchartByHenoAsync(result.Count() - 2);
+            }
+            navigationManager.NavigateTo("/healthchart/" + id);
+        }
+        
+    }
+}

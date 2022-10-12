@@ -1,0 +1,91 @@
+﻿@if (id != null)
+{
+    <NavLink class="nav-link" style="cursor:pointer" @onclick="@(() => {navigationManager.NavigateTo("/memberview", forceLoad:true);})">
+        <span class="oi oi-person" aria-hidden="true"></span>
+    </NavLink>
+    <NavLink class="nav-link" style="cursor:pointer" @onclick="@(async () => {await sessionStorage.ClearAsync(); navigationManager.NavigateTo("/", forceLoad:true);})">
+        <span class="oi oi-account-logout" aria-hidden="true"></span>
+    </NavLink>
+}
+else{
+    <NavLink class="nav-link" style="cursor:pointer" @onclick="OpenLogin">
+        <span class="oi oi-account-login" aria-hidden="true"></span>
+    </NavLink>
+
+}
+<div class="modal-backdrop fade @(show ? "show" : "") @(display ? "d-block" : "d-none")"></div>
+
+<div class="modal fade @(show ? "show" : "") @(display ? "d-block" : "d-none")" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Login Form</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" @onclick="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <EditForm Model="member" OnSubmit="LoginCheck">
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="loginId" class="form-label">ID</label>
+                        <InputText type="text" @bind-Value="member.Id" class="form-control" id="loginId" placeholder="아이디를 입력하세요" autocomplete="off" required ></InputText>
+                    </div>
+                    <div class="mb-3">
+                        <label for="password" class="form-label">Password</label>
+                        <InputText type="password" @bind-Value="member.Pw" class="form-control" id="password" required />
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-success">Login</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal"ismiss @onclick="Close">Close</button>
+                </div>
+            </EditForm>
+        </div>
+    </div>
+</div>
+
+@code {
+    public string? id { get; set; }
+
+    private bool show, display, loggedIn;
+
+    Member member = new Member();
+
+    protected override async Task OnInitializedAsync()
+    {
+        id = await sessionStorage.GetItemAsStringAsync("loginfo");
+    }
+
+    public async Task OpenLogin(){
+        display = true;
+        await Task.Delay(100);
+        show = true;
+    }
+    public async Task Close(){
+        display = false;
+        await Task.Delay(500);
+        show = false;
+    }
+
+
+
+    public async Task LoginCheck()
+    {
+        var result = await MemberService.GetMemberByIdAsync(member.Id);
+        if (result.Pw == member.Pw && result.Id == member.Id)
+        {
+            await Close();
+            loggedIn = true;
+            if(loggedIn == true){
+                await sessionStorage.SetItemAsStringAsync("loginfo", member.Id);
+            }
+            navigationManager.NavigateTo("/" + member.Id, forceLoad: true);
+            
+        }
+        else
+        {
+            Console.WriteLine("Login Failed");
+        }
+        
+    }
+}
