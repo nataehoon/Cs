@@ -25,7 +25,6 @@
         {
             <button type="button" class="btn btn-secondary" @onclick="@(() => {ConfigurePieConfig2(); chartview = true;})">@extypes[i] 차트 보기</button>
         }
-        
     }
 }
 
@@ -37,6 +36,7 @@
     public bool chartview = false;
 
     List<Exerciselog> exercises { get; set; } = new List<Exerciselog>();
+    List<Exercise> exlist = new List<Exercise>();
     List<string> extypes = new List<string>();
     List<int> typecnt = new List<int>();
     List<string> exnames1 = new List<string>();
@@ -50,6 +50,12 @@
     List<string> exnames5 = new List<string>();
     List<int> ex5cnt = new List<int>();
 
+    Dictionary<string, int> exlist1 = new Dictionary<string, int>();
+    Dictionary<string, int> exlist2 = new Dictionary<string, int>();
+    Dictionary<string, int> exlist3 = new Dictionary<string, int>();
+    Dictionary<string, int> exlist4 = new Dictionary<string, int>();
+    Dictionary<string, int> exlist5 = new Dictionary<string, int>();
+
     protected override async Task OnInitializedAsync()
     {
         exercises = await ExerciselogService.GetExerciselogsAsync();
@@ -57,6 +63,7 @@
         ExtypeProcessing(exercises);
         ExnameProcessing();
 
+        
     }
 
     private void ConfigurePieConfig(){
@@ -124,9 +131,7 @@
         foreach(var item in extypes)
         {
             List<string> names = new List<string>();
-            List<Exerciselog> exn = new List<Exerciselog>();
-            exn = await ExerciselogService.GetExerciselogByExtypeAsync(item);
-            foreach (var ex in exn)
+            foreach (var ex in await ExerciselogService.GetExerciselogByExtypeAsync(item))
             {
                 if (ex.Exname.Contains(","))
                 {
@@ -150,38 +155,39 @@
             if (count == 0)
             {
                 exnames1 = names;
-                ExcntProcessing(names, exn, count);
+                ExcntProcessing(names, item, count);
             }
             else if (count == 1)
             {
                 exnames2 = names;
-                ExcntProcessing(names, exn, count);
+                ExcntProcessing(names, item, count);
             }
             else if (count == 2)
             {
                 exnames3 = names;
-                ExcntProcessing(names, exn, count);
+                ExcntProcessing(names, item, count);
             }
             else if (count == 3)
             {
                 exnames4 = names;
-                ExcntProcessing(names, exn, count);
+                ExcntProcessing(names, item, count);
             }
             else if (count == 4)
             {
                 exnames5 = names;
-                ExcntProcessing(names, exn, count);
+                ExcntProcessing(names, item, count);
             }
             count++;
         }
     }
 
-    private void ExcntProcessing(List<string> name, List<Exerciselog> data, int num){
+    private async void ExcntProcessing(List<string> name, string type, int num){
         for (int i = 0; i < name.Count; i++)
         {
+            exlist = await ExerciselogService.GetExerciseCountAsync(type, name[i]);
             int cnt = 0;
-            foreach(var item in data){
-                if (item.Exname.Contains(name[i]) && item.Exname != null)
+            foreach(var item in exlist){
+                if (item.Exname.Equals(name[i]) && item.Exname != null)
                 {
                     cnt++;
                 }

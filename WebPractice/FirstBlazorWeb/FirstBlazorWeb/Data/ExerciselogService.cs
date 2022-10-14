@@ -16,6 +16,7 @@ namespace FirstBlazorWeb.Data
 
         Task<List<Exercise>> GetExercisesAsync();
         Task<List<Exercise>> GetExerciseNameAsync(string extype);
+        Task<List<Exercise>> GetExerciseCountAsync(string extype, string exname);
     }
     public class ExerciselogService : IExerciselogService
     {
@@ -45,6 +46,11 @@ namespace FirstBlazorWeb.Data
                 await _context.SaveChangesAsync();
             }
             _navigationManager.NavigateTo("/exerciselog/"+id, forceLoad:true);
+        }
+
+        public async Task<List<Exercise>> GetExerciseCountAsync(string extype, string exname)
+        {
+            return (await _context.Exercises.ToListAsync()).Where(e => e.Extype == extype && e.Exname == exname).ToList();
         }
 
         public async Task<List<Exerciselog>> GetExerciselogByExnameAsync(string exname)
