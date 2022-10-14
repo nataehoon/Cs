@@ -14,12 +14,11 @@
         <label for="extype">운동 타입</label>
         <InputSelect id="extype" @bind-Value="exerciselog.Extype" class="form-control">
             <option value="-" selected>선택하세요</option>
-            <option value="웨이트">웨이트</option>
-            <option value="필라테스">필라테스</option>
-            <option value="요가">요가</option>
-            <option value="맨몸운동">맨몸운동</option>
-            <option value="스트레칭">스트레칭</option>
+            @foreach(var item in extype){
+                <option value="@item">@item</option>
+            }
         </InputSelect>
+        <button type="button" class="btn btn-success" @onclick="SelectedType">적용</button>
     </div>
     <div>
         <table class="table">
@@ -48,7 +47,12 @@
                 {
                     <tr>
                         <td>
-                            <InputText id="exname" @bind-Value="exerciselog.Exname" class="form-control"></InputText>
+                            <InputSelect id="extype" @bind-Value="exerciselog.Exname" class="form-control">
+                                <option value="-" selected>@boxText</option>
+                                @foreach(var item in exnames){
+                                    <option value="@item.Exname">@item.Exname</option>
+                                }
+                            </InputSelect>
                         </td>
                         <td>
                             <InputText id="exrep" @bind-Value="exerciselog.Exrep" class="form-control"></InputText>
@@ -65,7 +69,12 @@
                 {
                     <tr>
                         <td>
-                            <InputText id="exname" @bind-Value="name2" class="form-control"></InputText>
+                            <InputSelect id="extype" @bind-Value="name2" class="form-control">
+                                <option value="-" selected>@boxText</option>
+                                @foreach(var item in exnames){
+                                    <option value="@item.Exname">@item.Exname</option>
+                                }
+                            </InputSelect>
                         </td>
                         <td>
                             <InputText id="exrep" @bind-Value="rep2" class="form-control"></InputText>
@@ -82,7 +91,12 @@
                 {
                     <tr>
                         <td>
-                            <InputText id="exname" @bind-Value="name3" class="form-control"></InputText>
+                            <InputSelect id="extype" @bind-Value="name3" class="form-control">
+                                <option value="-" selected>@boxText</option>
+                                @foreach(var item in exnames){
+                                    <option value="@item.Exname">@item.Exname</option>
+                                }
+                            </InputSelect>
                         </td>
                         <td>
                             <InputText id="exrep" @bind-Value="rep3" class="form-control"></InputText>
@@ -426,10 +440,14 @@
     [Parameter]
     public int? exno{ get; set; }
 
-    Exerciselog exerciselog = new Exerciselog();
+    Exerciselog exerciselog { get; set; } = new Exerciselog();
+    List<Exercise> extypes = new List<Exercise>();
+    List<string> extype = new List<string>();
+    List<Exercise> exnames = new List<Exercise>();
 
     private string btnText = "";
     private string content = "";
+    private string boxText = "";
 
     private int cnt = 1;
     private string? name2,name3,name4,name5,name6,name7,name8,name9,name10,name11,name12,name13,name14,name15,name16,name17,name18,name19,name20;
@@ -440,6 +458,7 @@
     protected override void OnInitialized()
     {
         btnText = exno == null ? "저장" : "수정";
+        boxText = exno == null ? "운동 타입을 먼저 선택해 주세요" : "운동을 선택해 주세요";
     }
 
     protected override async Task OnInitializedAsync()
@@ -449,9 +468,25 @@
 
         }
 
+        extypes = await ExerciselogService.GetExercisesAsync();
+        foreach(var item in extypes){
+            if(!extype.Contains(item.Extype)){
+                extype.Add(item.Extype);
+            }
+        }
+
         id = await sessionStorage.GetItemAsStringAsync("loginfo");
         exerciselog.Id = id;
 
+    }
+    async Task SelectedType(){
+        Console.WriteLine("적용!!!");
+        foreach(var item in extype){
+            if(item.Equals(exerciselog.Extype)){
+                exnames = await ExerciselogService.GetExerciseNameAsync(item);
+                boxText = "운동을 선택해 주세요";
+            }
+        }
     }
 
     async Task HandleSubmit()

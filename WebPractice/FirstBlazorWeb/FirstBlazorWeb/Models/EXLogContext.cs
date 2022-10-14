@@ -18,6 +18,7 @@ namespace FirstBlazorWeb.Models
 
         public virtual DbSet<Board> Boards { get; set; } = null!;
         public virtual DbSet<Comment> Comments { get; set; } = null!;
+        public virtual DbSet<Exercise> Exercises { get; set; } = null!;
         public virtual DbSet<Exerciselog> Exerciselogs { get; set; } = null!;
         public virtual DbSet<Healthchart> Healthcharts { get; set; } = null!;
         public virtual DbSet<Member> Members { get; set; } = null!;
@@ -26,7 +27,6 @@ namespace FirstBlazorWeb.Models
         {
             if (!optionsBuilder.IsConfigured)
             {
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
                 optionsBuilder.UseSqlServer("Data Source=DESKTOP-0H6UIFL\\SQLEXPRESS;Initial Catalog=EXLog;Persist Security Info=True;User ID=sa;Password=dlqlthvmxm1!");
             }
         }
@@ -147,6 +147,29 @@ namespace FirstBlazorWeb.Models
                     .HasForeignKey(d => d.Id)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK__COMMENT__ID__3B75D760");
+            });
+
+            modelBuilder.Entity<Exercise>(entity =>
+            {
+                entity.HasKey(e => e.Exname)
+                    .HasName("PK__EXERCISE__4D6E5269DF949AFD");
+
+                entity.ToTable("EXERCISE");
+
+                entity.Property(e => e.Exname)
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
+                    .HasColumnName("EXNAME");
+
+                entity.Property(e => e.Equipment)
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
+                    .HasColumnName("EQUIPMENT");
+
+                entity.Property(e => e.Extype)
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
+                    .HasColumnName("EXTYPE");
             });
 
             modelBuilder.Entity<Exerciselog>(entity =>

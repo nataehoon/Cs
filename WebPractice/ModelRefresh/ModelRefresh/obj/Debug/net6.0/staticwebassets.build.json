@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "YEybTWylKWfQzHUUAF//fNkeRvVlwRyY1zhy9Iqj5/E=",
+  "Hash": "n/c56mhpaTUwHxbtRnofRvM7/xodxermjSAsw0SpHxE=",
   "Source": "ModelRefresh",
   "BasePath": "_content/ModelRefresh",
   "Mode": "Default",
@@ -10,17 +10,17 @@
     {
       "Name": "ModelRefresh\\wwwroot",
       "Source": "ModelRefresh",
-      "ContentRoot": "C:\\Users\\skxog\\source\\repos\\ModelRefresh\\ModelRefresh\\wwwroot\\",
+      "ContentRoot": "D:\\workspace\\Cs\\WebPractice\\ModelRefresh\\ModelRefresh\\wwwroot\\",
       "BasePath": "_content/ModelRefresh",
       "Pattern": "**"
     }
   ],
   "Assets": [
     {
-      "Identity": "C:\\Users\\skxog\\source\\repos\\ModelRefresh\\ModelRefresh\\obj\\Debug\\net6.0\\scopedcss\\bundle\\ModelRefresh.styles.css",
+      "Identity": "D:\\workspace\\Cs\\WebPractice\\ModelRefresh\\ModelRefresh\\obj\\Debug\\net6.0\\scopedcss\\bundle\\ModelRefresh.styles.css",
       "SourceId": "ModelRefresh",
       "SourceType": "Computed",
-      "ContentRoot": "C:\\Users\\skxog\\source\\repos\\ModelRefresh\\ModelRefresh\\obj\\Debug\\net6.0\\scopedcss\\bundle\\",
+      "ContentRoot": "D:\\workspace\\Cs\\WebPractice\\ModelRefresh\\ModelRefresh\\obj\\Debug\\net6.0\\scopedcss\\bundle\\",
       "BasePath": "_content/ModelRefresh",
       "RelativePath": "ModelRefresh.styles.css",
       "AssetKind": "All",
@@ -31,13 +31,13 @@
       "AssetTraitValue": "ApplicationBundle",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\skxog\\source\\repos\\ModelRefresh\\ModelRefresh\\obj\\Debug\\net6.0\\scopedcss\\bundle\\ModelRefresh.styles.css"
+      "OriginalItemSpec": "D:\\workspace\\Cs\\WebPractice\\ModelRefresh\\ModelRefresh\\obj\\Debug\\net6.0\\scopedcss\\bundle\\ModelRefresh.styles.css"
     },
     {
-      "Identity": "C:\\Users\\skxog\\source\\repos\\ModelRefresh\\ModelRefresh\\obj\\Debug\\net6.0\\scopedcss\\projectbundle\\ModelRefresh.bundle.scp.css",
+      "Identity": "D:\\workspace\\Cs\\WebPractice\\ModelRefresh\\ModelRefresh\\obj\\Debug\\net6.0\\scopedcss\\projectbundle\\ModelRefresh.bundle.scp.css",
       "SourceId": "ModelRefresh",
       "SourceType": "Computed",
-      "ContentRoot": "C:\\Users\\skxog\\source\\repos\\ModelRefresh\\ModelRefresh\\obj\\Debug\\net6.0\\scopedcss\\projectbundle\\",
+      "ContentRoot": "D:\\workspace\\Cs\\WebPractice\\ModelRefresh\\ModelRefresh\\obj\\Debug\\net6.0\\scopedcss\\projectbundle\\",
       "BasePath": "_content/ModelRefresh",
       "RelativePath": "ModelRefresh.bundle.scp.css",
       "AssetKind": "All",
@@ -48,13 +48,13 @@
       "AssetTraitValue": "ProjectBundle",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\skxog\\source\\repos\\ModelRefresh\\ModelRefresh\\obj\\Debug\\net6.0\\scopedcss\\projectbundle\\ModelRefresh.bundle.scp.css"
+      "OriginalItemSpec": "D:\\workspace\\Cs\\WebPractice\\ModelRefresh\\ModelRefresh\\obj\\Debug\\net6.0\\scopedcss\\projectbundle\\ModelRefresh.bundle.scp.css"
     },
     {
-      "Identity": "C:\\Users\\skxog\\source\\repos\\ModelRefresh\\ModelRefresh\\wwwroot\\css\\bootstrap\\bootstrap.min.css",
+      "Identity": "D:\\workspace\\Cs\\WebPractice\\ModelRefresh\\ModelRefresh\\wwwroot\\css\\bootstrap\\bootstrap.min.css",
       "SourceId": "ModelRefresh",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\skxog\\source\\repos\\ModelRefresh\\ModelRefresh\\wwwroot\\",
+      "ContentRoot": "D:\\workspace\\Cs\\WebPractice\\ModelRefresh\\ModelRefresh\\wwwroot\\",
       "BasePath": "_content/ModelRefresh",
       "RelativePath": "css/bootstrap/bootstrap.min.css",
       "AssetKind": "All",
@@ -68,10 +68,10 @@
       "OriginalItemSpec": "wwwroot\\css\\bootstrap\\bootstrap.min.css"
     },
     {
-      "Identity": "C:\\Users\\skxog\\source\\repos\\ModelRefresh\\ModelRefresh\\wwwroot\\css\\bootstrap\\bootstrap.min.css.map",
+      "Identity": "D:\\workspace\\Cs\\WebPractice\\ModelRefresh\\ModelRefresh\\wwwroot\\css\\bootstrap\\bootstrap.min.css.map",
       "SourceId": "ModelRefresh",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\skxog\\source\\repos\\ModelRefresh\\ModelRefresh\\wwwroot\\",
+      "ContentRoot": "D:\\workspace\\Cs\\WebPractice\\ModelRefresh\\ModelRefresh\\wwwroot\\",
       "BasePath": "_content/ModelRefresh",
       "RelativePath": "css/bootstrap/bootstrap.min.css.map",
       "AssetKind": "All",
@@ -85,10 +85,10 @@
       "OriginalItemSpec": "wwwroot\\css\\bootstrap\\bootstrap.min.css.map"
     },
     {
-      "Identity": "C:\\Users\\skxog\\source\\repos\\ModelRefresh\\ModelRefresh\\wwwroot\\css\\open-iconic\\font\\css\\open-iconic-bootstrap.min.css",
+      "Identity": "D:\\workspace\\Cs\\WebPractice\\ModelRefresh\\ModelRefresh\\wwwroot\\css\\open-iconic\\font\\css\\open-iconic-bootstrap.min.css",
       "SourceId": "ModelRefresh",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\skxog\\source\\repos\\ModelRefresh\\ModelRefresh\\wwwroot\\",
+      "ContentRoot": "D:\\workspace\\Cs\\WebPractice\\ModelRefresh\\ModelRefresh\\wwwroot\\",
       "BasePath": "_content/ModelRefresh",
       "RelativePath": "css/open-iconic/font/css/open-iconic-bootstrap.min.css",
       "AssetKind": "All",
@@ -102,10 +102,10 @@
       "OriginalItemSpec": "wwwroot\\css\\open-iconic\\font\\css\\open-iconic-bootstrap.min.css"
     },
     {
-      "Identity": "C:\\Users\\skxog\\source\\repos\\ModelRefresh\\ModelRefresh\\wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.eot",
+      "Identity": "D:\\workspace\\Cs\\WebPractice\\ModelRefresh\\ModelRefresh\\wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.eot",
       "SourceId": "ModelRefresh",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\skxog\\source\\repos\\ModelRefresh\\ModelRefresh\\wwwroot\\",
+      "ContentRoot": "D:\\workspace\\Cs\\WebPractice\\ModelRefresh\\ModelRefresh\\wwwroot\\",
       "BasePath": "_content/ModelRefresh",
       "RelativePath": "css/open-iconic/font/fonts/open-iconic.eot",
       "AssetKind": "All",
@@ -119,10 +119,10 @@
       "OriginalItemSpec": "wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.eot"
     },
     {
-      "Identity": "C:\\Users\\skxog\\source\\repos\\ModelRefresh\\ModelRefresh\\wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.otf",
+      "Identity": "D:\\workspace\\Cs\\WebPractice\\ModelRefresh\\ModelRefresh\\wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.otf",
       "SourceId": "ModelRefresh",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\skxog\\source\\repos\\ModelRefresh\\ModelRefresh\\wwwroot\\",
+      "ContentRoot": "D:\\workspace\\Cs\\WebPractice\\ModelRefresh\\ModelRefresh\\wwwroot\\",
       "BasePath": "_content/ModelRefresh",
       "RelativePath": "css/open-iconic/font/fonts/open-iconic.otf",
       "AssetKind": "All",
@@ -136,10 +136,10 @@
       "OriginalItemSpec": "wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.otf"
     },
     {
-      "Identity": "C:\\Users\\skxog\\source\\repos\\ModelRefresh\\ModelRefresh\\wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.svg",
+      "Identity": "D:\\workspace\\Cs\\WebPractice\\ModelRefresh\\ModelRefresh\\wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.svg",
       "SourceId": "ModelRefresh",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\skxog\\source\\repos\\ModelRefresh\\ModelRefresh\\wwwroot\\",
+      "ContentRoot": "D:\\workspace\\Cs\\WebPractice\\ModelRefresh\\ModelRefresh\\wwwroot\\",
       "BasePath": "_content/ModelRefresh",
       "RelativePath": "css/open-iconic/font/fonts/open-iconic.svg",
       "AssetKind": "All",
@@ -153,10 +153,10 @@
       "OriginalItemSpec": "wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.svg"
     },
     {
-      "Identity": "C:\\Users\\skxog\\source\\repos\\ModelRefresh\\ModelRefresh\\wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.ttf",
+      "Identity": "D:\\workspace\\Cs\\WebPractice\\ModelRefresh\\ModelRefresh\\wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.ttf",
       "SourceId": "ModelRefresh",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\skxog\\source\\repos\\ModelRefresh\\ModelRefresh\\wwwroot\\",
+      "ContentRoot": "D:\\workspace\\Cs\\WebPractice\\ModelRefresh\\ModelRefresh\\wwwroot\\",
       "BasePath": "_content/ModelRefresh",
       "RelativePath": "css/open-iconic/font/fonts/open-iconic.ttf",
       "AssetKind": "All",
@@ -170,10 +170,10 @@
       "OriginalItemSpec": "wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.ttf"
     },
     {
-      "Identity": "C:\\Users\\skxog\\source\\repos\\ModelRefresh\\ModelRefresh\\wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.woff",
+      "Identity": "D:\\workspace\\Cs\\WebPractice\\ModelRefresh\\ModelRefresh\\wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.woff",
       "SourceId": "ModelRefresh",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\skxog\\source\\repos\\ModelRefresh\\ModelRefresh\\wwwroot\\",
+      "ContentRoot": "D:\\workspace\\Cs\\WebPractice\\ModelRefresh\\ModelRefresh\\wwwroot\\",
       "BasePath": "_content/ModelRefresh",
       "RelativePath": "css/open-iconic/font/fonts/open-iconic.woff",
       "AssetKind": "All",
@@ -187,10 +187,10 @@
       "OriginalItemSpec": "wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.woff"
     },
     {
-      "Identity": "C:\\Users\\skxog\\source\\repos\\ModelRefresh\\ModelRefresh\\wwwroot\\css\\open-iconic\\FONT-LICENSE",
+      "Identity": "D:\\workspace\\Cs\\WebPractice\\ModelRefresh\\ModelRefresh\\wwwroot\\css\\open-iconic\\FONT-LICENSE",
       "SourceId": "ModelRefresh",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\skxog\\source\\repos\\ModelRefresh\\ModelRefresh\\wwwroot\\",
+      "ContentRoot": "D:\\workspace\\Cs\\WebPractice\\ModelRefresh\\ModelRefresh\\wwwroot\\",
       "BasePath": "_content/ModelRefresh",
       "RelativePath": "css/open-iconic/FONT-LICENSE",
       "AssetKind": "All",
@@ -204,10 +204,10 @@
       "OriginalItemSpec": "wwwroot\\css\\open-iconic\\FONT-LICENSE"
     },
     {
-      "Identity": "C:\\Users\\skxog\\source\\repos\\ModelRefresh\\ModelRefresh\\wwwroot\\css\\open-iconic\\ICON-LICENSE",
+      "Identity": "D:\\workspace\\Cs\\WebPractice\\ModelRefresh\\ModelRefresh\\wwwroot\\css\\open-iconic\\ICON-LICENSE",
       "SourceId": "ModelRefresh",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\skxog\\source\\repos\\ModelRefresh\\ModelRefresh\\wwwroot\\",
+      "ContentRoot": "D:\\workspace\\Cs\\WebPractice\\ModelRefresh\\ModelRefresh\\wwwroot\\",
       "BasePath": "_content/ModelRefresh",
       "RelativePath": "css/open-iconic/ICON-LICENSE",
       "AssetKind": "All",
@@ -221,10 +221,10 @@
       "OriginalItemSpec": "wwwroot\\css\\open-iconic\\ICON-LICENSE"
     },
     {
-      "Identity": "C:\\Users\\skxog\\source\\repos\\ModelRefresh\\ModelRefresh\\wwwroot\\css\\open-iconic\\README.md",
+      "Identity": "D:\\workspace\\Cs\\WebPractice\\ModelRefresh\\ModelRefresh\\wwwroot\\css\\open-iconic\\README.md",
       "SourceId": "ModelRefresh",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\skxog\\source\\repos\\ModelRefresh\\ModelRefresh\\wwwroot\\",
+      "ContentRoot": "D:\\workspace\\Cs\\WebPractice\\ModelRefresh\\ModelRefresh\\wwwroot\\",
       "BasePath": "_content/ModelRefresh",
       "RelativePath": "css/open-iconic/README.md",
       "AssetKind": "All",
@@ -238,10 +238,10 @@
       "OriginalItemSpec": "wwwroot\\css\\open-iconic\\README.md"
     },
     {
-      "Identity": "C:\\Users\\skxog\\source\\repos\\ModelRefresh\\ModelRefresh\\wwwroot\\css\\site.css",
+      "Identity": "D:\\workspace\\Cs\\WebPractice\\ModelRefresh\\ModelRefresh\\wwwroot\\css\\site.css",
       "SourceId": "ModelRefresh",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\skxog\\source\\repos\\ModelRefresh\\ModelRefresh\\wwwroot\\",
+      "ContentRoot": "D:\\workspace\\Cs\\WebPractice\\ModelRefresh\\ModelRefresh\\wwwroot\\",
       "BasePath": "_content/ModelRefresh",
       "RelativePath": "css/site.css",
       "AssetKind": "All",
@@ -255,10 +255,10 @@
       "OriginalItemSpec": "wwwroot\\css\\site.css"
     },
     {
-      "Identity": "C:\\Users\\skxog\\source\\repos\\ModelRefresh\\ModelRefresh\\wwwroot\\favicon.ico",
+      "Identity": "D:\\workspace\\Cs\\WebPractice\\ModelRefresh\\ModelRefresh\\wwwroot\\favicon.ico",
       "SourceId": "ModelRefresh",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\skxog\\source\\repos\\ModelRefresh\\ModelRefresh\\wwwroot\\",
+      "ContentRoot": "D:\\workspace\\Cs\\WebPractice\\ModelRefresh\\ModelRefresh\\wwwroot\\",
       "BasePath": "_content/ModelRefresh",
       "RelativePath": "favicon.ico",
       "AssetKind": "All",

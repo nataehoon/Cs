@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\skxog\\source\\repos\\FirstBlazorWeb\\FirstBlazorWeb\\FirstBlazorWeb.csproj": {}
+    "D:\\workspace\\Cs\\WebPractice\\FirstBlazorWeb\\FirstBlazorWeb\\FirstBlazorWeb.csproj": {}
   },
   "projects": {
-    "C:\\Users\\skxog\\source\\repos\\FirstBlazorWeb\\FirstBlazorWeb\\FirstBlazorWeb.csproj": {
+    "D:\\workspace\\Cs\\WebPractice\\FirstBlazorWeb\\FirstBlazorWeb\\FirstBlazorWeb.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\skxog\\source\\repos\\FirstBlazorWeb\\FirstBlazorWeb\\FirstBlazorWeb.csproj",
+        "projectUniqueName": "D:\\workspace\\Cs\\WebPractice\\FirstBlazorWeb\\FirstBlazorWeb\\FirstBlazorWeb.csproj",
         "projectName": "FirstBlazorWeb",
-        "projectPath": "C:\\Users\\skxog\\source\\repos\\FirstBlazorWeb\\FirstBlazorWeb\\FirstBlazorWeb.csproj",
+        "projectPath": "D:\\workspace\\Cs\\WebPractice\\FirstBlazorWeb\\FirstBlazorWeb\\FirstBlazorWeb.csproj",
         "packagesPath": "C:\\Users\\skxog\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\skxog\\source\\repos\\FirstBlazorWeb\\FirstBlazorWeb\\obj\\",
+        "outputPath": "D:\\workspace\\Cs\\WebPractice\\FirstBlazorWeb\\FirstBlazorWeb\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\skxog\\AppData\\Roaming\\NuGet\\NuGet.Config",

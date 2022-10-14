@@ -2018,11 +2018,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\skxog\\source\\repos\\ModelRefresh\\ModelRefresh\\ModelRefresh.csproj",
+      "projectUniqueName": "D:\\workspace\\Cs\\WebPractice\\ModelRefresh\\ModelRefresh\\ModelRefresh.csproj",
       "projectName": "ModelRefresh",
-      "projectPath": "C:\\Users\\skxog\\source\\repos\\ModelRefresh\\ModelRefresh\\ModelRefresh.csproj",
+      "projectPath": "D:\\workspace\\Cs\\WebPractice\\ModelRefresh\\ModelRefresh\\ModelRefresh.csproj",
       "packagesPath": "C:\\Users\\skxog\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\skxog\\source\\repos\\ModelRefresh\\ModelRefresh\\obj\\",
+      "outputPath": "D:\\workspace\\Cs\\WebPractice\\ModelRefresh\\ModelRefresh\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\skxog\\AppData\\Roaming\\NuGet\\NuGet.Config",

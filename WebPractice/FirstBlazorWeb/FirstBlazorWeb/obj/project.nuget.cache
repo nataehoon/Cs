@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "lXRp42+oLerzooSNnArsCqPZUSsBaTAqDgkOid91ws5FPnW6PttXNfqh6N7sPocB/KAjuIKFetce3CZVqvnsZg==",
+  "dgSpecHash": "VJ4/WzDBDTl4d2HKQgYFeumAL+ThOSkYuQzkXALXHdivsmlqX3BbblUay1PVOLmb/JIxsVf2umEYDNwZ7Fyf7g==",
   "success": true,
-  "projectFilePath": "C:\\Users\\skxog\\source\\repos\\FirstBlazorWeb\\FirstBlazorWeb\\FirstBlazorWeb.csproj",
+  "projectFilePath": "D:\\workspace\\Cs\\WebPractice\\FirstBlazorWeb\\FirstBlazorWeb\\FirstBlazorWeb.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\skxog\\.nuget\\packages\\blazored.sessionstorage\\2.2.0\\blazored.sessionstorage.2.2.0.nupkg.sha512",
     "C:\\Users\\skxog\\.nuget\\packages\\chart.js\\3.7.1\\chart.js.3.7.1.nupkg.sha512",

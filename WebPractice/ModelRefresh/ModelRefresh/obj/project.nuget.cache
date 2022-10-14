@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "sIjqAtcqr/6hbU8sfDTHbAOrGiOlRiyfm2GTuNjj+6dV4rsQ1m9OIfsmKoBWjioaXllXxs1QtqrENrzS+jLjMg==",
+  "dgSpecHash": "g7IhbYDBJt3o71gfMRO7Bvp2MIO+OtH4sT10mp1wgywth7SUr3JmH2+HRQxNedVUwnIQ1+GVjXDOSDJnHCtGcw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\skxog\\source\\repos\\ModelRefresh\\ModelRefresh\\ModelRefresh.csproj",
+  "projectFilePath": "D:\\workspace\\Cs\\WebPractice\\ModelRefresh\\ModelRefresh\\ModelRefresh.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\skxog\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\skxog\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",

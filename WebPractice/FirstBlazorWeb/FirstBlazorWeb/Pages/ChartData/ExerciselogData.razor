@@ -1,0 +1,272 @@
+﻿<h3>ExerciselogData</h3>
+
+<button type="button" class="btn btn-secondary" @onclick="@(() => {ConfigurePieConfig(); chartview = true;})">차트 보기</button>
+@if(chartview == true){
+    <h4>운동 총 @exercises.Count 회 중</h4>
+    <Chart Config="extypeconfig"></Chart>
+
+    @for(int i=0; i<extypes.Count; i++){
+        if(i == 0){
+            <button type="button" class="btn btn-secondary" @onclick="@(() => {ConfigurePieConfig2(); chartview = true;})">@extypes[i] 차트 보기</button>
+        }
+        if (i == 1)
+        {
+            <button type="button" class="btn btn-secondary" @onclick="@(() => {ConfigurePieConfig2(); chartview = true;})">@extypes[i] 차트 보기</button>
+        }
+        if (i == 2)
+        {
+            <button type="button" class="btn btn-secondary" @onclick="@(() => {ConfigurePieConfig2(); chartview = true;})">@extypes[i] 차트 보기</button>
+        }
+        if (i == 3)
+        {
+            <button type="button" class="btn btn-secondary" @onclick="@(() => {ConfigurePieConfig2(); chartview = true;})">@extypes[i] 차트 보기</button>
+        }
+        if (i == 4)
+        {
+            <button type="button" class="btn btn-secondary" @onclick="@(() => {ConfigurePieConfig2(); chartview = true;})">@extypes[i] 차트 보기</button>
+        }
+        
+    }
+}
+
+@code {
+    public string id { get; set; } = null!;
+
+    private PieConfig extypeconfig;
+    private PieConfig extop5config;
+    public bool chartview = false;
+
+    List<Exerciselog> exercises { get; set; } = new List<Exerciselog>();
+    List<string> extypes = new List<string>();
+    List<int> typecnt = new List<int>();
+    List<string> exnames1 = new List<string>();
+    List<int> ex1cnt = new List<int>();
+    List<string> exnames2 = new List<string>();
+    List<int> ex2cnt = new List<int>();
+    List<string> exnames3 = new List<string>();
+    List<int> ex3cnt = new List<int>();
+    List<string> exnames4 = new List<string>();
+    List<int> ex4cnt = new List<int>();
+    List<string> exnames5 = new List<string>();
+    List<int> ex5cnt = new List<int>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        exercises = await ExerciselogService.GetExerciselogsAsync();
+
+        ExtypeProcessing(exercises);
+        ExnameProcessing();
+
+    }
+
+    private void ConfigurePieConfig(){
+        extypeconfig = new PieConfig
+            {
+                Options = new PieOptions
+                {
+                    Responsive = true,
+                    Title = new OptionsTitle
+                    {
+                        Display = true,
+                        Text = "타입별 운동 횟수"
+                    }
+                }
+            };
+        foreach(var category in extypes){
+            extypeconfig.Data.Labels.Add(category);
+        }
+        PieDataset<int> dataset = new PieDataset<int>(typecnt)
+            {
+                BackgroundColor = new[]{
+                    ColorUtil.ColorHexString(255, 99, 132), // Slice 1 aka "Red"
+                    ColorUtil.ColorHexString(255, 205, 86), // Slice 2 aka "Yellow"
+                    ColorUtil.ColorHexString(75, 192, 192), // Slice 3 aka "Green"
+                    ColorUtil.ColorHexString(34, 124, 23),
+                    ColorUtil.ColorHexString(124, 53, 255)
+                    }
+            };
+        extypeconfig.Data.Datasets.Add(dataset);
+    }
+
+    private void ConfigurePieConfig2()
+    {
+        extop5config = new PieConfig
+            {
+                Options = new PieOptions
+                {
+                    Responsive = true,
+                    Title = new OptionsTitle
+                    {
+                        Display = true,
+                        Text = "타입별 운동 횟수"
+                    }
+                }
+            };
+        foreach (var category in extypes)
+        {
+            extop5config.Data.Labels.Add(category);
+        }
+        PieDataset<int> dataset = new PieDataset<int>(new[] { typecnt[0], typecnt[1], typecnt[2], typecnt[3] })
+            {
+                BackgroundColor = new[]{
+                    ColorUtil.ColorHexString(255, 99, 132), // Slice 1 aka "Red"
+                    ColorUtil.ColorHexString(255, 205, 86), // Slice 2 aka "Yellow"
+                    ColorUtil.ColorHexString(75, 192, 192), // Slice 3 aka "Green"
+                    ColorUtil.ColorHexString(34, 124, 23),
+                    ColorUtil.ColorHexString(124, 53, 255)
+                    }
+            };
+        extop5config.Data.Datasets.Add(dataset);
+    }
+
+    private async void ExnameProcessing(){
+        int count = 0;
+        foreach(var item in extypes)
+        {
+            List<string> names = new List<string>();
+            List<Exerciselog> exn = new List<Exerciselog>();
+            exn = await ExerciselogService.GetExerciselogByExtypeAsync(item);
+            foreach (var ex in exn)
+            {
+                if (ex.Exname.Contains(","))
+                {
+                    int cnt = ex.Exname.Split(',').Count();
+                    for (int j = 0; j < cnt; j++)
+                    {
+                        if (!names.Contains(ex.Exname.Split(',')[j]))
+                        {
+                            names.Add(ex.Exname.Split(',')[j]);
+                        }
+                    }
+                }
+                else
+                {
+                    if (!names.Contains(ex.Exname))
+                    {
+                        names.Add(ex.Exname);
+                    }
+                }
+            }
+            if (count == 0)
+            {
+                exnames1 = names;
+                ExcntProcessing(names, exn, count);
+            }
+            else if (count == 1)
+            {
+                exnames2 = names;
+                ExcntProcessing(names, exn, count);
+            }
+            else if (count == 2)
+            {
+                exnames3 = names;
+                ExcntProcessing(names, exn, count);
+            }
+            else if (count == 3)
+            {
+                exnames4 = names;
+                ExcntProcessing(names, exn, count);
+            }
+            else if (count == 4)
+            {
+                exnames5 = names;
+                ExcntProcessing(names, exn, count);
+            }
+            count++;
+        }
+    }
+
+    private void ExcntProcessing(List<string> name, List<Exerciselog> data, int num){
+        for (int i = 0; i < name.Count; i++)
+        {
+            int cnt = 0;
+            foreach(var item in data){
+                if (item.Exname.Contains(name[i]) && item.Exname != null)
+                {
+                    cnt++;
+                }
+            }
+            if(num == 0)
+            {
+                ex1cnt.Add(cnt);
+            }
+            else if(num == 1)
+            {
+                ex2cnt.Add(cnt);
+            }
+            else if (num == 2)
+            {
+                ex3cnt.Add(cnt);
+            }
+            else if (num == 3)
+            {
+                ex4cnt.Add(cnt);
+            }
+            else if (num == 4)
+            {
+                ex5cnt.Add(cnt);
+            }
+            
+        }
+        if (num == 0)
+        {
+            for (int g = 0; g < ex1cnt.Count; g++)
+            {
+                Console.WriteLine(ex1cnt[g] + "/" + name[g] + "/1번");
+            }
+        }
+        if (num == 1)
+        {
+            for (int g = 0; g < ex2cnt.Count; g++)
+            {
+                Console.WriteLine(ex2cnt[g] + "/" + name[g] + "/2번");
+            }
+        }
+        if (num == 2)
+        {
+            for (int g = 0; g < ex3cnt.Count; g++)
+            {
+                Console.WriteLine(ex3cnt[g] + "/" + name[g] + "/3번");
+            }
+        }
+        if(num == 3){
+            for(int g=0;g<ex4cnt.Count; g++)
+            {
+                Console.WriteLine(ex4cnt[g] + "/" + name[g] + "/4번");
+            }
+        }
+        if (num == 4)
+        {
+            for (int g = 0; g < ex5cnt.Count; g++)
+            {
+                Console.WriteLine(ex5cnt[g] + "/" + name[g] + "/5번");
+            }
+        }
+        
+    }
+
+    private void ExtypeProcessing(List<Exerciselog> data){
+        foreach(var item in data){
+            if(!extypes.Contains(item.Extype)){
+                extypes.Add(item.Extype);
+            }
+        }
+
+        for (int i = 0; i < extypes.Count; i++)
+        {
+            int cnt = 0;
+            foreach(var item in data){
+
+                if (item.Extype.Equals(extypes[i]))
+                {
+                    cnt++;
+                }
+            }
+            typecnt.Add(cnt);
+            Console.WriteLine(typecnt[i] + "/" + extypes[i]);
+            if(i == extypes.Count){
+                Task.Delay(500);
+            }
+        }
+    }
+}
