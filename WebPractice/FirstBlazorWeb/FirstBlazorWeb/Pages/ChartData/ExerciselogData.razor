@@ -50,11 +50,11 @@
     List<string> exnames5 = new List<string>();
     List<int> ex5cnt = new List<int>();
 
-    Dictionary<string, int> exlist1 = new Dictionary<string, int>();
-    Dictionary<string, int> exlist2 = new Dictionary<string, int>();
-    Dictionary<string, int> exlist3 = new Dictionary<string, int>();
-    Dictionary<string, int> exlist4 = new Dictionary<string, int>();
-    Dictionary<string, int> exlist5 = new Dictionary<string, int>();
+    Dictionary<string, int> exdic1 = new Dictionary<string, int>();
+    Dictionary<string, int> exdic2 = new Dictionary<string, int>();
+    Dictionary<string, int> exdic3 = new Dictionary<string, int>();
+    Dictionary<string, int> exdic4 = new Dictionary<string, int>();
+    Dictionary<string, int> exdic5 = new Dictionary<string, int>();
 
     protected override async Task OnInitializedAsync()
     {
@@ -63,7 +63,6 @@
         ExtypeProcessing(exercises);
         ExnameProcessing();
 
-        
     }
 
     private void ConfigurePieConfig(){
@@ -187,7 +186,7 @@
             exlist = await ExerciselogService.GetExerciseCountAsync(type, name[i]);
             int cnt = 0;
             foreach(var item in exlist){
-                if (item.Exname.Equals(name[i]) && item.Exname != null)
+                if (item.Exname != null && item.Exname.Equals(name[i]))
                 {
                     cnt++;
                 }
@@ -212,43 +211,14 @@
             {
                 ex5cnt.Add(cnt);
             }
-            
         }
-        if (num == 0)
-        {
-            for (int g = 0; g < ex1cnt.Count; g++)
-            {
-                Console.WriteLine(ex1cnt[g] + "/" + name[g] + "/1번");
-            }
-        }
-        if (num == 1)
-        {
-            for (int g = 0; g < ex2cnt.Count; g++)
-            {
-                Console.WriteLine(ex2cnt[g] + "/" + name[g] + "/2번");
-            }
-        }
-        if (num == 2)
-        {
-            for (int g = 0; g < ex3cnt.Count; g++)
-            {
-                Console.WriteLine(ex3cnt[g] + "/" + name[g] + "/3번");
-            }
-        }
-        if(num == 3){
-            for(int g=0;g<ex4cnt.Count; g++)
-            {
-                Console.WriteLine(ex4cnt[g] + "/" + name[g] + "/4번");
-            }
-        }
-        if (num == 4)
-        {
-            for (int g = 0; g < ex5cnt.Count; g++)
-            {
-                Console.WriteLine(ex5cnt[g] + "/" + name[g] + "/5번");
-            }
-        }
-        
+
+        //for(int i=0; i<exnames1.Count; i++){
+        //    exdic1.Add(exnames1[i], ex1cnt[i]);
+        //}
+        //foreach(var item in exnames1){
+        //    Console.WriteLine(exdic1[item]);
+        //}
     }
 
     private void ExtypeProcessing(List<Exerciselog> data){

@@ -1,0 +1,17 @@
+﻿@page "/admin"
+
+<h3>Adminpage</h3>
+
+@code {
+    public string id { get; set; } = null!;
+
+    private Member member = new Member();
+
+    protected override async Task OnInitializedAsync()
+    {
+        id = await sessionStorage.GetItemAsStringAsync("loginfo");
+        if(id != null){
+            member = await MemberService.get
+        }
+    }
+}

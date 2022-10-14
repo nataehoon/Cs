@@ -1,5 +1,10 @@
 ﻿@if (id != null)
 {
+    if(member.Resposibility.Equals("총책임자")){
+        <NavLink class="nav-link" style="cursor:pointer" @onclick="@(() => {navigationManager.NavigateTo("/admin", forceLoad:true);})">
+            <span class="oi oi-person" aria-hidden="true"></span>
+        </NavLink>
+    }
     <NavLink class="nav-link" style="cursor:pointer" @onclick="@(() => {navigationManager.NavigateTo("/memberview", forceLoad:true);})">
         <span class="oi oi-person" aria-hidden="true"></span>
     </NavLink>
@@ -54,6 +59,9 @@ else{
     protected override async Task OnInitializedAsync()
     {
         id = await sessionStorage.GetItemAsStringAsync("loginfo");
+        if(id != null){
+            member = await MemberService.GetMemberByIdAsync(id);
+        }
     }
 
     public async Task OpenLogin(){
@@ -66,8 +74,6 @@ else{
         await Task.Delay(500);
         show = false;
     }
-
-
 
     public async Task LoginCheck()
     {
