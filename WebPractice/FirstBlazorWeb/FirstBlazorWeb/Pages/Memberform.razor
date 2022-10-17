@@ -3,163 +3,206 @@
 
 <h3>Memberform</h3>
 
-<EditForm Model="member" OnSubmit="Handlesubmit">
+<EditForm Model="member" OnValidSubmit="Handlesubmit">
     <DataAnnotationsValidator/>
-    <ValidationSummary/>
-    <div>
-        <label for="id">아이디</label>
-        <InputText id="id" @bind-Value="member.Id" class="form-control" disabled="@Isdisabled"></InputText>
-    </div>
-    <div>
-        <label for="pw">비밀번호</label>
-        <InputText id="pw" type="password" @bind-Value="member.Pw" class="form-control" disabled="@Isdisabled"></InputText>
-        @if(@Isdisabled == false){
-            <label for="pw">비밀번호 확인</label>
-            <InputText id="pw" type="password" @bind-Value="repw" class="form-control"></InputText>
-            @if (member.Pw != repw)
-            {
-                <p>비밀번호가 일치하지 않습니다.</p>
+    <div class="container" style="width:50%;justify-content:center;margin-top:3%">
+        <div style="margin-top:3%">
+            <div style="display:inline-block;width:60%">
+                <label for="id">아이디</label>
+                <InputText id="id" @bind-Value="member.Id" class="form-control" disabled="@Isdisabled"></InputText>
+                
+            </div>
+            @if(@Isdisabled == false){
+                <div style="display:inline-block;margin-left:2%;width:30%">
+                    <button type="button" class="btn btn-primary" @onclick="@(async () => {idcheck = await MemberService.GetMemberByIdAsync(member.Id) == null ? "사용 가능한 아이디 입니다.":"이미 사용중인 아이디 입니다.";})">중복검사</button>
+                </div>
             }
-        }
-    </div>
-    <div>
-        <label for="name">이름</label>
-        <InputText id="name" @bind-Value="member.Name" class="form-control"></InputText>
-    </div>
-    <div>
-        <label for="gender">성별</label>
-        <br />
-        <InputRadioGroup id="gender" @bind-Value="member.Gender" class="form-control">
-            @foreach(var gender in genders){
-                <InputRadio Value="@gender" checked/>
-                <span style="padding-left:5px;">@gender</span>
-                <br/>
+            <div style="display:inline-block;">
+                <ValidationMessage For="@(() => member.Id)"/>
+                @if(idcheck != null){
+                    <p style="color:red">@idcheck</p>
+                }
+            </div>
+        </div>
+        <div style="width:75%;margin-top:3%">
+            <label for="pw">비밀번호</label>
+            <InputText id="pw" type="password" @bind-Value="member.Pw" class="form-control" disabled="@Isdisabled"></InputText>
+            <ValidationMessage For="@(() => member.Pw)"/>
+            @if(@Isdisabled == false){
+                <label for="pw">비밀번호 확인</label>
+                <InputText id="pw" type="password" @bind-Value="member.Confirmpw" class="form-control"></InputText>
+                <ValidationMessage For="@(() => member.Confirmpw)"/>
             }
-        </InputRadioGroup>
-    </div>
-    <div>
-        <label for="age">나이</label>
-        <InputNumber id="age" @bind-Value="member.Age" class="form-control"></InputNumber>
-    </div>
-    <div>
-        <label for="nick">닉네임</label>
-        <InputText id="nick" @bind-Value="member.Nick" class="form-control"></InputText>
-    </div>
-    <div>
-        <label for="email">이메일</label>
-        <InputText id="email" @bind-Value="member.Email" class="form-control"></InputText>
-    </div>
-    <div>
-        <label for="hp">휴대폰 번호</label>
-        <InputNumber id="hp" @bind-Value="member.Hp" class="form-control"></InputNumber>
-    </div>
-    @if(id != null){
-        <div>
-            <label for="resposibility">직책</label>
-            <InputText id="resposibility" @bind-Value="member.Resposibility" class="form-control" disabled="false"></InputText>
         </div>
-    }
-    else
-    {
-        <div>
-            <InputText id="resposibility" @bind-Value="member.Resposibility" class="form-control" hidden></InputText>
+        <div style="width:75%;margin-top:3%;">
+            <label for="name">이름</label>
+            <InputText id="name" @bind-Value="member.Name" class="form-control"></InputText>
+            <ValidationMessage For="@(() => member.Name)"/>
         </div>
-    }
-    
-    <div>
-        <label for="postop">수술 여부</label>
-        <br />
-        @if (member.Postop == null || member.Postop == "" || member.Postop == "아니오")
-        {
-            <InputRadioGroup id="postop" @bind-Value="member.Postop" class="form-control">
-                @foreach(var isCheck in isChecks){
-                    <InputRadio Value="@isCheck"/>
-                    <span>@isCheck</span>
-                    <br/>
+        <div style="width:75%;margin-top:3%;">
+            <label for="gender">성별</label>
+            <br />
+            <InputRadioGroup id="gender" @bind-Value="member.Gender" class="form-control">
+                @foreach(var gender in genders){
+                    <InputRadio Value="@gender" checked/>
+                    <div style="display:inline-block;width:30%">
+                        <span style="padding-left:5px;">@gender</span>
+                    </div>
                 }
             </InputRadioGroup>
-        }else if(member.Postop == "예"){
-            <InputRadioGroup id="postop" @bind-Value="member.Postop" class="forn-control">
-                <InputRadio Value="isChecks[0]" checked/>
-                <span>예</span>
-                <br/>
-                <InputRadio Value="isChecks[1]"/>
-                <span>아니오</span>
-                <br/>
-            </InputRadioGroup>
-            <InputTextArea id="postop" @bind-Value="pop" class="form-control"></InputTextArea>
-        }else{
-            <InputRadioGroup id="postop" @bind-Value="member.Postop" class="forn-control">
-                <span>◎ 예</span>
-                <br/>
-                <InputRadio Value="isChecks[1]"/>
-                <span>아니오</span>
-                <br/>
-            </InputRadioGroup>
-            <InputTextArea id="postop" @bind-Value="member.Postop" class="form-control"></InputTextArea>
-        }
-    </div>
-    <div>
-        <label for="mehistory">병력</label>
-        <br />
-        @if (member.Mehistory == null || member.Mehistory == "" || member.Mehistory == "아니오")
-        {
-            <InputRadioGroup id="mehistory" @bind-Value="member.Mehistory" class="form-control">
-                @foreach (var isCheck in isChecks)
-                {
-                    <InputRadio Value="@isCheck" />
-                    <span>@isCheck</span>
-                    <br />
+            <ValidationMessage For="@(() => member.Gender)"/>
+        </div>
+        <div style="width:75%;margin-top:3%;">
+            <label for="age">나이</label>
+            <InputNumber id="age" @bind-Value="member.Age" class="form-control"></InputNumber>
+        </div>
+        <div style="margin-top:3%;">
+            <div style="display:inline-block;width:60%">
+                <label for="nick">닉네임</label>
+                <InputText id="nick" @bind-Value="member.Nick" class="form-control" disabled="@Isdisabled"></InputText>
+            </div>
+            @if(@Isdisabled == false){
+                <div style="display:inline-block;margin-left:2%;width:30%">
+                    <button type="button" class="btn btn-primary" @onclick="@(async () => {nickcheck = (await MemberService.GetMemberNickAsync(member.Nick)) == null ? "사용 가능한 닉네임 입니다.":"이미 사용중인 닉네임 입니다.";})">중복검사</button>
+                </div>
+            }
+            <div style="display:inline-block">
+                <ValidationMessage For="@(() => member.Nick)"/>
+                @if(nickcheck != null){
+                    <p style="color:red">@nickcheck</p>
                 }
-            </InputRadioGroup>
-        }
-        else if(member.Mehistory == "예")
-        {
-            <InputRadioGroup id="mehistory" @bind-Value="member.Mehistory" class="forn-control">
-                <InputRadio Value="isChecks[0]" checked />
-                <span>예</span>
-                <br />
-                <InputRadio Value="isChecks[1]" />
-                <span>아니오</span>
-                <br />
-            </InputRadioGroup>
-            <InputTextArea id="mehistory" @bind-Value="mehicontent" class="form-control"></InputTextArea>
+            </div>
+        </div>
+        <div style="width:75%;margin-top:3%;">
+            <label for="email">이메일</label>
+            <InputText id="email" @bind-Value="member.Email" class="form-control"></InputText>
+            <ValidationMessage For="@(() => member.Email)"/>
+        </div>
+        <div style="width:75%;margin-top:3%;">
+            <label for="hp">휴대폰 번호</label>
+            <InputNumber id="hp" @bind-Value="member.Hp" class="form-control"></InputNumber>
+        </div>
+        @if(id != null){
+            <div>
+                <label for="resposibility">직책</label>
+                <InputText id="resposibility" @bind-Value="member.Resposibility" class="form-control" disabled="false"></InputText>
+            </div>
         }
         else
         {
-            <InputRadioGroup id="mehistory" @bind-Value="member.Mehistory" class="forn-control">
-                <span>◎ 예</span>
-                <br />
-                <InputRadio Value="isChecks[1]" />
-                <span>아니오</span>
-                <br />
-            </InputRadioGroup>
-            <InputTextArea id="mehistory" @bind-Value="member.Mehistory" class="form-control"></InputTextArea>
+            <div>
+                <InputText id="resposibility" @bind-Value="member.Resposibility" class="form-control" hidden></InputText>
+            </div>
         }
+        
+        <div style="width:75%;margin-top:3%;">
+            <label for="exhistory">운동경력 (ex. 1년 / 2년 / 1년 6개월)</label>
+            <InputText id="exhistory" @bind-Value="member.Exhistory" class="form-control"></InputText>
+        </div>
+        <div style="width:75%;margin-top:3%;">
+            <label for="postop">수술 여부</label>
+            <br />
+            @if (member.Postop == null || member.Postop == "" || member.Postop == "아니오")
+            {
+                <InputRadioGroup id="postop" @bind-Value="member.Postop" class="form-control">
+                    @foreach(var isCheck in isChecks){
+                        <InputRadio Value="@isCheck"/>
+                        <div style="display:inline-block;width:30%;">
+                            <span>@isCheck</span>
+                        </div>
+                    }
+                </InputRadioGroup>
+            }else if(member.Postop == "예"){
+                <InputRadioGroup id="postop" @bind-Value="member.Postop" class="forn-control">
+                    <div style="display:inline-block;width:30%;">
+                        <InputRadio Value="isChecks[0]" checked/>
+                        <span>예</span>
+                    </div>
+                    <div style="display:inline-block;width:30%;">
+                        <InputRadio Value="isChecks[1]"/>
+                        <span>아니오</span>
+                    </div>
+                </InputRadioGroup>
+                <InputTextArea id="postop" @bind-Value="pop" class="form-control"></InputTextArea>
+            }else{
+                <InputRadioGroup id="postop" @bind-Value="member.Postop" class="forn-control">
+                    <div style="display:inline-block;width:30%;">
+                        <span>◎ 예</span>
+                    </div>
+                    <div style="display:inline-block;width:30%;">
+                        <InputRadio Value="isChecks[1]"/>
+                        <span>아니오</span>
+                    </div>
+                </InputRadioGroup>
+                <InputTextArea id="postop" @bind-Value="member.Postop" class="form-control"></InputTextArea>
+            }
+        </div>
+        <div style="width:75%;margin-top:3%;">
+            <label for="mehistory">병력</label>
+            <br />
+            @if (member.Mehistory == null || member.Mehistory == "" || member.Mehistory == "아니오")
+            {
+                <InputRadioGroup id="mehistory" @bind-Value="member.Mehistory" class="form-control">
+                    @foreach (var isCheck in isChecks)
+                    {
+                        <InputRadio Value="@isCheck" />
+                        <div style="display:inline-block;width:30%;">
+                            <span>@isCheck</span>
+                        </div>
+                    }
+                </InputRadioGroup>
+            }
+            else if(member.Mehistory == "예")
+            {
+                <InputRadioGroup id="mehistory" @bind-Value="member.Mehistory" class="forn-control">
+                    <InputRadio Value="isChecks[0]" checked />
+                    <div style="display:inline-block;width:30%;">
+                        <span>예</span>
+                    </div>
+                    <InputRadio Value="isChecks[1]" />
+                    <div style="display:inline-block;width:30%;">
+                        <span>아니오</span>
+                    </div>
+                </InputRadioGroup>
+                <InputTextArea id="mehistory" @bind-Value="mehicontent" class="form-control"></InputTextArea>
+            }
+            else
+            {
+                <InputRadioGroup id="mehistory" @bind-Value="member.Mehistory" class="forn-control">
+                    <div style="display:inline-block;width:30%;">
+                        <span>◎ 예</span>
+                    </div>
+                    <InputRadio Value="isChecks[1]" />
+                    <div style="display:inline-block;width:30%;">
+                        <span>아니오</span>
+                    </div>
+                </InputRadioGroup>
+                <InputTextArea id="mehistory" @bind-Value="member.Mehistory" class="form-control"></InputTextArea>
+            }
+        </div>
+        <div style="width:75%;margin-top:3%;">
+            <label for="memo">메모</label>
+            <InputTextArea id="memo" style="height:250px" @bind-Value="member.Memo" class="form-control"></InputTextArea>
+        </div>
+        <br />
+        <div style="display:flex;justify-content:flex-end">
+            <button type="submit" class="btn btn-primary">@btnText</button>
+        </div>
     </div>
-    <div>
-        <label for="exhistory">운동경력</label>
-        <InputText id="exhistory" @bind-Value="member.Exhistory" class="form-control"></InputText>
-    </div>
-    <div>
-        <label for="memo">메모</label>
-        <InputText id="memo" @bind-Value="member.Memo" class="form-control"></InputText>
-    </div>
-    <br />
-    <button type="submit" class="btn btn-primary">@btnText</button>
 </EditForm>
 
 @code {
     [Parameter]
     public string? id { get; set; }
 
-    string btnText = string.Empty;
-    string[] genders = { "남자", "여자" };
-    string[] isChecks = { "예", "아니오" };
-    string mehicontent = string.Empty;
-    string pop = string.Empty;
+    public string btnText = string.Empty;
+    public string[] genders = { "남자", "여자" };
+    public string[] isChecks = { "예", "아니오" };
+    public string mehicontent = string.Empty;
+    public string pop = string.Empty;
+    public string idcheck = string.Empty;
+    public string nickcheck = string.Empty;
 
-    private string? repw { get; set; }
     private Member member = new Member();
 
     protected bool pwcheck{ get; set; }
@@ -178,9 +221,7 @@
             Isdisabled = true;
             navigationManager.NavigateTo("/memberform/" + id);
         }
-        else{
-            member.Resposibility = "미선택";
-        }
+        await Task.Delay(500);
     }
 
     async Task Handlesubmit()
@@ -195,7 +236,28 @@
         }
         if (Isdisabled != true)
         {
-            await MemberService.CreateMemberAsync(member);
+            if ((idcheck != null && idcheck.Equals("사용 가능한 아이디 입니다.")) && (nickcheck != null && nickcheck.Equals("사용 가능한 닉네임 입니다.")))
+            {
+                Console.WriteLine("굳");
+                await MemberService.CreateMemberAsync(member);
+            }
+            else if ((idcheck == null || !idcheck.Equals("이미 사용중인 아이디 입니다.")) && (nickcheck != null && nickcheck.Equals("사용 가능한 닉네임 입니다.")))
+            {
+                Console.WriteLine("아이디좀");
+                idcheck = "아이디를 생성 할 수 없습니다.";
+            }
+            else if ((nickcheck == null || nickcheck.Equals("이미 사용중인 닉네임 입니다.")) && (idcheck != null && idcheck.Equals("사용 가능한 아이디 입니다.")))
+            {
+                Console.WriteLine("닉네임좀");
+                nickcheck = "닉네임을 생성 할 수 없습니다.";
+            }
+            else if ((idcheck == null || idcheck.Equals("이미 사용중인 아이디 입니다.(중복체크 실패)")) && (nickcheck == null || nickcheck.Equals("이미 사용중인 닉네임 입니다.(중복체크 실패)")))
+            {
+                Console.WriteLine("아이디랑 닉네임좀좀");
+                idcheck = "아이디를 생성 할 수 없습니다.";
+                nickcheck = "닉네임을 생성 할 수 없습니다.";
+            }
+             Console.WriteLine("여긴어디?");
         }
         else
         {

@@ -378,6 +378,11 @@ namespace FirstBlazorWeb.Models
                     .IsUnicode(false)
                     .HasColumnName("PW");
 
+                entity.Property(e => e.Confirmpw)
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
+                    .HasColumnName("CONFIRMPW");
+
                 entity.Property(e => e.Remark)
                     .HasMaxLength(255)
                     .IsUnicode(false)

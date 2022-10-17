@@ -11,6 +11,7 @@ namespace FirstBlazorWeb.Data
         Task<Member> GetMemberByIdAsync(string id);
         Task<List<Member>> GetMemberByResAsync(string res);
         Task UpdateMemberResponsibilityAsync(string responsibility, string id);
+        Task<List<Member>> GetMemberNickAsync(string nick);
     }
     public class MemberService : IMemberService
     {
@@ -22,6 +23,7 @@ namespace FirstBlazorWeb.Data
             _context = context;
             _navigationManager = navigationManager;
         }
+
         public async Task CreateMemberAsync(Member model)
         {
             _context.Members.Add(model);
@@ -42,12 +44,27 @@ namespace FirstBlazorWeb.Data
 
         public async Task<Member> GetMemberByIdAsync(string id)
         {
-            return await _context.Members.FindAsync(id);
+            var result = await _context.Members.FindAsync(id);
+            await Task.Delay(300);
+            return result;
         }
 
         public async Task<List<Member>> GetMemberByResAsync(string res)
         {
             return (await _context.Members.ToListAsync()).Where(m => m.Resposibility == res).ToList();
+        }
+
+        public async Task<List<Member>> GetMemberNickAsync(string nick)
+        {
+            var result = await _context.Members.ToListAsync();
+            result = result.Where(m => m.Nick.Equals(nick)).ToList();
+            if(result.Count > 0)
+            {
+                return result;
+            }else
+            {
+                return null;
+            }
         }
 
         public async Task<List<Member>> GetMembersAsync()
