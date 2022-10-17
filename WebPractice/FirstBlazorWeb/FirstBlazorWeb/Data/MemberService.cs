@@ -9,6 +9,8 @@ namespace FirstBlazorWeb.Data
         Task UpdateMemberAsync(Member model, string id);
         Task DeleteMemberAsync(string id);
         Task<Member> GetMemberByIdAsync(string id);
+        Task<List<Member>> GetMemberByResAsync(string res);
+        Task UpdateMemberResponsibilityAsync(string responsibility, string id);
     }
     public class MemberService : IMemberService
     {
@@ -43,6 +45,11 @@ namespace FirstBlazorWeb.Data
             return await _context.Members.FindAsync(id);
         }
 
+        public async Task<List<Member>> GetMemberByResAsync(string res)
+        {
+            return (await _context.Members.ToListAsync()).Where(m => m.Resposibility == res).ToList();
+        }
+
         public async Task<List<Member>> GetMembersAsync()
         {
             return await _context.Members.ToListAsync();
@@ -70,6 +77,17 @@ namespace FirstBlazorWeb.Data
                 await _context.SaveChangesAsync();
             }
             _navigationManager.NavigateTo("/"+model.Id);
+        }
+
+        public async Task UpdateMemberResponsibilityAsync(string responsibility, string id)
+        {
+            var result = await _context.Members.FindAsync(id);
+            if (result != null)
+            {
+                result.Resposibility = responsibility;
+                _context.Members.Update(result);
+                await _context.SaveChangesAsync();
+            }
         }
     }
 }

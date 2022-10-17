@@ -13,7 +13,7 @@ namespace FirstBlazorWeb.Models
         public int Bono { get; set; }
         public string Id { get; set; } = null!;
         public string Boardtype { get; set; } = null!;
-        public DateTime Regdate { get; set; }
+        public DateTime Regdate { get; set; } = DateTime.Now;
         public int Readhit { get; set; }
         public int Recommend { get; set; }
         public string Title { get; set; } = null!;

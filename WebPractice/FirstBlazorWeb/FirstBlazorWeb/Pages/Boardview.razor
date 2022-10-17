@@ -65,6 +65,7 @@
     protected override async Task OnInitializedAsync()
     {
         id = await sessionStorage.GetItemAsStringAsync("loginfo");
+        await Task.Delay(500);
         boards = await BoardService.GetBoardsAsync(boardtype);
     }
 

@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Query.Internal;
 using System.Linq;
 
 namespace FirstBlazorWeb.Data
@@ -13,10 +14,13 @@ namespace FirstBlazorWeb.Data
         Task<List<Exerciselog>> GetExerciselogByIdAsync(string id);
         Task<List<Exerciselog>> GetExerciselogByExtypeAsync(string extype);
         Task<List<Exerciselog>> GetExerciselogByExnameAsync(string exname);
+        Task<int> GetExerciselogCountAsync(string id);
 
         Task<List<Exercise>> GetExercisesAsync();
         Task<List<Exercise>> GetExerciseNameAsync(string extype);
         Task<List<Exercise>> GetExerciseCountAsync(string extype, string exname);
+        Task CreateExerciseAsync(Exercise model);
+        Task DeleteExerciseAsync(string exname);
     }
     public class ExerciselogService : IExerciselogService
     {
@@ -28,11 +32,28 @@ namespace FirstBlazorWeb.Data
             _context = context;
             _navigationManager = navigationManager;
         }
+
+        public async Task CreateExerciseAsync(Exercise model)
+        {
+            _context.Exercises.Add(model);
+            await _context.SaveChangesAsync();
+        }
+
         public async Task CreateExerciselogAsync(Exerciselog model)
         {
             _context.Exerciselogs.Add(model);
             await _context.SaveChangesAsync();
             _navigationManager.NavigateTo("/exerciselog/"+model.Id);
+        }
+
+        public async Task DeleteExerciseAsync(string exname)
+        {
+            var result = await _context.Exercises.FindAsync(exname);
+            if(result != null)
+            {
+                _context.Exercises.Remove(result);
+                await _context.SaveChangesAsync();
+            }
         }
 
         public async Task DeleteExerciselogAsync(int exno)
@@ -75,6 +96,11 @@ namespace FirstBlazorWeb.Data
         {
             var result = await _context.Exerciselogs.ToListAsync();
             return (result.Where(e => e.Id == id)).OrderByDescending(e => e.Exno).ToList();
+        }
+
+        public async Task<int> GetExerciselogCountAsync(string id)
+        {
+            return (await _context.Exerciselogs.ToListAsync()).Count;
         }
 
         public async Task<List<Exerciselog>> GetExerciselogsAsync()

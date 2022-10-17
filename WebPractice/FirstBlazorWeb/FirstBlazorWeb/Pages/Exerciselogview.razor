@@ -1,5 +1,4 @@
 ﻿@page "/exerciselog"
-@page "/exerciselog/{id}"
 
 <style>
     .head{
@@ -55,12 +54,12 @@ else
     protected override async Task OnInitializedAsync()
     {
         id = await sessionStorage.GetItemAsStringAsync("loginfo");
+
+        await Task.Delay(500);
         await MemberService.GetMemberByIdAsync(id);
+
+        await Task.Delay(500);
         exerciselogs = await ExerciselogService.GetExerciselogByIdAsync(id);
-        if(id != null){
-            navigationManager.NavigateTo("/exerciselog/" + id);
-        }
-        
     }
     public void CreateLog()
     {

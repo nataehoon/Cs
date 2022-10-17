@@ -1,6 +1,6 @@
 ﻿@page "/chart"
-@page "/chart/{id}/ex"
-@page "/chart/{id}/health"
+@page "/chart/ex"
+@page "/chart/health"
 
 @if(id == null){
     <h3>Login required</h3>
@@ -10,10 +10,10 @@ else
     <h3>Chart</h3>
 
     <div class="nav">
-        <div class="navbar-toggler" style="cursor:pointer" @onclick="@(() => {navigationManager.NavigateTo("/chart/" + id + "/ex"); flag=0;})">
+        <div class="navbar-toggler" style="cursor:pointer" @onclick="@(() => {navigationManager.NavigateTo("/chart/ex"); flag=0;})">
             운동 차트
         </div>
-        <div class="navbar-toggler" style="cursor:pointer" @onclick="@(() => {navigationManager.NavigateTo("/chart/" + id + "/health"); flag=1;})">
+        <div class="navbar-toggler" style="cursor:pointer" @onclick="@(() => {navigationManager.NavigateTo("/chart/health"); flag=1;})">
             건강 차트
         </div>
     </div>

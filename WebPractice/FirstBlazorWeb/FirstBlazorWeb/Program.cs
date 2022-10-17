@@ -2,6 +2,7 @@ global using Microsoft.AspNetCore.Components;
 global using Microsoft.AspNetCore.Components.Web;
 global using FirstBlazorWeb.Data;
 global using FirstBlazorWeb.Models;
+global using System.ComponentModel.DataAnnotations;
 using Blazored.SessionStorage;
 
 

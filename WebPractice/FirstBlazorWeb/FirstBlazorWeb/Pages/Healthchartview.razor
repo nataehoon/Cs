@@ -1,5 +1,4 @@
 ﻿@page "/healthchart"
-@page "/healthchart/{id}"
 
 <style>
     .btns{
@@ -142,7 +141,6 @@ else
             {
                 Xhealthcharts = await HealthchartService.GetHealthchartByHenoAsync(result.Count() - 2);
             }
-            navigationManager.NavigateTo("/healthchart/" + id);
         }
         
     }

@@ -58,6 +58,7 @@
 
     protected override async Task OnInitializedAsync()
     {
+        id = await sessionStorage.GetItemAsStringAsync("loginfo");
         exercises = await ExerciselogService.GetExerciselogsAsync();
 
         ExtypeProcessing(exercises);

@@ -4,6 +4,8 @@
 <h3>Memberform</h3>
 
 <EditForm Model="member" OnSubmit="Handlesubmit">
+    <DataAnnotationsValidator/>
+    <ValidationSummary/>
     <div>
         <label for="id">아이디</label>
         <InputText id="id" @bind-Value="member.Id" class="form-control" disabled="@Isdisabled"></InputText>

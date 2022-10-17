@@ -54,8 +54,6 @@
 
     private async void HandleOnSubmit(){
         if(btnText.Equals("등록")){
-            board.Regdate = DateTime.Now;
-
             await BoardService.CreateBoardAsync(board);
         }else{
             await BoardService.UpdateBoardAsync(board, (int)bono);

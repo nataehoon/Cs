@@ -1,17 +1,7 @@
 ﻿@page "/memberview"
-@page "/memberview/{id}"
 
 @if (member != null)
 {
-    @if (member.Resposibility == "총책임자")
-    {
-        <h3>Member Infomation</h3>
-        @foreach (var memberlist in members) {
-            @if(memberlist.Id != "admin"){
-                <p>@memberlist.Id / @memberlist.Name / @memberlist.Nick / @memberlist.Resposibility</p>
-            }
-        }
-    }
     <h3>My Infomation</h3>
 
     <p>@member.Id</p>
@@ -36,8 +26,9 @@ else
     protected override async Task OnInitializedAsync()
     {
         id = await sessionStorage.GetItemAsStringAsync("loginfo");
-        navigationManager.NavigateTo("/memberview/" + id);
+        await Task.Delay(500);
         member = await MemberService.GetMemberByIdAsync(id);
+        await Task.Delay(500);
         members = await MemberService.GetMembersAsync();
     }
 }

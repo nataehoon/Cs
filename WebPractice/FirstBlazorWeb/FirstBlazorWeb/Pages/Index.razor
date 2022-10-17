@@ -1,7 +1,6 @@
 ﻿@page "/"
 @page "/{id}"
 
-<button type="button" @onclick="@(() => {navigationManager.NavigateTo("/memberform", forceLoad:true);})">@loginfo</button>
 
 @code{
     [Parameter]
@@ -14,21 +13,5 @@
     protected override async Task OnInitializedAsync()
     {
         id = await sessionStorage.GetItemAsStringAsync("loginfo");
-        loginfo = id == null ? "회원가입" : "내 정보 수정";
-        navigationManager.NavigateTo("/" + id);
-    }
-
-    async Task LoginCheck()
-    {
-        var result = await MemberService.GetMemberByIdAsync(member.Id);
-        if(result.Pw == member.Pw && result.Id == member.Id)
-        {
-            await sessionStorage.SetItemAsStringAsync("loginfo", member.Id);
-            navigationManager.NavigateTo("/" + member.Id, forceLoad: true);
-        }
-        else
-        {
-            Console.WriteLine("Login Failed");
-        }
     }
 }

@@ -10,6 +10,7 @@ namespace FirstBlazorWeb.Data
         Task DeleteHealthchartAsync(int id);
         Task<List<Healthchart>> GetAllHealthchartByIdAsync(string id);
         Task<Healthchart> GetHealthchartByHenoAsync(int heno);
+        Task<int> GetHealthchartCountAsync(string id);
     }
     public class HealthchartService : IHealthchartService
     {
@@ -50,6 +51,11 @@ namespace FirstBlazorWeb.Data
         public async Task<Healthchart> GetHealthchartByHenoAsync(int heno)
         {
             return await _context.Healthcharts.FindAsync(heno);
+        }
+
+        public async Task<int> GetHealthchartCountAsync(string id)
+        {
+            return (await _context.Healthcharts.ToListAsync()).Count;
         }
 
         public async Task<List<Healthchart>> GetHealthchartsAsync()
