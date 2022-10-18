@@ -151,8 +151,8 @@ namespace FirstBlazorWeb.Models
 
             modelBuilder.Entity<Exercise>(entity =>
             {
-                entity.HasKey(e => e.Exname)
-                    .HasName("PK__EXERCISE__4D6E5269DF949AFD");
+                entity.HasKey(e => new { e.Exname, e.Extype })
+                    .HasName("exname");
 
                 entity.ToTable("EXERCISE");
 

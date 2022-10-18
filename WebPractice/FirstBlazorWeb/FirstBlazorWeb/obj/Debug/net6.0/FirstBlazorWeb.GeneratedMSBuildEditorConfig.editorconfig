@@ -87,6 +87,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTWVtYmVydmlldy5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/workspace/Cs/WebPractice/FirstBlazorWeb/FirstBlazorWeb/Pages/Paging.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUGFnaW5nLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/workspace/Cs/WebPractice/FirstBlazorWeb/FirstBlazorWeb/Shared/SurveyPrompt.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXFN1cnZleVByb21wdC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 

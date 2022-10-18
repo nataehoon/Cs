@@ -114,7 +114,8 @@ else
     {
         <hr />
         <div>
-            <EditForm Model="exercise" OnSubmit="HandleSubmit">
+            <EditForm Model="exercise" OnValidSubmit="HandleSubmit">
+                <DataAnnotationsValidator/>
                 <div class="container" style="width:45%;float:left">
                     <div style="margin:5%">
                         <h4>운동 추가</h4>
@@ -127,16 +128,18 @@ else
                                     <option value="@item">@item</option>
                                 }
                             </InputSelect>
+                            <ValidationMessage For="(() => exercise.Extype)"/>
                         </div>
                         <div>
                             <label for="name">운동 이름</label>
                             <InputText id="name" @bind-Value="@exercise.Exname" class="form-control"></InputText>
+                            <ValidationMessage For="(() => exercise.Extype)"/>
                         </div>
                             <div>
                                 <label for="equip">사용 장비</label>
                                 <InputText id="equip" @bind-Value="@exercise.Equipment" class="form-control"></InputText>
                             </div>
-                            <div style="display:flex;justify-content:flex-end">
+                        <div style="display:flex;justify-content:flex-end;margin-top:10px">
                             <button type="submit" class="btn btn-primary">추가</button>
                         </div>
                     </div>
@@ -148,7 +151,7 @@ else
                                 <div>
                                     <label for="type">운동 타입</label>
                                 </div>
-                                <div style="float:left;width:85%;">
+                                <div style="float:left;width:75%;">
                                     <InputSelect id="type" @bind-Value="@exn" class="form-control">
                                         <option value="-" selected>선택하세요</option>
                                     @foreach (var item in extypes)
@@ -157,7 +160,7 @@ else
                                         }
                                     </InputSelect>
                                 </div>
-                                <div style="float:left;width:10%;margin-left:5%">
+                                <div style="float:left;width:20%;margin-left:5%">
                                     <button type="button" class="btn btn-success" @onclick="(async () => {dellist = await ExerciselogService.GetExerciseNameAsync(exn); name = true;})">적용</button>
                                 </div>
                             </div>
@@ -186,32 +189,50 @@ else
         
         <div style="width:100%;float:left">
             <hr />
-            <div class="container" style="width:50%;">
-                @foreach (var item in extypes)
-                {
-                    <button type="button" style="margin-right:1%" class="btn btn-secondary" @onclick="(async () => {dellist = await ExerciselogService.GetExerciseNameAsync(item); list = true;})">@item</button>
+            <div class="container" style="width:80%;">
+                <div style="display:inline-block;width:50%">
+                    @foreach (var item in extypes)
+                    {
+                        <button type="button" style="margin-right:1%" class="btn btn-secondary" @onclick="(async () => {dellist = await ExerciselogService.GetExerciseNameAsync(item); list = true;})">@item</button>
+                    }
+                </div>
+                <div style="display:inline-block;width:20%">
+                    <div>
+                        <input type="text" @bind-value="keyword" class="form-control"></input>
+                    </div>
+                    
+                </div>
+                <div style="display:inline-block;width:10%">
+                    <button type="button" class="btn btn-primary" @onclick="SearchEX">검색</button>
+                </div>
+                @if(list == false){
+                    <div style="text-align:center;margin-left:20%">
+                        <p style="color:red">@errorm</p>
+                    </div>
                 }
-                @if(list == true){
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th style="text-align:center">운동 타입</th>
-                                <th style="text-align:center">운동 이름</th>
-                                <th style="text-align:center">사용 기구</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach (var item in dellist)
-                            {
+                <div>
+                    @if(list == true){
+                        <table class="table">
+                            <thead>
                                 <tr>
-                                    <td style="text-align:center">@item.Extype</td>
-                                    <td style="text-align:center">@item.Exname</td>
-                                    <td style="text-align:center">@item.Equipment</td>
+                                    <th style="text-align:center">운동 타입</th>
+                                    <th style="text-align:center">운동 이름</th>
+                                    <th style="text-align:center">사용 기구</th>
                                 </tr>
-                            }
-                        </tbody>
-                    </table>
-                }
+                            </thead>
+                            <tbody>
+                                @foreach (var item in dellist)
+                                {
+                                    <tr>
+                                        <td style="text-align:center">@item.Extype</td>
+                                        <td style="text-align:center">@item.Exname</td>
+                                        <td style="text-align:center">@item.Equipment</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    }
+                </div>
             </div>
         </div>
     }
@@ -237,7 +258,9 @@ else
     private int detailexcount = 0;
     private int detailhealthcount = 0;
     private string changedres = string.Empty;
-    private EventCallback<string> changedvalue { get; set; } 
+    private EventCallback<string> changedvalue { get; set; }
+    public string keyword = string.Empty;
+    public string errorm = string.Empty;
 
     private bool user = false , ex = true, name, list = false;
     private string[] responsibility = { "총책임자", "관리자", "일반", "미선택" };
@@ -256,6 +279,24 @@ else
         chagedid = null;
 
         ExtypeProcessing(exlist);
+    }
+
+    async Task SearchEX(){
+
+        Console.WriteLine(keyword + "aaa");
+        if(keyword != null && keyword != ""){
+            dellist = await ExerciselogService.GetExerciseSearchAsync(keyword);
+            if(dellist.Count == 0){
+                errorm = "검색 결과가 없습니다.";
+                list = false;
+            }else{
+                list = true;
+            }
+        }else{
+            errorm = "검색어를 입력해 주세요.";
+            Console.WriteLine(errorm + "aaa");
+            list = false;
+        }
     }
 
     private Task OnChangedValue(ChangeEventArgs e)

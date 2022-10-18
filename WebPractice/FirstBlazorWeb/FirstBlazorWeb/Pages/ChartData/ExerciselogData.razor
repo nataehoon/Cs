@@ -1,8 +1,10 @@
 ﻿<h3>ExerciselogData</h3>
 
-<button type="button" class="btn btn-secondary" @onclick="@(() => {ConfigurePieConfig(); chartview = true;})">차트 보기</button>
+<button type="button" class="btn btn-secondary" @onclick="@(() => {ConfigurePieConfig(); viewcnt++; if(viewcnt%2 != 0){chartview = true;}else{chartview = false;}})">차트 보기</button>
+
+
 @if(chartview == true){
-    <h4>운동 총 @exercises.Count 회 중</h4>
+    <h4 class="mt-5">수행 운동별 비율</h4>
     <Chart Config="extypeconfig"></Chart>
 
     @for(int i=0; i<extypes.Count; i++){
@@ -34,6 +36,7 @@
     private PieConfig extypeconfig;
     private PieConfig extop5config;
     public bool chartview = false;
+    public int viewcnt = 0;
 
     List<Exerciselog> exercises { get; set; } = new List<Exerciselog>();
     List<Exercise> exlist = new List<Exercise>();

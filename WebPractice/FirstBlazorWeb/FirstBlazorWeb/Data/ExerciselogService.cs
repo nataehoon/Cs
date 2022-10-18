@@ -21,6 +21,7 @@ namespace FirstBlazorWeb.Data
         Task<List<Exercise>> GetExerciseCountAsync(string extype, string exname);
         Task CreateExerciseAsync(Exercise model);
         Task DeleteExerciseAsync(string exname);
+        Task<List<Exercise>> GetExerciseSearchAsync(string exname);
     }
     public class ExerciselogService : IExerciselogService
     {
@@ -117,6 +118,11 @@ namespace FirstBlazorWeb.Data
         public async Task<List<Exercise>> GetExercisesAsync()
         {
             return await _context.Exercises.ToListAsync();
+        }
+
+        public async Task<List<Exercise>> GetExerciseSearchAsync(string exname)
+        {
+            return (await _context.Exercises.ToListAsync()).Where(e => e.Exname == exname).ToList();
         }
 
         public async Task UpdateExerciselogAsync(Exerciselog model, int exno)

@@ -82,19 +82,16 @@
             <label for="hp">휴대폰 번호</label>
             <InputNumber id="hp" @bind-Value="member.Hp" class="form-control"></InputNumber>
         </div>
+        <div style="width:75%;margin-top:3%;">
         @if(id != null){
-            <div>
-                <label for="resposibility">직책</label>
-                <InputText id="resposibility" @bind-Value="member.Resposibility" class="form-control" disabled="false"></InputText>
-            </div>
+            <label for="resposibility">직책</label>
+            <InputText id="resposibility" @bind-Value="member.Resposibility" class="form-control" disabled="false"></InputText>
         }
         else
         {
-            <div>
-                <InputText id="resposibility" @bind-Value="member.Resposibility" class="form-control" hidden></InputText>
-            </div>
+            <InputText id="resposibility" @bind-Value="member.Resposibility" class="form-control" hidden></InputText>
         }
-        
+        </div>
         <div style="width:75%;margin-top:3%;">
             <label for="exhistory">운동경력 (ex. 1년 / 2년 / 1년 6개월)</label>
             <InputText id="exhistory" @bind-Value="member.Exhistory" class="form-control"></InputText>
