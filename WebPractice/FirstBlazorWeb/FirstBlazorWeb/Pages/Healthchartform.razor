@@ -2,72 +2,77 @@
 @page "/healthchartform/{id}/{heno:int}"
 
 <h3>Healthchartform</h3>
-<EditForm Model="healthchart" OnSubmit="HandleSubmit">
+<EditForm Model="healthchart" OnValidSubmit="HandleSubmit">
+    <DataAnnotationsValidator/>
     <InputNumber id="heno" @bind-Value="healthchart.Heno"></InputNumber>
-    <InputText id="id" @bind-Value="healthchart.Id"></InputText>
-    <div>
-        <label for="regdate">측정 날짜</label>
-        <InputDate id="regdate" @bind-Value="healthchart.Regdate"></InputDate>
-    </div>
-    <div>
-        <label for="weight">몸무게</label>
-        <InputNumber id="weight" @bind-Value="healthchart.Weight" class="form-control"></InputNumber>
-    </div>
-    <div>
-        <label for="height">키</label>
-        <InputNumber id="height" @bind-Value="healthchart.Height" class="form-control"></InputNumber>
-    </div>
-    <div>
-        <label for="fat">지방량</label>
-        <InputNumber id="fat" @bind-Value="healthchart.Fat" class="form-control"></InputNumber>
-    </div>
-    <div>
-        <label for="muscle">근육량</label>
-        <InputNumber id="muscle" @bind-Value="healthchart.Muscle" class="form-control"></InputNumber>
-    </div>
-    <div>
-        <label for="jobtype">직업 유형</label>
-        <InputSelect id="jobtype" @bind-Value="healthchart.Jobtype" class="form-control">
-            <option value="-">----선택 해 주세요----</option>
-            <option value="현장직">현장직</option>
-            <option value="사무직">사무직</option>
-        </InputSelect>
-    </div>
-    <div>
-        <label for="totalcho">Total Cholesterol</label>
-        <InputNumber id="totalcho" @bind-Value="healthchart.Totalcho" class="form-control"></InputNumber>
-    </div>
-    <div>
-        <label for="hdl">HDL</label>
-        <InputNumber id="hdl" @bind-Value="healthchart.Hdl" class="form-control"></InputNumber>
-    </div>
-    <div>
-        <label for="ldl">LDL</label>
-        <InputNumber id="ldl" @bind-Value="healthchart.Ldl" class="form-control"></InputNumber>
-    </div>
-    <div>
-        <label for="bun">BUN</label>
-        <InputNumber id="bun" @bind-Value="healthchart.Bun" class="form-control"></InputNumber>
-    </div>
-    <div>
-        <label for="crtn">Creatinine</label>
-        <InputNumber id="crtn" @bind-Value="healthchart.Crtn" class="form-control"></InputNumber>
-    </div>
-    <div>
-        <label for="glufa">Glucose Fasting(공복시 혈당)</label>
-        <InputNumber id="glufa" @bind-Value="healthchart.Glufa" class="form-control"></InputNumber>
-    </div>
-    <div>
-        <label for="gluhemo">Glucose Hemoglobin(당화 혈색소)</label>
-        <InputNumber id="gluhemo" @bind-Value="healthchart.Gluhemo" class="form-control"></InputNumber>
-    </div>
-    <div>
-        <label for="memo">메모</label>
-        <InputTextArea id="memo" @bind-Value="healthchart.Memo" class="form-control" style="height:250px"></InputTextArea>
-    </div>
-    <hr />
-    <div>
-        <button type="submit" class="btn btn-primary">@btnText</button>
+    <InputText id="id" @bind-Value="healthchart.Id" hidden></InputText>
+    <div class="container" style="width:50%">
+        <div>
+            <label for="regdate">측정 날짜</label>
+            <InputDate id="regdate" @bind-Value="healthchart.Regdate"></InputDate>
+            <ValidationMessage For="(() => healthchart.Regdate)"/>
+        </div>
+        <div>
+            <label for="weight">몸무게</label>
+            <InputNumber id="weight" @bind-Value="healthchart.Weight" class="form-control"></InputNumber>
+        </div>
+        <div>
+            <label for="height">키</label>
+            <InputNumber id="height" @bind-Value="healthchart.Height" class="form-control"></InputNumber>
+        </div>
+        <div>
+            <label for="fat">지방량</label>
+            <InputNumber id="fat" @bind-Value="healthchart.Fat" class="form-control"></InputNumber>
+        </div>
+        <div>
+            <label for="muscle">근육량</label>
+            <InputNumber id="muscle" @bind-Value="healthchart.Muscle" class="form-control"></InputNumber>
+        </div>
+        <div>
+            <label for="jobtype">직업 유형</label>
+            <InputSelect id="jobtype" @bind-Value="healthchart.Jobtype" class="form-control">
+                <option value="-">----선택 해 주세요----</option>
+                <option value="현장직">현장직</option>
+                <option value="사무직">사무직</option>
+            </InputSelect>
+            <ValidationMessage For="(() => healthchart.Jobtype)"/>
+        </div>
+        <div>
+            <label for="totalcho">Total Cholesterol</label>
+            <InputNumber id="totalcho" @bind-Value="healthchart.Totalcho" class="form-control"></InputNumber>
+        </div>
+        <div>
+            <label for="hdl">HDL</label>
+            <InputNumber id="hdl" @bind-Value="healthchart.Hdl" class="form-control"></InputNumber>
+        </div>
+        <div>
+            <label for="ldl">LDL</label>
+            <InputNumber id="ldl" @bind-Value="healthchart.Ldl" class="form-control"></InputNumber>
+        </div>
+        <div>
+            <label for="bun">BUN</label>
+            <InputNumber id="bun" @bind-Value="healthchart.Bun" class="form-control"></InputNumber>
+        </div>
+        <div>
+            <label for="crtn">Creatinine</label>
+            <InputNumber id="crtn" @bind-Value="healthchart.Crtn" class="form-control"></InputNumber>
+        </div>
+        <div>
+            <label for="glufa">Glucose Fasting(공복시 혈당)</label>
+            <InputNumber id="glufa" @bind-Value="healthchart.Glufa" class="form-control"></InputNumber>
+        </div>
+        <div>
+            <label for="gluhemo">Glucose Hemoglobin(당화 혈색소)</label>
+            <InputNumber id="gluhemo" @bind-Value="healthchart.Gluhemo" class="form-control"></InputNumber>
+        </div>
+        <div>
+            <label for="memo">메모</label>
+            <InputTextArea id="memo" @bind-Value="healthchart.Memo" class="form-control" style="height:250px"></InputTextArea>
+        </div>
+        <hr />
+        <div>
+            <button type="submit" class="btn btn-primary">@btnText</button>
+        </div>
     </div>
 </EditForm>
 

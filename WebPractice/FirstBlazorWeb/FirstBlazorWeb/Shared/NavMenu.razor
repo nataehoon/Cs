@@ -1,49 +1,55 @@
-﻿<div class="top-row ps-3 navbar navbar-dark">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="">FirstBlazorWeb</a>
-        <button title="Navigation menu" class="navbar-toggler" @onclick="ToggleNavMenu">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+﻿<nav>
+    <div class="nav-link px-5" style="display:inline-block">
+        <NavLink class="nav-link" href="" style="cursor:pointer;color:black" Match="NavLinkMatch.All">
+            <span class="oi oi-home" aria-hidden="true"></span> Home
+        </NavLink>
     </div>
-</div>
-
-<div class="@NavMenuCssClass" @onclick="ToggleNavMenu">
-    <nav class="flex-column">
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
-                <span class="oi oi-home" aria-hidden="true"></span> Home
-            </NavLink>
-        </div>
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" style="cursor:pointer" @onclick="@(() => {navigationManager.NavigateTo("/exerciselog", forceLoad:true);})">
-                <span class="oi oi-spreadsheet" aria-hidden="true"></span> 운동일지
-            </NavLink>
-        </div>
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" style="cursor:pointer" @onclick="@(() => {navigationManager.NavigateTo("/healthchart", forceLoad:true);})">
-                <span class="oi oi-plus" aria-hidden="true"></span> 건강일지
-            </NavLink>
-        </div>
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" style="cursor:pointer" @onclick="@(() => {navigationManager.NavigateTo("/board/community", forceLoad:true);})">
+    <div class="nav-link px-5" style="display:inline-block">
+        <NavLink class="nav-link" style="cursor:pointer;color:black" @onclick="@(() => {navigationManager.NavigateTo("/exerciselog", forceLoad:true);})">
+            <span class="oi oi-spreadsheet" aria-hidden="true"></span> 운동일지
+        </NavLink>
+    </div>
+    <div class="nav-link px-5" style="display:inline-block">
+        <NavLink class="nav-link" style="cursor:pointer;color:black" @onclick="@(() => {navigationManager.NavigateTo("/healthchart", forceLoad:true);})">
+            <span class="oi oi-plus" aria-hidden="true"></span> 건강일지
+        </NavLink>
+    </div>
+    <div class="dropdown nav-link" style="display:inline-block">
+        <ul class="dropdown-list">
+            <NavLink class="nav-link" style="cursor:pointer;color:black" @onclick="Show">
                 <span class="oi oi-clipboard" aria-hidden="true"></span> 게시판
             </NavLink>
-        </div>
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" style="cursor:pointer" @onclick="@(() => {navigationManager.NavigateTo("/chart", forceLoad:true);})">
-                <span class="oi oi-pie-chart" aria-hidden="true"></span> 변화차트
-            </NavLink>
-        </div>
-    </nav>
-</div>
+            @if (cnt % 2 != 0)
+            {
+                <div class="dropdown-menu show" style="position: absolute; transform: translate3d(80px, 40px, 0px); top: 0px; left: 0px; will-change: transform;">
+                    <div class="dropdown-item">
+                        <NavLink class="nav-link" style="cursor:pointer;color:black" @onclick="@(() => {navigationManager.NavigateTo("/board/notice", forceLoad:true);})">
+                            <span class="oi oi-task" aria-hidden="true" style="color:darkblue;display:inline-block"></span> <p style="color:darkblue;margin-top:11px;display:inline-block">공지사항</p>
+                        </NavLink>
+                    </div>
+                    <div class="dropdown-item">
+                        <NavLink class="nav-link" style="cursor:pointer;color:black" @onclick="@(() => {navigationManager.NavigateTo("/board/community", forceLoad:true);})">
+                            <span class="oi oi-browser" aria-hidden="true" style="color:darkblue;display:inline-block"></span> <p style="color:darkblue;margin-top:11px;display:inline-block">커뮤니티</p>
+                        </NavLink>
+                    </div>
+                </div>
+            }
+        </ul>
+    </div>
+    <div class="nav-link px-5" style="display:inline-block">
+        <NavLink class="nav-link" style="cursor:pointer;color:black" @onclick="@(() => {navigationManager.NavigateTo("/chart", forceLoad:true);})">
+            <span class="oi oi-pie-chart" aria-hidden="true"></span> 변화차트
+        </NavLink>
+    </div>
+</nav>
 
 @code {
     private bool collapseNavMenu = true;
 
-    private string? NavMenuCssClass => collapseNavMenu ? "collapse" : null;
+    private int cnt = 0;
 
-    private void ToggleNavMenu()
+    private void Show()
     {
-        collapseNavMenu = !collapseNavMenu;
+        cnt++;
     }
 }

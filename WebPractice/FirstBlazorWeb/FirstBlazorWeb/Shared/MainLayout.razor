@@ -1,20 +1,34 @@
 ﻿@inherits LayoutComponentBase
 
-<PageTitle>FirstBlazorWeb</PageTitle>
+<PageTitle>건강 관리 웹</PageTitle>
 
-<div class="page">
-    <div class="sidebar">
-        <NavMenu />
-    </div>
-
+<div class="container">
     <main>
         <div class="top-row px-4">
-            <FirstBlazorWeb.Pages.Login></FirstBlazorWeb.Pages.Login>
+            <div class="container-fluid">
+                <button title="Navigation menu" style="cursor:pointer" class="navbar-toggler" @onclick="@(() => {navigationManager.NavigateTo("/", forceLoad:true);})">
+                    <img src="" alt="logo" />
+                </button>
+            </div>
+            <div>
+                <FirstBlazorWeb.Pages.Login></FirstBlazorWeb.Pages.Login>
+            </div>
         </div>
-
-        
+        <div style="display:flex;justify-content:center">
+            <NavMenu></NavMenu>
+        </div>
         <article class="content px-4">
             @Body
         </article>
     </main>
 </div>
+
+
+@code{
+    private int cnt = 0;
+
+    private void Show()
+    {
+        cnt++;
+    }
+}

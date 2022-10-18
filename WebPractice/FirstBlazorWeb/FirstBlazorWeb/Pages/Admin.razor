@@ -53,8 +53,8 @@ else
                 <div style="display:flex;justify-content:flex-end">
                     @if (!detailmember.Resposibility.Equals(changedres))
                     {
-                        <button type="button" class="btn btn-warning" @onclick="@(async () => { await MemberService.UpdateMemberResponsibilityAsync(changedres, detailmember.Id); await Task.Delay(200);
-                                                                                                detailmember = await MemberService.GetMemberByIdAsync(detailmember.Id); await Task.Delay(200);
+                        <button type="button" class="btn btn-warning" @onclick="@(async () => { await MemberService.UpdateMemberResponsibilityAsync(changedres, detailmember.Id); await Task.Delay(50);
+                                                                                                detailmember = await MemberService.GetMemberByIdAsync(detailmember.Id); await Task.Delay(50);
                                                                                                 members = await MemberService.GetMembersAsync();changedres = null;chagedid = null; user = true; ex = false;
                                                                                                 navigationManager.NavigateTo("/adminpage");})">
                             적용

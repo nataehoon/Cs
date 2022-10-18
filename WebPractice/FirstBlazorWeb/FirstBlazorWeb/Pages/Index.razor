@@ -1,17 +1,19 @@
 ﻿@page "/"
-@page "/{id}"
+
 
 
 @code{
     [Parameter]
     public string? id { get; set; }
 
-    string loginfo = string.Empty;
-
     Member member = new Member();
 
     protected override async Task OnInitializedAsync()
     {
         id = await sessionStorage.GetItemAsStringAsync("loginfo");
+        await Task.Delay(100);
+        if(id != null){
+            member = await MemberService.GetMemberByIdAsync(id);
+        }
     }
 }

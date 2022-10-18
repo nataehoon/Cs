@@ -3,12 +3,14 @@
 
 <h3>ExerciselogForm</h3>
 
-<EditForm Model="exerciselog" OnSubmit="HandleSubmit">
+<EditForm Model="exerciselog" OnValidSubmit="HandleSubmit">
+    <DataAnnotationsValidator/>
     <InputNumber id="exno" @bind-Value="exerciselog.Exno" class="form-control"></InputNumber>
     <InputText id="id" @bind-Value="exerciselog.Id" class="form-control" hidden></InputText>
     <div>
         <label for="exdate">운동 일자</label>
         <InputDate id="exdate" @bind-Value="exerciselog.Exdate" class="form-control"></InputDate>
+        <ValidationMessage For="(() => exerciselog.Exdate)"/>
     </div>
     <div>
         <label for="extype">운동 타입</label>
@@ -19,6 +21,7 @@
             }
         </InputSelect>
         <button type="button" class="btn btn-success" @onclick="SelectedType">적용</button>
+        <ValidationMessage For="(() => exerciselog.Extype)"/>
     </div>
     <div>
         <table class="table">

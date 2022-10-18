@@ -27,7 +27,7 @@ namespace FirstBlazorWeb.Data
         {
             _context.Healthcharts.Add(model);
             await _context.SaveChangesAsync();
-            _navigationManager.NavigateTo("/healthchart/"+model.Id);
+            _navigationManager.NavigateTo("/healthchart");
         }
 
         public async Task DeleteHealthchartAsync(int heno)
@@ -40,7 +40,7 @@ namespace FirstBlazorWeb.Data
                 _context.Healthcharts.Remove(result);
                 await _context.SaveChangesAsync();
             }
-            _navigationManager.NavigateTo("/healthchart/"+id, forceLoad:true);
+            _navigationManager.NavigateTo("/healthchart", forceLoad:true);
         }
 
         public async Task<List<Healthchart>> GetAllHealthchartByIdAsync(string id)
@@ -82,7 +82,7 @@ namespace FirstBlazorWeb.Data
                 _context.Healthcharts.Update(result);
                 await _context.SaveChangesAsync();
             }
-            _navigationManager.NavigateTo("/healthchart/"+model.Id);
+            _navigationManager.NavigateTo("/healthchart");
         }
     }
 }

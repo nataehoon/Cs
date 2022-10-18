@@ -93,7 +93,7 @@ namespace FirstBlazorWeb.Data
                 _context.Members.Update(result);
                 await _context.SaveChangesAsync();
             }
-            _navigationManager.NavigateTo("/"+model.Id);
+            _navigationManager.NavigateTo("/");
         }
 
         public async Task UpdateMemberResponsibilityAsync(string responsibility, string id)

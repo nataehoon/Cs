@@ -43,7 +43,7 @@ namespace FirstBlazorWeb.Data
         {
             _context.Exerciselogs.Add(model);
             await _context.SaveChangesAsync();
-            _navigationManager.NavigateTo("/exerciselog/"+model.Id);
+            _navigationManager.NavigateTo("/exerciselog");
         }
 
         public async Task DeleteExerciseAsync(string exname)
@@ -66,7 +66,7 @@ namespace FirstBlazorWeb.Data
                 _context.Exerciselogs.Remove(result);
                 await _context.SaveChangesAsync();
             }
-            _navigationManager.NavigateTo("/exerciselog/"+id, forceLoad:true);
+            _navigationManager.NavigateTo("/exerciselog", forceLoad:true);
         }
 
         public async Task<List<Exercise>> GetExerciseCountAsync(string extype, string exname)
@@ -133,7 +133,7 @@ namespace FirstBlazorWeb.Data
                 _context.Exerciselogs.Update(result);
                 await _context.SaveChangesAsync();
             }
-            _navigationManager.NavigateTo("/exerciselog/"+model.Id);
+            _navigationManager.NavigateTo("/exerciselog");
         }
     }
 }

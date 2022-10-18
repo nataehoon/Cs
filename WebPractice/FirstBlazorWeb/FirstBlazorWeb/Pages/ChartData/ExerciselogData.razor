@@ -58,7 +58,9 @@
 
     protected override async Task OnInitializedAsync()
     {
+        await Task.Delay(300);
         id = await sessionStorage.GetItemAsStringAsync("loginfo");
+        await Task.Delay(100);
         exercises = await ExerciselogService.GetExerciselogsAsync();
 
         ExtypeProcessing(exercises);
@@ -131,6 +133,7 @@
         foreach(var item in extypes)
         {
             List<string> names = new List<string>();
+            await Task.Delay(100);
             foreach (var ex in await ExerciselogService.GetExerciselogByExtypeAsync(item))
             {
                 if (ex.Exname.Contains(","))

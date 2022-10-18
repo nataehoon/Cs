@@ -1,23 +1,48 @@
-﻿@if (id != null)
-{
-    if(member.Resposibility.Equals("총책임자")){
-        <NavLink class="nav-link" style="cursor:pointer" @onclick="@(() => {navigationManager.NavigateTo("/adminpage", forceLoad:true);})">
-            <span class="oi oi-bar-chart" aria-hidden="true"></span>
-        </NavLink>
-    }
-    <NavLink class="nav-link" style="cursor:pointer" @onclick="@(() => {navigationManager.NavigateTo("/memberview", forceLoad:true);})">
-        <span class="oi oi-person" aria-hidden="true"></span>
-    </NavLink>
-    <NavLink class="nav-link" style="cursor:pointer" @onclick="@(async () => {await sessionStorage.ClearAsync(); navigationManager.NavigateTo("/", forceLoad:true);})">
-        <span class="oi oi-account-logout" aria-hidden="true"></span>
-    </NavLink>
-}
-else{
-    <NavLink class="nav-link" style="cursor:pointer" @onclick="OpenLogin">
-        <span class="oi oi-account-login" aria-hidden="true"></span>
-    </NavLink>
+﻿<div>
+    <ul class="dropdown mt-3">
+        <a class="nav-link" @onclick="Profile">
+            <img src="C:\Users\skxog\Desktop\profile.jpg" alt="Profile" class="rounded-circle" />
+        </a>
+        @if (cnt % 2 != 0)
+        {
+            <div class="dropdown-menu show" x-placement="bottom-end" style="position: absolute; transform: translate3d(0px, 40px, 0px); top: 0px; left: 0px; will-change: transform;">
+                @if (id != null)
+                {
+                    if (member.Resposibility.Equals("총책임자"))
+                    {
+                        <div class="dropdown-item">
+                            <NavLink class="nav-link" style="cursor:pointer;color:black" @onclick="@(() => {navigationManager.NavigateTo("/adminpage", forceLoad:true);})">
+                                <span class="oi oi-bar-chart" aria-hidden="true"></span> 관리자 페이지
+                            </NavLink>
+                        </div>
 
-}
+                    }
+                    <div class="dropdown-item">
+                        <NavLink class="nav-link" style="cursor:pointer;color:black" @onclick="@(() => {navigationManager.NavigateTo("/memberview", forceLoad:true);})">
+                            <span class="oi oi-person" aria-hidden="true"></span> 계정 관리
+                        </NavLink>
+                    </div>
+                    <hr />
+                    <div class="dropdown-item">
+                        <NavLink class="nav-link" style="cursor:pointer;color:black" @onclick="@(async () => {await sessionStorage.ClearAsync(); navigationManager.NavigateTo("/", forceLoad:true);})">
+                            <span class="oi oi-account-logout" aria-hidden="true"></span> 로그아웃
+                        </NavLink>
+                    </div>
+                }
+                else
+                {
+                    <div class="dropdown-item">
+                        <NavLink class="nav-link" style="cursor:pointer;color:black" @onclick="OpenLogin">
+                            <span class="oi oi-account-login" aria-hidden="true"></span> 로그인
+                        </NavLink>
+                    </div>
+
+                }
+            </div>
+        }
+    </ul>
+</div>
+
 <div class="modal-backdrop fade @(show ? "show" : "") @(display ? "d-block" : "d-none")"></div>
 
 <div class="modal fade @(show ? "show" : "") @(display ? "d-block" : "d-none")" tabindex="-1" role="dialog">
@@ -54,7 +79,7 @@ else{
     public string? id { get; set; }
 
     private bool show, display, loggedIn;
-
+    private int cnt = 0;
     Member member = new Member();
 
     protected override async Task OnInitializedAsync()
@@ -63,6 +88,11 @@ else{
         if(id != null){
             member = await MemberService.GetMemberByIdAsync(id);
         }
+    }
+
+    private void Profile()
+    {
+        cnt++;
     }
 
     public async Task OpenLogin(){
@@ -86,7 +116,7 @@ else{
             if(loggedIn == true){
                 await sessionStorage.SetItemAsStringAsync("loginfo", member.Id);
             }
-            navigationManager.NavigateTo("/" + member.Id, forceLoad: true);
+            navigationManager.NavigateTo("/", forceLoad: true);
             
         }
         else
