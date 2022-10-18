@@ -1,7 +1,67 @@
-﻿<h3>Paging</h3>
-
+﻿<div class="p-xl-2" style="display:flex;justify-content:center">
+    <nav aria-label="Page navigation">
+        <div class="pagenation">
+            @foreach(var pageitem in pageitems){
+                <div @onclick="@(() => SelectCurrentPage(pageitem))" style="cursor:pointer;display:inline-block" class="page-item @(pageitem.Active ? "active" : null) @(pageitem.Enabled ? null : "disabled")">
+                    <span class="page-link" href="">@pageitem.Text</span>
+                </div>
+            }
+        </div>
+    </nav>
+</div>
 @code {
+    private List<Pageitem> pageitems;
+
     [Parameter]
-    public int count { get; set; }
+    public int pageindex { get; set; }
     [Parameter]
+    public int totalpages { get; set; }
+    [Parameter]
+    public int radius {get;set;}
+    [Parameter]
+    public EventCallback<int> OnSelectedPage { get; set; }
+
+    protected override void OnParametersSet()
+    {
+        CreatePages();
+    }
+
+    private void CreatePages(){
+        pageitems = new List<Pageitem>();
+
+        var haspreviouspage = pageindex > 1;
+        var previouspageindex = pageindex -1;
+        pageitems.Add(new Pageitem(previouspageindex, haspreviouspage, "Prev"));
+
+        if(radius >= totalpages){
+            radius = totalpages - 1;
+        }
+
+        for(int i=1; i<=totalpages; i++){
+            if(i >= pageindex - radius && i < pageindex + radius){
+                pageitems.Add(new Pageitem(i, true, i.ToString())
+                {
+                        Active = pageindex == i
+                });
+            }
+        }
+
+        var hasnextpage = pageindex < totalpages;
+        var nextpageindex = pageindex + 1;
+        pageitems.Add(new Pageitem(nextpageindex, hasnextpage, "Next"));
+
+    }
+
+    private async Task SelectCurrentPage(Pageitem pageitem){
+        if(pageindex == pageitem.PageIndex){
+            return;
+        }
+        if(!pageitem.Enabled){
+            return;
+        }
+
+        pageindex = pageitem.PageIndex;
+        await OnSelectedPage.InvokeAsync(pageitem.PageIndex);
+    }
+
 }

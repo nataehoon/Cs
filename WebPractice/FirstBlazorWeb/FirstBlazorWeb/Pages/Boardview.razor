@@ -1,6 +1,7 @@
 ﻿@page "/Board/{boardtype}"
 
-<h3>Board</h3>
+<h3>@boardtype Board</h3>
+
 <br />
 <div style="display:flex;justify-content:flex-end">
     <button type="button" class="btn btn-primary" @onclick="@(() => navigationManager.NavigateTo("/boardform/" + boardtype + "/" +id))">글쓰기</button>
@@ -17,20 +18,21 @@
         </tr>
     </thead>
     <tbody>
-        @if(boards != null){
-            @foreach (var item in boards)
-            {
-                <tr>
-                    <td style="cursor:pointer" @onclick="@(() => navigationManager.NavigateTo("/boarddetail/"+ item.Bono))">@item.Title</td>
-                    <td align="center">@item.Id</td>
-                    <td align="center">@item.Recommend</td>
-                    <td align="center">@item.Regdate.ToShortDateString().Substring(5)</td>
-                    <td align="center">@item.Readhit</td>
-                </tr>
-            }
+        @foreach (var item in pageboards)
+        {
+            <tr>
+                <td style="cursor:pointer" @onclick="@(() => navigationManager.NavigateTo("/boarddetail/"+ item.Bono))">@item.Title</td>
+                <td align="center">@item.Id</td>
+                <td align="center">@item.Recommend</td>
+                <td align="center">@item.Regdate.ToShortDateString().Substring(5)</td>
+                <td align="center">@item.Readhit</td>
+            </tr>
         }
     </tbody>
 </table>
+<div>
+    <Paging totalpages="@(totalpage != 0 ? totalpage : 1)" pageindex="@pageindex" radius="5" OnSelectedPage="@SelectedPage"></Paging>
+</div>
 <div>
     <EditForm Model="board" OnSubmit="SearchKeyword">
         <div style="float:right">
@@ -39,7 +41,7 @@
         <div style="float:right">
             <InputText id="search" @bind-Value="@content" class="form-control"></InputText>
         </div>
-        <div style="float:right">
+        <div style="float:right;margin-top:7px;">
             <InputSelect id="category" @bind-Value="category">
                 <option value="subject" selected>제목</option>
                 <option value="content">내용</option>
@@ -57,6 +59,11 @@
     [Parameter]
     public string boardtype { get; set; } = null!;
 
+    private IEnumerable<Board> pageboards = Enumerable.Empty<Board>();
+    private int itemsperpage = 10;
+    private int totalpage = 1;
+    private int pageindex = 1;
+
     private List<Board>? boards { get; set; }
     private Board board = new Board();
     public string content = string.Empty;
@@ -65,12 +72,30 @@
     protected override async Task OnInitializedAsync()
     {
         id = await sessionStorage.GetItemAsStringAsync("loginfo");
-        await Task.Delay(500);
-        boards = await BoardService.GetBoardsAsync(boardtype);
+        await Task.Delay(100);
+        boards = await BoardService.GetBoardsAsync(boardtype.ToLower());
+        if(boards != null){
+            totalpage = (boards.Count() / itemsperpage);
+            if (boards.Count() % itemsperpage > 0)
+            {
+                totalpage++;
+            }
+
+            var skippage = itemsperpage * (pageindex - 1);
+            pageboards = boards.Skip(skippage).Take(itemsperpage);
+        }
+    }
+
+    private void SelectedPage(int selectepageindex){
+        if (boards != null){
+            pageindex = selectepageindex;
+            var skipCount = itemsperpage * (pageindex - 1);
+            pageboards = boards.Skip(skipCount).Take(itemsperpage);
+        }
     }
 
     public async Task SearchKeyword(){
-        var result = await BoardService.GetBoardSearchAsync(content, category, boardtype);
+        var result = await BoardService.GetBoardSearchAsync(content, category, boardtype.ToLower());
         if(result != null){
             boards = result;
         }

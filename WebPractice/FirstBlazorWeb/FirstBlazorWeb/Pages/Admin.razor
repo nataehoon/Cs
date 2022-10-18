@@ -193,7 +193,19 @@ else
                 <div style="display:inline-block;width:50%">
                     @foreach (var item in extypes)
                     {
-                        <button type="button" style="margin-right:1%" class="btn btn-secondary" @onclick="(async () => {dellist = await ExerciselogService.GetExerciseNameAsync(item); list = true;})">@item</button>
+                        <button type="button" style="margin-right:1%" class="btn btn-secondary" @onclick="(async () => {dellist = await ExerciselogService.GetExerciseNameAsync(item);
+                                                                                                                        pageindex = 1;
+                                                                                                                        if(dellist != null){
+                                                                                                                            totalpage = (dellist.Count() / itemsperpage);
+                                                                                                                            if(totalpage%itemsperpage > 0){
+                                                                                                                                totalpage++;
+                                                                                                                            }
+                                                                                                                        }
+                                                                                                                        var skipData = itemsperpage * (pageindex - 1);
+                                                                                                                        pageex = dellist.Skip(skipData).Take(itemsperpage);
+                                                                                                                        list = true;})">
+                            @item
+                        </button>
                     }
                 </div>
                 <div style="display:inline-block;width:20%">
@@ -221,7 +233,7 @@ else
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach (var item in dellist)
+                                @foreach (var item in pageex)
                                 {
                                     <tr>
                                         <td style="text-align:center">@item.Extype</td>
@@ -231,6 +243,9 @@ else
                                 }
                             </tbody>
                         </table>
+                        <div>
+                            <Paging totalpages="@totalpage" pageindex="@pageindex" radius="5" OnSelectedPage="@SelectedPage"></Paging>
+                        </div>
                     }
                 </div>
             </div>
@@ -245,22 +260,33 @@ else
     [Parameter]
     public string id { get; set; } = null!;
 
+    //Member Management
     private List<Member> members = new List<Member>();
     private Member member = new Member();
-    private List<Exercise> exlist = new List<Exercise>();
-    private List<string> extypes = new List<string>();
-    private Exercise exercise = new Exercise();
-    private List<Exercise> exname = new List<Exercise>();
-    private List<Exercise> dellist = new List<Exercise>();
-    private string exn = string.Empty;
-    private string exna = string.Empty;
     private Member detailmember = new Member();
-    private int detailexcount = 0;
-    private int detailhealthcount = 0;
     private string changedres = string.Empty;
     private EventCallback<string> changedvalue { get; set; }
+
+    //Exercise Management
+    private List<Exercise> exlist = new List<Exercise>();
+    private List<Exercise> exname = new List<Exercise>();
+    private List<Exercise> dellist = new List<Exercise>();
+    private List<string> extypes = new List<string>();
+    private Exercise exercise = new Exercise();
+    private string exn = string.Empty;
+    private string exna = string.Empty;
     public string keyword = string.Empty;
     public string errorm = string.Empty;
+
+    //Member Detail
+    private int detailexcount = 0;
+    private int detailhealthcount = 0;
+
+    //Pagination
+    private IEnumerable<Exercise> pageex = Enumerable.Empty<Exercise>();
+    private int itemsperpage = 5;
+    private int totalpage = 1;
+    private int pageindex = 1;
 
     private bool user = false , ex = true, name, list = false;
     private string[] responsibility = { "총책임자", "관리자", "일반", "미선택" };
@@ -268,22 +294,25 @@ else
     protected override async Task OnInitializedAsync()
     {
         id = await sessionStorage.GetItemAsStringAsync("loginfo");
-        await Task.Delay(500);
+        await Task.Delay(100);
         if (id != null)
         {
             member = await MemberService.GetMemberByIdAsync(id);
+            await Task.Delay(100);
         }
         members = await MemberService.GetMembersAsync();
+        await Task.Delay(100);
         exlist = await ExerciselogService.GetExercisesAsync();
+        ExtypeProcessing(exlist);
+        await Task.Delay(100);
+
+        
 
         chagedid = null;
-
-        ExtypeProcessing(exlist);
     }
 
     async Task SearchEX(){
 
-        Console.WriteLine(keyword + "aaa");
         if(keyword != null && keyword != ""){
             dellist = await ExerciselogService.GetExerciseSearchAsync(keyword);
             if(dellist.Count == 0){
@@ -294,9 +323,13 @@ else
             }
         }else{
             errorm = "검색어를 입력해 주세요.";
-            Console.WriteLine(errorm + "aaa");
             list = false;
         }
+    }
+    private void SelectedPage(int selectepageindex){
+        pageindex = selectepageindex;
+        var skipData = itemsperpage * (pageindex - 1);
+        pageex = dellist.Skip(skipData).Take(itemsperpage);
     }
 
     private Task OnChangedValue(ChangeEventArgs e)
