@@ -45,7 +45,7 @@ namespace FirstBlazorWeb.Data
 
         public async Task<List<Healthchart>> GetAllHealthchartByIdAsync(string id)
         {
-            return (await _context.Healthcharts.ToListAsync()).Where(h => h.Id == id).OrderByDescending(h => h.Heno).ToList();
+            return (await _context.Healthcharts.ToListAsync()).Where(h => h.Id == id).OrderByDescending(h => h.Regdate).ToList();
         }
 
         public async Task<Healthchart> GetHealthchartByHenoAsync(int heno)
