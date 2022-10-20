@@ -8,6 +8,7 @@ namespace FirstBlazorWeb.Data
         Task CreateCommentAsync(Comment model);
         Task UpdateCommentAsync(Comment model, int cono);
         Task DeleteCommentAsync(int cono);
+        Task UpdateRecommenedAsync(int cono);
     }
     public class CommentService : ICommentService
     {
@@ -24,7 +25,7 @@ namespace FirstBlazorWeb.Data
         {
             _context.Comments.Add(model);
             await _context.SaveChangesAsync();
-            _navigationManager.NavigateTo("/board");
+            _navigationManager.NavigateTo("/boarddetail/" + model.Groupno, forceLoad: true);
         }
 
         public async Task DeleteCommentAsync(int cono)
@@ -34,21 +35,13 @@ namespace FirstBlazorWeb.Data
             {
                 _context.Comments.Remove(result);
                 await _context.SaveChangesAsync();
+                _navigationManager.NavigateTo("/boarddetail/" + result.Groupno, forceLoad: true);
             }
-            _navigationManager.NavigateTo("/board");
         }
 
         public async Task<List<Comment>> GetCommentsByBonoAsync(int bono)
         {
-            var result = await _context.Comments.FindAsync(bono);
-            if(result != null)
-            {
-                return await _context.Comments.ToListAsync();
-            }
-            else
-            {
-                return null;
-            }
+            return (await _context.Comments.ToListAsync()).Where(c => c.Groupno == bono).ToList();
         }
 
         public async Task UpdateCommentAsync(Comment model, int cono)
@@ -58,6 +51,17 @@ namespace FirstBlazorWeb.Data
             {
                 result.Comment1 = model.Comment1;
                 result.Recommend = model.Recommend;
+                _context.Comments.Update(result);
+                await _context.SaveChangesAsync();
+            }
+        }
+
+        public async Task UpdateRecommenedAsync(int cono)
+        {
+            var result = await _context.Comments.FindAsync(cono);
+            if(result != null)
+            {
+                result.Recommend++;
                 _context.Comments.Update(result);
                 await _context.SaveChangesAsync();
             }

@@ -1,5 +1,5 @@
-﻿@page "/logform/{id}"
-@page "/logform/{id}/{exno:int}"
+﻿@page "/logform"
+@page "/logform/{exno:int}"
 
 <h3>ExerciselogForm</h3>
 
@@ -519,10 +519,9 @@
 
 @code {
     [Parameter]
-    public string id { get; set; } = null!;
-
-    [Parameter]
     public int? exno{ get; set; }
+
+    public Member loginfo { get; set; } = null!;
 
     Exerciselog exerciselog { get; set; } = new Exerciselog();
     List<Exercise> extypes = new List<Exercise>();
@@ -547,8 +546,8 @@
 
     protected override async Task OnInitializedAsync()
     {
-        id = await sessionStorage.GetItemAsStringAsync("loginfo");
-        exerciselog.Id = id;
+        loginfo = await sessionStorage.GetItemAsync<Member>("loginfo");
+        exerciselog.Id = loginfo.Id;
 
         if(exno != null){
             exerciselog = await ExerciselogService.GetExerciselogByExnoAsync((int)exno);

@@ -4,39 +4,38 @@
 
 
 @if(chartview == true){
-    <h4 class="mt-5">수행 운동별 비율</h4>
-    <Chart Config="extypeconfig"></Chart>
-
-    @for(int i=0; i<extypes.Count; i++){
-        if(i == 0){
-            <button type="button" class="btn btn-secondary" @onclick="@(() => {ConfigurePieConfig2(); chartview = true;})">@extypes[i] 차트 보기</button>
-        }
-        if (i == 1)
-        {
-            <button type="button" class="btn btn-secondary" @onclick="@(() => {ConfigurePieConfig2(); chartview = true;})">@extypes[i] 차트 보기</button>
-        }
-        if (i == 2)
-        {
-            <button type="button" class="btn btn-secondary" @onclick="@(() => {ConfigurePieConfig2(); chartview = true;})">@extypes[i] 차트 보기</button>
-        }
-        if (i == 3)
-        {
-            <button type="button" class="btn btn-secondary" @onclick="@(() => {ConfigurePieConfig2(); chartview = true;})">@extypes[i] 차트 보기</button>
-        }
-        if (i == 4)
-        {
-            <button type="button" class="btn btn-secondary" @onclick="@(() => {ConfigurePieConfig2(); chartview = true;})">@extypes[i] 차트 보기</button>
-        }
-    }
+    <div class="container">
+        <h4 class="mt-5">수행 운동별 비율</h4>
+        <div style="width:49%;float:left">
+            <Chart Config="extypeconfig"></Chart>
+        </div>
+        <div style="width:49%;float:left">
+            @for(int i=0; i<extypes.Count; i++){
+                <button type="button" class="btn btn-secondary" style="margin-right:5px;" @onclick="@(() => {ConfigurePieConfig2();  detailviewcnt++; if(detailviewcnt%2 != 0){detailchartview = true;}else{detailchartview = false;}})">@extypes[i]</button>
+            }
+            @if(detailchartview == true){
+                <Chart Config="extop5config"></Chart>
+            }
+        </div>
+    </div>
 }
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
 
 @code {
-    public string id { get; set; } = null!;
+    public Member loginfo { get; set; } = null!;
 
     private PieConfig extypeconfig;
     private PieConfig extop5config;
     public bool chartview = false;
     public int viewcnt = 0;
+    public bool detailchartview = false;
+    public int detailviewcnt = 0;
 
     List<Exerciselog> exercises { get; set; } = new List<Exerciselog>();
     List<Exercise> exlist = new List<Exercise>();
@@ -62,7 +61,7 @@
     protected override async Task OnInitializedAsync()
     {
         await Task.Delay(300);
-        id = await sessionStorage.GetItemAsStringAsync("loginfo");
+        loginfo = await sessionStorage.GetItemAsync<Member>("loginfo");
         await Task.Delay(100);
         exercises = await ExerciselogService.GetExerciselogsAsync();
 
@@ -80,7 +79,7 @@
                     Title = new OptionsTitle
                     {
                         Display = true,
-                        Text = "타입별 운동 횟수"
+                        Text = "운동 타입별 횟수"
                     }
                 }
             };
@@ -118,7 +117,7 @@
         {
             extop5config.Data.Labels.Add(category);
         }
-        PieDataset<int> dataset = new PieDataset<int>(new[] { typecnt[0], typecnt[1], typecnt[2], typecnt[3] })
+        PieDataset<int> dataset = new PieDataset<int>(typecnt)
             {
                 BackgroundColor = new[]{
                     ColorUtil.ColorHexString(255, 99, 132), // Slice 1 aka "Red"

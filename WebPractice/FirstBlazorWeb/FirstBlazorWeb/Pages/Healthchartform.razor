@@ -1,5 +1,5 @@
-﻿@page "/healthchartform/{id}"
-@page "/healthchartform/{id}/{heno:int}"
+﻿@page "/healthchartform"
+@page "/healthchartform/{heno:int}"
 
 <h3>Healthchartform</h3>
 <EditForm Model="healthchart" OnValidSubmit="HandleSubmit">
@@ -91,8 +91,8 @@
 @code {
     [Parameter]
     public int? heno { get; set; }
-    [Parameter]
-    public string id { get; set; } = null!;
+
+    public Member loginfo { get; set; } = null!;
 
     public string btnText = string.Empty;
 
@@ -111,8 +111,8 @@
         else{
 
         }
-        id = await sessionStorage.GetItemAsStringAsync("loginfo");
-        healthchart.Id = id;
+        loginfo = await sessionStorage.GetItemAsync<Member>("loginfo");
+        healthchart.Id = loginfo.Id;
 
     }
     async Task HandleSubmit(){

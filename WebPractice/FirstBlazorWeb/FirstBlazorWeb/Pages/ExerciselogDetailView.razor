@@ -1,4 +1,4 @@
-﻿@page "/exerciselog/{id}/{exno:int}"
+﻿@page "/exerciselog/{exno:int}"
 
 @if(exerciselog == null)
 {
@@ -8,20 +8,21 @@ else
 {
     @exerciselog.Exdate
 
-    <button class="btn btn-warning" @onclick="@(() => navigationManager.NavigateTo("/logform/"+id+"/"+exerciselog.Exno))">수정</button>
+    <button class="btn btn-warning" @onclick="@(() => navigationManager.NavigateTo("/logform/"+loginfo.Id+"/"+exerciselog.Exno))">수정</button>
     <button class="btn btn-danger" @onclick="async () => {await ExerciselogService.DeleteExerciselogAsync(exerciselog.Exno);}">삭제</button>
 }
 @code {
     [Parameter]
     public int exno { get; set; }
 
-    [Parameter]
-    public string id { set; get; } = null!;
+    public Member loginfo { set; get; } = null!;
 
     private Exerciselog exerciselog { get; set; } = null!;
 
     protected override async Task OnInitializedAsync()
     {
+        loginfo = await sessionStorage.GetItemAsync<Member>("loginfo");
+        await Task.Delay(100);
         exerciselog = await ExerciselogService.GetExerciselogByExnoAsync((int)exno);
     }
 }

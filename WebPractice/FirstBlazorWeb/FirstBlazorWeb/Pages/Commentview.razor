@@ -1,9 +1,112 @@
-﻿<h3>Comment</h3>
+﻿
+<div class="container">
+    <div>
+        <EditForm Model="comment" OnValidSubmit="HandleSumit">
+            <DataAnnotationsValidator />
+            <InputNumber id="cono" class="form-control" @bind-Value="comment.Cono"></InputNumber>
+            <InputText id="id" class="form-control" @bind-Value="comment.Id" hidden></InputText>
+            <InputNumber id="bono" class="form-control" @bind-Value="comment.Groupno" hidden></InputNumber>
+            <div class="px-5" style="margin-left:2%;height:150px">
+                <div style="display:inline-block;width:92%;">
+                    <InputTextArea id="comment" class="form-control" style="height:140px;" @bind-Value="comment.Comment1"></InputTextArea>
+                </div>
+                <div style="display:inline-block;width:7%">
+                    <button type="submit" class="btn btn-secondary mb-4">등록</button>
+                </div>
+            </div>
+        </EditForm>
+    </div>
+    <div class="container">
+        @if (comments != null)
+        {
+            @foreach (var item in comments)
+            {
+                <div class="container" style="background-color:antiquewhite;width:90%;height:130px;border-bottom:solid 1px;border-block-color:white;">
+                    <div style="display:inline-block;width:100%">
+                        <div>
+                            <div style="text-align:left">
+                                @item.Id / 추천수 : @item.Recommend
+                            </div>
+                            <div style="text-align:right">
+                                @if (loginfo != null && item.Id == loginfo.Id)
+                                {
+                                    <div>
+                                        <span class="oi oi-delete" style="cursor:pointer;color:red" @onclick="@(async () => {await CommentService.DeleteCommentAsync(item.Cono);})"></span>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                        <div class="container" style="background-color:white;width:100%;height:50px">
+                            @item.Comment1
+                        </div>
+                    </div>
+                    <div class="container" style="display:flex;justify-content:flex-end;">
+                        <div style="margin-right:2%;">
+                            <span class="oi oi-plus" style="cursor:pointer;color:black"></span>
+                        </div>
+                        <div>
+                            <span class="oi oi-thumb-up" style="cursor:pointer;color:black" @onclick="@(async () => {await CommentService.UpdateRecommenedAsync(item.Cono);})"></span>
+                        </div>
+                    </div>
+                </div>
+            }
+            <br />
+            <br />
+            <div style="display:flex;justify-content:center">
+                <Paging totalpages="totalpage" pageindex="pageindex" radius="5" OnSelectedPage="@OnSelectedPage"></Paging>
+            </div>
+        }
+    </div>
+</div>
 
 @code {
-    private List<Comment> comments{ get; set; }
+    [Parameter]
+    public int bono { get; set; }
 
-    public async Task OnInitializedAsync(int bono){
+    private Member? loginfo = new Member();
+
+    private List<Comment> comments{ get; set; }
+    private Comment comment = new Comment();
+
+    private int depthno = 0;
+    private int recommended = 0;
+
+    //pagination
+    private IEnumerable<Comment> commentpage = Enumerable.Empty<Comment>();
+    private int itemsperpage = 10;
+    private int totalpage = 1;
+    private int pageindex = 1;
+
+    protected override async Task OnInitializedAsync(){
+        loginfo = await sessionStorage.GetItemAsync<Member>("loginfo");
+        await Task.Delay(100);
         comments = await CommentService.GetCommentsByBonoAsync(bono);
+        if (loginfo != null){
+            comment.Id = loginfo.Id;
+        }
+        comment.Groupno = bono;
+
+        if(comments != null){
+            totalpage = comments.Count() / itemsperpage;
+            if(comments.Count()%itemsperpage > 0){
+                totalpage++;
+            }
+            var skipData = itemsperpage * (pageindex -1);
+            commentpage = comments.Skip(skipData).Take(itemsperpage);
+        }
+    }
+
+    async Task HandleSumit(){
+        comment.Depthno = depthno;
+        comment.Recommend = recommended;
+        comment.Groupno = bono;
+        await CommentService.CreateCommentAsync(comment);
+
+    }
+
+    private void OnSelectedPage(int seletedpage){
+        pageindex = seletedpage;
+        var skipData = itemsperpage * (pageindex - 1);
+        commentpage = comments.Skip(skipData).Take(itemsperpage);
     }
 }

@@ -1,5 +1,5 @@
-﻿@page "/boardform/{boardtype}/{id}"
-@page "/boardform/{boardtype}/{bono:int}/{id}"
+﻿@page "/boardform/{boardtype}"
+@page "/boardform/{boardtype}/{bono:int}"
 
 <h3>Boardform</h3>
 
@@ -28,12 +28,12 @@
 
 @code {
     [Parameter]
-    public string id { get; set; } = null!;
-    [Parameter]
     public int? bono { get; set; }
     [Parameter]
     public string boardtype { get; set; } = null!;
     public string btnText = string.Empty;
+
+    public Member loginfo { get; set; } = null!;
 
     Board board = new Board();
 
@@ -43,11 +43,11 @@
 
     protected override async Task OnInitializedAsync()
     {
-        id = await sessionStorage.GetItemAsStringAsync("loginfo");
+        loginfo = await sessionStorage.GetItemAsync<Member>("loginfo");
         if(bono != null){
             board = await BoardService.GetBoardByBonoAsync((int)bono);
         }else{
-            board.Id = id;
+            board.Id = loginfo.Id;
         }
         board.Boardtype = boardtype;
     }

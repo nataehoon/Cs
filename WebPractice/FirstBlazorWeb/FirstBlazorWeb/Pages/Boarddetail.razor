@@ -34,9 +34,9 @@
 <br />
 
 <div style="display:flex;justify-content:flex-end;margin-right:10%">
-@if (id == board.Id)
+@if (loginfo != null && loginfo.Id == board.Id)
 {
-    <button type="button" class="btn btn-warning" @onclick="@(() => navigationManager.NavigateTo("/boardform/" + board.Boardtype + "/" +board.Bono + "/" + id))">수정</button>
+    <button type="button" class="btn btn-warning" @onclick="@(() => navigationManager.NavigateTo("/boardform/" + board.Boardtype + "/" +board.Bono))">수정</button>
     <button type="button" class="btn btn-danger" @onclick="@(async () => {await BoardService.DeleteBoardAsync(board.Bono);})">삭제</button>
 }
 else
@@ -50,19 +50,19 @@ else
 <br />
 <br />
 <br />
-<Commentview></Commentview>
+<Commentview bono="bono"></Commentview>
 
 @code {
     [Parameter]
     public int bono { get; set; }
-    [Parameter]
-    public string? id { get; set; }
+
+    public Member? loginfo { get; set; }
 
     Board board = new Board();
 
     protected override async Task OnInitializedAsync()
     {
-        id = await sessionStorage.GetItemAsStringAsync("loginfo");
+        loginfo = await sessionStorage.GetItemAsync<Member>("loginfo");
         board = await BoardService.GetBoardByBonoAsync(bono);
     }
 }

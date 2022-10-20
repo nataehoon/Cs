@@ -6,9 +6,9 @@
     }
 </style>
 
-@if(id == null)
+@if (loginfo == null)
 {
-    <h3>Login required</h3>
+    <p>....Loading....</p>
 }
 else
 {
@@ -25,13 +25,13 @@ else
                     <div style="border:1px solid;border-color:antiquewhite;margin-right:10%;">
                         <img class="card-img-top" src="" alt="Card image cap">
                         <br/>
-                        <div class="card-body" style="cursor:pointer;" @onclick=@(() => navigationManager.NavigateTo("/exerciselog/"+id+"/"+exerciselog.Exno))>
+                        <div class="card-body" style="cursor:pointer;" @onclick=@(() => navigationManager.NavigateTo("/exerciselog/"+exerciselog.Exno))>
                             <h4 class="card-title">@exerciselog.Extype</h4>
                             <p style="margin-bottom:3px;">@exerciselog.Exname</p>
                             <p>@exerciselog.Exdate.ToString().Substring(0,10)</p>
                         </div>
                         <div style="display:flex;justify-content:flex-end">
-                            <button class="btn btn-warning" @onclick="@(() => navigationManager.NavigateTo("/logform/"+id+"/"+exerciselog.Exno))">수정</button>
+                            <button class="btn btn-warning" @onclick="@(() => navigationManager.NavigateTo("/logform/"+exerciselog.Exno))">수정</button>
                             <button class="btn btn-danger" @onclick="async () => {await ExerciselogService.DeleteExerciselogAsync(exerciselog.Exno);}">삭제</button>
                         </div>
                     </div>
@@ -46,24 +46,23 @@ else
 }
 
 @code {
-    [Parameter]
-    public string id { get; set; } = null!;
+    public Member loginfo { get; set; } = null!;
 
     private List<Exerciselog>? exerciselogs { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
-        id = await sessionStorage.GetItemAsStringAsync("loginfo");
+        loginfo = await sessionStorage.GetItemAsync<Member>("loginfo");
 
         await Task.Delay(500);
-        await MemberService.GetMemberByIdAsync(id);
+        await MemberService.GetMemberByIdAsync(loginfo.Id);
 
-        await Task.Delay(500);
-        exerciselogs = await ExerciselogService.GetExerciselogByIdAsync(id);
+        await Task.Delay(100);
+        exerciselogs = await ExerciselogService.GetExerciselogByIdAsync(loginfo.Id);
     }
     public void CreateLog()
     {
-        navigationManager.NavigateTo("/logform/"+id);
+        navigationManager.NavigateTo("/logform");
     }
 
 

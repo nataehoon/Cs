@@ -4,16 +4,17 @@
 
 @code{
     [Parameter]
-    public string? id { get; set; }
+    public Member? loginfo { get; set; }
 
     Member member = new Member();
 
     protected override async Task OnInitializedAsync()
     {
-        id = await sessionStorage.GetItemAsStringAsync("loginfo");
+        loginfo = await sessionStorage.GetItemAsync<Member>("loginfo");
         await Task.Delay(100);
-        if(id != null){
-            member = await MemberService.GetMemberByIdAsync(id);
+        if (loginfo != null)
+        {
+            member = await MemberService.GetMemberByIdAsync(loginfo.Id);
         }
     }
 }

@@ -4,16 +4,31 @@
             <span class="oi oi-home" aria-hidden="true"></span> Home
         </NavLink>
     </div>
-    <div class="nav-link px-5" style="display:inline-block">
-        <NavLink class="nav-link" style="cursor:pointer;color:black" @onclick="@(() => {navigationManager.NavigateTo("/exerciselog", forceLoad:true);})">
-            <span class="oi oi-spreadsheet" aria-hidden="true"></span> 운동일지
-        </NavLink>
-    </div>
-    <div class="nav-link px-5" style="display:inline-block">
-        <NavLink class="nav-link" style="cursor:pointer;color:black" @onclick="@(() => {navigationManager.NavigateTo("/healthchart", forceLoad:true);})">
-            <span class="oi oi-plus" aria-hidden="true"></span> 건강일지
-        </NavLink>
-    </div>
+    @if (loginfo != null)
+    {
+        <div class="nav-link px-5" style="display:inline-block">
+            <NavLink class="nav-link" style="cursor:pointer;color:black" @onclick="@(() => {navigationManager.NavigateTo("/exerciselog", forceLoad:true);})">
+                <span class="oi oi-spreadsheet" aria-hidden="true"></span> 운동일지
+            </NavLink>
+        </div>
+        <div class="nav-link px-5" style="display:inline-block">
+            <NavLink class="nav-link" style="cursor:pointer;color:black" @onclick="@(() => {navigationManager.NavigateTo("/healthchart", forceLoad:true);})">
+                <span class="oi oi-plus" aria-hidden="true"></span> 건강일지
+            </NavLink>
+        </div>
+    }else{
+        <div class="nav-link px-5" style="display:inline-block">
+            <NavLink class="nav-link" style="color:gray">
+                <span class="oi oi-spreadsheet" aria-hidden="true"></span> 운동일지
+            </NavLink>
+        </div>
+        <div class="nav-link px-5" style="display:inline-block">
+            <NavLink class="nav-link" style="color:gray">
+                <span class="oi oi-plus" aria-hidden="true"></span> 건강일지
+            </NavLink>
+        </div>
+    }
+    
     <div class="dropdown nav-link" style="display:inline-block">
         <ul class="dropdown-list">
             <NavLink class="nav-link" style="cursor:pointer;color:black" @onclick="Show">
@@ -36,15 +51,29 @@
             }
         </ul>
     </div>
-    <div class="nav-link px-5" style="display:inline-block">
-        <NavLink class="nav-link" style="cursor:pointer;color:black" @onclick="@(() => {navigationManager.NavigateTo("/chart", forceLoad:true);})">
-            <span class="oi oi-pie-chart" aria-hidden="true"></span> 변화차트
-        </NavLink>
-    </div>
+    @if(loginfo != null){
+        <div class="nav-link px-5" style="display:inline-block">
+            <NavLink class="nav-link" style="cursor:pointer;color:black" @onclick="@(() => {navigationManager.NavigateTo("/chart", forceLoad:true);})">
+                <span class="oi oi-pie-chart" aria-hidden="true"></span> 변화차트
+            </NavLink>
+        </div>
+    }else{
+        <div class="nav-link px-5" style="display:inline-block">
+            <NavLink class="nav-link" style="color:gray">
+                <span class="oi oi-pie-chart" aria-hidden="true"></span> 변화차트
+            </NavLink>
+        </div>
+    }
 </nav>
 
 @code {
     private int cnt = 0;
+    private Member? loginfo;
+
+    protected override async Task OnInitializedAsync()
+    {
+        loginfo = await sessionStorage.GetItemAsync<Member>("loginfo");
+    }
 
     private void Show()
     {

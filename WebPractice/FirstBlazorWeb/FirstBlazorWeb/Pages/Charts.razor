@@ -2,8 +2,9 @@
 @page "/chart/ex"
 @page "/chart/health"
 
-@if(id == null){
-    <h3>Login required</h3>
+@if (loginfo == null)
+{
+    <p>....Loading....</p>
 }
 else
 {
@@ -29,14 +30,13 @@ else
 }
 
 @code {
-    [Parameter]
-    public string? id { get; set; }
+    public Member? loginfo { get; set; }
 
     int flag = 0;
 
     protected override async Task OnInitializedAsync()
     {
-        id = await sessionStorage.GetItemAsStringAsync("loginfo");
+        loginfo = await sessionStorage.GetItemAsync<Member>("loginfo");
         
     }
 }

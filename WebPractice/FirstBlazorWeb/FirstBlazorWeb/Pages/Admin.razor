@@ -86,7 +86,7 @@ else
                         @foreach (var item in members)
                         {
                             @if(!item.Id.Equals("admin")){
-                                @if (!item.Id.Equals(id))
+                                @if (!item.Id.Equals(loginfo.Id))
                                 {
                                     <tr style="cursor:pointer" @onclick="@(async () => {detailmember = await MemberService.GetMemberByIdAsync(item.Id);
                                                                                         detailexcount = await ExerciselogService.GetExerciselogCountAsync(item.Id);
@@ -257,8 +257,8 @@ else
 @code {
     [Parameter]
     public string? chagedid { get; set; }
-    [Parameter]
-    public string id { get; set; } = null!;
+
+    public Member loginfo { get; set; } = null!;
 
     //Member Management
     private List<Member> members = new List<Member>();
@@ -293,20 +293,13 @@ else
 
     protected override async Task OnInitializedAsync()
     {
-        id = await sessionStorage.GetItemAsStringAsync("loginfo");
+        loginfo = await sessionStorage.GetItemAsync<Member>("loginfo");
         await Task.Delay(100);
-        if (id != null)
-        {
-            member = await MemberService.GetMemberByIdAsync(id);
-            await Task.Delay(100);
-        }
         members = await MemberService.GetMembersAsync();
         await Task.Delay(100);
         exlist = await ExerciselogService.GetExercisesAsync();
         ExtypeProcessing(exlist);
         await Task.Delay(100);
-
-        
 
         chagedid = null;
     }

@@ -1,5 +1,4 @@
 ﻿@page "/memberform"
-@page "/memberform/{id}"
 
 <h3>Memberform</h3>
 
@@ -83,7 +82,8 @@
             <InputNumber id="hp" @bind-Value="member.Hp" class="form-control"></InputNumber>
         </div>
         <div style="width:75%;margin-top:3%;">
-        @if(id != null){
+            @if (loginfo != null)
+            {
             <label for="resposibility">직책</label>
             <InputText id="resposibility" @bind-Value="member.Resposibility" class="form-control" disabled="false"></InputText>
         }
@@ -189,8 +189,7 @@
 </EditForm>
 
 @code {
-    [Parameter]
-    public string? id { get; set; }
+    public Member? loginfo { get; set; }
 
     public string btnText = string.Empty;
     public string[] genders = { "남자", "여자" };
@@ -207,18 +206,18 @@
 
     protected override void OnInitialized()
     {
-        btnText = id == null ? "저장" : "수정";
+        btnText = loginfo == null ? "저장" : "수정";
     }
 
     protected override async Task OnInitializedAsync()
     {
-        id = await sessionStorage.GetItemAsStringAsync("loginfo");
-        if(id != null){
-            member = await MemberService.GetMemberByIdAsync(id);
+        loginfo = await sessionStorage.GetItemAsync<Member>("loginfo");
+        if(loginfo != null){
+            member = await MemberService.GetMemberByIdAsync(loginfo.Id);
             Isdisabled = true;
-            navigationManager.NavigateTo("/memberform/" + id);
+            navigationManager.NavigateTo("/memberform");
         }
-        await Task.Delay(500);
+        await Task.Delay(100);
     }
 
     async Task Handlesubmit()
@@ -235,26 +234,21 @@
         {
             if ((idcheck != null && idcheck.Equals("사용 가능한 아이디 입니다.")) && (nickcheck != null && nickcheck.Equals("사용 가능한 닉네임 입니다.")))
             {
-                Console.WriteLine("굳");
                 await MemberService.CreateMemberAsync(member);
             }
             else if ((idcheck == null || !idcheck.Equals("이미 사용중인 아이디 입니다.")) && (nickcheck != null && nickcheck.Equals("사용 가능한 닉네임 입니다.")))
             {
-                Console.WriteLine("아이디좀");
                 idcheck = "아이디를 생성 할 수 없습니다.";
             }
             else if ((nickcheck == null || nickcheck.Equals("이미 사용중인 닉네임 입니다.")) && (idcheck != null && idcheck.Equals("사용 가능한 아이디 입니다.")))
             {
-                Console.WriteLine("닉네임좀");
                 nickcheck = "닉네임을 생성 할 수 없습니다.";
             }
             else if ((idcheck == null || idcheck.Equals("이미 사용중인 아이디 입니다.(중복체크 실패)")) && (nickcheck == null || nickcheck.Equals("이미 사용중인 닉네임 입니다.(중복체크 실패)")))
             {
-                Console.WriteLine("아이디랑 닉네임좀좀");
                 idcheck = "아이디를 생성 할 수 없습니다.";
                 nickcheck = "닉네임을 생성 할 수 없습니다.";
             }
-             Console.WriteLine("여긴어디?");
         }
         else
         {

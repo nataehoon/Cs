@@ -1,34 +1,30 @@
 ﻿@page "/memberview"
 
-@if (member != null)
+@if (loginfo != null)
 {
     <h3>My Infomation</h3>
 
-    <p>@member.Id</p>
-    <p>@member.Name</p>
-    <p>@member.Nick</p>
-    <p>@member.Resposibility</p>
+    <p>@loginfo.Id</p>
+    <p>@loginfo.Name</p>
+    <p>@loginfo.Nick</p>
+    <p>@loginfo.Resposibility</p>
 
-    <button type="button" @onclick="@(() => {navigationManager.NavigateTo("/memberform/" + member.Id, forceLoad:true);})">정보 수정</button>
+    <button type="button" @onclick="@(() => {navigationManager.NavigateTo("/memberform", forceLoad:true);})">정보 수정</button>
 }
 else
 {
-    <h3>Login required</h3>
+    <p>....Loading....</p>
 }
 
 @code {
-    [Parameter]
-    public string? id { get; set; }
+    public Member? loginfo { get; set; }
 
     private List<Member> members { get; set; } = null!;
-    private Member? member { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
-        id = await sessionStorage.GetItemAsStringAsync("loginfo");
-        await Task.Delay(500);
-        member = await MemberService.GetMemberByIdAsync(id);
-        await Task.Delay(500);
+        loginfo = await sessionStorage.GetItemAsync<Member>("loginfo");
+        await Task.Delay(100);
         members = await MemberService.GetMembersAsync();
     }
 }

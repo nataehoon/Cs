@@ -6,9 +6,9 @@
         @if (cnt % 2 != 0)
         {
             <div class="dropdown-menu show" x-placement="bottom-end" style="position: absolute; transform: translate3d(0px, 40px, 0px); top: 0px; left: 0px; will-change: transform;">
-                @if (id != null)
+                @if (loginfo != null)
                 {
-                    if (member.Resposibility.Equals("총책임자"))
+                    if (loginfo.Resposibility.Equals("총책임자"))
                     {
                         <div class="dropdown-item">
                             <NavLink class="nav-link" style="cursor:pointer;color:black" @onclick="@(() => {navigationManager.NavigateTo("/adminpage", forceLoad:true);})">
@@ -76,7 +76,7 @@
 </div>
 
 @code {
-    public string? id { get; set; }
+    public Member? loginfo { get; set; }
 
     private bool show, display, loggedIn;
     private int cnt = 0;
@@ -84,10 +84,7 @@
 
     protected override async Task OnInitializedAsync()
     {
-        id = await sessionStorage.GetItemAsStringAsync("loginfo");
-        if(id != null){
-            member = await MemberService.GetMemberByIdAsync(id);
-        }
+        loginfo = await sessionStorage.GetItemAsync<Member>("loginfo");
     }
 
     private void Profile()
@@ -102,7 +99,7 @@
     }
     public async Task Close(){
         display = false;
-        await Task.Delay(500);
+        await Task.Delay(200);
         show = false;
     }
 
@@ -114,10 +111,10 @@
             await Close();
             loggedIn = true;
             if(loggedIn == true){
-                await sessionStorage.SetItemAsStringAsync("loginfo", member.Id);
+                await sessionStorage.SetItemAsync<Member>("loginfo", result);
             }
             navigationManager.NavigateTo("/", forceLoad: true);
-            
+
         }
         else
         {
