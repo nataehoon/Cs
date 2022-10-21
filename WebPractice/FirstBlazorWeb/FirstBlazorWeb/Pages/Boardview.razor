@@ -1,89 +1,98 @@
 ﻿@page "/Board/{boardtype}"
 
-<h3>@boardtype Board</h3>
+<div class="title">
+    <h3>@boardtype Board</h3>
+</div>
 
-<br />
-@if (loginfo != null && boardtype == "Community")
-{
-    <div style="display:flex;justify-content:flex-end">
-        <button type="button" class="btn btn-primary" @onclick="@(() => navigationManager.NavigateTo("/boardform/" + boardtype))">글쓰기</button>
-    </div>
-}
-else if (loginfo != null && boardtype == "Notice" && loginfo.Resposibility.Equals("총책임자"))
-{
-    <div style="display:flex;justify-content:flex-end">
-        <button type="button" class="btn btn-primary" @onclick="@(() => navigationManager.NavigateTo("/boardform/" + boardtype))">글쓰기</button>
-    </div>
-}
-<br />
-<table class="table" border="1">
-    <thead>
-        <tr>
-            <th style="width:50%">글제목</th>
-            <th style="width:15%;text-align:center">작성자</th>
-            <th style="width:10%;text-align:center">추천수</th>
-            <th style="width:10%;text-align:center">등록일</th>
-            <th style="width:10%;text-align:center">조회수</th>
-        </tr>
-    </thead>
-    <tbody>
-        @if(boardtype != "Notice"){
-            @if (notice != null)
-            {
-                @for (int i = 0; i < notice.Count; i++)
+
+<div class="container">
+    <br />
+    @if (loginfo != null && boardtype == "Community")
+    {
+        <div style="display:flex;justify-content:flex-end">
+            <button type="button" class="btn btn-primary" @onclick="@(() => navigationManager.NavigateTo("/boardform/" + boardtype))">글쓰기</button>
+        </div>
+    }
+    else if (loginfo != null && boardtype == "Notice" && loginfo.Resposibility.Equals("총책임자"))
+    {
+        <div style="display:flex;justify-content:flex-end">
+            <button type="button" class="btn btn-primary" @onclick="@(() => navigationManager.NavigateTo("/boardform/" + boardtype))">글쓰기</button>
+        </div>
+    }
+    <br />
+    <table class="table" border="1">
+        <thead>
+            <tr>
+                <th style="width:50%">글제목</th>
+                <th style="width:15%;text-align:center">작성자</th>
+                <th style="width:10%;text-align:center">추천수</th>
+                <th style="width:10%;text-align:center">등록일</th>
+                <th style="width:10%;text-align:center">조회수</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if(boardtype != "Notice"){
+                @if (notice != null)
                 {
-                    @if(i == 4){
-                        borderstyle = "border-bottom:solid 2px;";
-                    }
-                    <tr style="@borderstyle">
-                        <td style="cursor:pointer" @onclick="@(() => navigationManager.NavigateTo("/boarddetail/"+ notice[i].Bono))">공지 / @notice[i].Title</td>
-                        <td align="center">@notice[i].Id</td>
-                        <td align="center">@notice[i].Recommend</td>
-                        <td align="center">@notice[i].Regdate.ToShortDateString().Substring(5)</td>
-                        <td align="center">@notice[i].Readhit</td>
-                    </tr>
-                    @if (i >= 4)
+                    @for (int i = 0; i < notice.Count; i++)
                     {
-                        break;
+                        @if(i == 4){
+                            borderstyle = "border-bottom:solid 2px;";
+                        }
+                        <tr style="@borderstyle ;">
+                            <td style="cursor:pointer" @onclick="@(() => navigationManager.NavigateTo("/boarddetail/"+ notice[i].Bono))">공지 / @notice[i].Title</td>
+                            <td align="center">@notice[i].Id</td>
+                            <td align="center">@notice[i].Recommend</td>
+                            <td align="center">@notice[i].Regdate.ToShortDateString().Substring(5)</td>
+                            <td align="center">@notice[i].Readhit</td>
+                        </tr>
+                        @if (i >= 4)
+                        {
+                            break;
+                        }
                     }
                 }
             }
-        }
         
-        @foreach (var item in pageboards)
-        {
-            <tr>
-                <td style="cursor:pointer" @onclick="@(() => navigationManager.NavigateTo("/boarddetail/"+ item.Bono))">@item.Title</td>
-                <td align="center">@item.Id</td>
-                <td align="center">@item.Recommend</td>
-                <td align="center">@item.Regdate.ToShortDateString().Substring(5)</td>
-                <td align="center">@item.Readhit</td>
-            </tr>
-        }
-    </tbody>
-</table>
-<div>
-    <Paging totalpages="@(totalpage != 0 ? totalpage : 1)" pageindex="@pageindex" radius="5" OnSelectedPage="@SelectedPage"></Paging>
-</div>
-<div>
-    <EditForm Model="board" OnSubmit="SearchKeyword">
-        <div style="float:right">
-            <button type="submit" class="btn btn-secondary">검색</button>
-        </div>
-        <div style="float:right">
-            <InputText id="search" @bind-Value="@content" class="form-control"></InputText>
-        </div>
-        <div style="float:right;margin-top:7px;">
-            <InputSelect id="category" @bind-Value="category">
-                <option value="subject" selected>제목</option>
-                <option value="content">내용</option>
-                <option value="user">작성자</option>
-                <option value="subcont">제목 + 내용</option>
-            </InputSelect>
-        </div>
-    </EditForm>
-</div>
+            @foreach (var item in pageboards)
+            {
+                <tr>
+                    <td style="cursor:pointer" @onclick="@(() => navigationManager.NavigateTo("/boarddetail/"+ item.Bono))">@item.Title</td>
+                    <td align="center">@item.Id</td>
+                    <td align="center">@item.Recommend</td>
+                    <td align="center">@item.Regdate.ToShortDateString().Substring(5)</td>
+                    <td align="center">@item.Readhit</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <div>
+        <Paging totalpages="@(totalpage != 0 ? totalpage : 1)" pageindex="@pageindex" radius="5" OnSelectedPage="@SelectedPage"></Paging>
+    </div>
+    <div>
+        <EditForm Model="board" OnSubmit="SearchKeyword">
+            <div style="float:right">
+                <button type="submit" class="btn btn-secondary">검색</button>
+            </div>
+            <div style="float:right">
+                <InputText id="search" @bind-Value="@content" class="form-control"></InputText>
+            </div>
+            <div style="float:right;margin-top:7px;">
+                <InputSelect id="category" @bind-Value="category">
+                    <option value="subject" selected>제목</option>
+                    <option value="content">내용</option>
+                    <option value="user">작성자</option>
+                    <option value="subcont">제목 + 내용</option>
+                </InputSelect>
+            </div>
+        </EditForm>
+    </div>
 
+    @for (int i = 0; i < 20; i++)
+    {
+        <br />
+    }
+</div>
 
 @code {
     [Parameter]
@@ -106,9 +115,8 @@ else if (loginfo != null && boardtype == "Notice" && loginfo.Resposibility.Equal
 
     protected override async Task OnInitializedAsync()
     {
-        loginfo = await sessionStorage.GetItemAsync<Member>("loginfo");
-        await Task.Delay(100);
         boards = await BoardService.GetBoardsAsync(boardtype);
+        await Task.Delay(100);
         if(boards != null){
             totalpage = (boards.Count() / itemsperpage);
             if (boards.Count() % itemsperpage > 0)
@@ -124,6 +132,7 @@ else if (loginfo != null && boardtype == "Notice" && loginfo.Resposibility.Equal
         if(notice != null){
 
         }
+        loginfo = await sessionStorage.GetItemAsync<Member>("loginfo");
     }
 
     private void SelectedPage(int selectepageindex){

@@ -1,8 +1,9 @@
 ﻿@page "/boardform/{boardtype}"
 @page "/boardform/{boardtype}/{bono:int}"
 
-<h3>Boardform</h3>
-
+<div class="title">
+    <h3>Boardform</h3>
+</div>
 <EditForm Model="board" OnSubmit="HandleOnSubmit">
     <InputNumber id="bono" @bind-Value="board.Bono" class="form-control"></InputNumber>
     <InputText id="id" @bind-Value="@board.Id" class="form-control" hidden></InputText>
@@ -21,7 +22,7 @@
     </div>
     <div>
         <label for="contetn">글내용</label>
-        <InputTextArea id="content" @bind-Value="board.Content" class="form-control"></InputTextArea>
+        <InputTextArea id="content" @bind-Value="board.Content" style="height:500px;word-break:break-word" class="form-control"></InputTextArea>
     </div>
     <button type="submit" class="btn btn-primary">@btnText</button>
 </EditForm>

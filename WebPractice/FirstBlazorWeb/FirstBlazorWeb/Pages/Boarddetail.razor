@@ -16,20 +16,12 @@
 
 
 <hr />
-<div style="margin:5% 0 10% 5%">
-    @board.Content
+<div class="container">
+    <div style="">
+        <p style="word-break:break-word">@board.Content</p>
+    </div>
 </div>
 
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
 <br />
 <br />
 
@@ -51,6 +43,11 @@ else
 <br />
 <br />
 <Commentview bono="bono"></Commentview>
+
+@for (int i = 0; i < 30; i++)
+{
+    <br />
+}
 
 @code {
     [Parameter]

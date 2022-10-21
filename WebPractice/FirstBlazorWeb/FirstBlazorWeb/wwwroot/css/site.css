@@ -11,13 +11,58 @@ h1:focus {
 a, .btn-link {
     color: #0071c1;
 }
-
+.title{
+    padding-top:3%;
+    padding-left:10%;
+}
 .btn-primary {
     color: #fff;
     background-color: #1b6ec2;
     border-color: #1861ac;
 }
+.profile-image {
+    /*display:inline-block;*/
+    float: left;
+    width: 20%;
+    height: 100%;
+}
+.profile {
+    height: 200px;
+    width: 200px;
+    object-fit: cover;
+}
+.profile-information {
+    /*display: inline-block;*/
+    float: left;
+    width: 80%;
+    height: 100%;
+}
+.infobtn{
+    float:inline-end;
+    display:flex;
+    justify-content:flex-end;
+}
+.card-body {
+    margin-right: 2%;
+    margin-left: 2%;
+    width: 200px;
+    height: 100%;
+    border-radius: 20px;
+    box-shadow: 3px 3px 3px 3px gray;
+}
+.page-background-class {
+    /*background-image: url(/image/main.jpg);
+    background-repeat : no-repeat;
+    background-position:center;
+    background-size:cover;
+    background-attachment:fixed;
+    height : 100%;*/
+    background-color:white;
+}
 
+.main-background-class {
+    background-color: black;
+}
 .content {
     padding-top: 1.1rem;
 }
@@ -32,6 +77,15 @@ a, .btn-link {
 
 .validation-message {
     color: red;
+}
+
+.column {
+    background-color: #EDF5F7;
+    border-left:solid 1px;
+}
+
+thead {
+    background-color: #EDF5F7;
 }
 
 #blazor-error-ui {

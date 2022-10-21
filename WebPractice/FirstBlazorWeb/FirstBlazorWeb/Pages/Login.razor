@@ -1,11 +1,15 @@
 ﻿<div>
     <ul class="dropdown mt-3">
         <a class="nav-link" @onclick="Profile">
-            <img src="C:\Users\skxog\Desktop\profile.jpg" alt="Profile" class="rounded-circle" />
+            @if(loginfo != null){
+                <img src="@loginfo.Pimage" style="width:30px;height:30px;cursor:pointer" alt="Profile" class="rounded-circle" />
+            }else{
+                <img src="/image/profile.jpg" style="width:30px;height:30px;cursor:pointer" alt="Profile" class="rounded-circle" />
+            }
         </a>
         @if (cnt % 2 != 0)
         {
-            <div class="dropdown-menu show" x-placement="bottom-end" style="position: absolute; transform: translate3d(0px, 40px, 0px); top: 0px; left: 0px; will-change: transform;">
+            <div class="dropdown-menu show" x-placement="bottom-end" style="position: absolute; transform: translate3d(-60px, 40px, 0px); top: 0px; left: 0px; will-change: transform;">
                 @if (loginfo != null)
                 {
                     if (loginfo.Resposibility.Equals("총책임자"))
@@ -15,7 +19,6 @@
                                 <span class="oi oi-bar-chart" aria-hidden="true"></span> 관리자 페이지
                             </NavLink>
                         </div>
-
                     }
                     <div class="dropdown-item">
                         <NavLink class="nav-link" style="cursor:pointer;color:black" @onclick="@(() => {navigationManager.NavigateTo("/memberview", forceLoad:true);})">
@@ -50,7 +53,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">Login Form</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close" @onclick="Close">
+                <button type="button" class="close btn-secondary" data-dismiss="modal" aria-label="Close" @onclick="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
@@ -66,8 +69,8 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-warning" @onclick="@(() => {navigationManager.NavigateTo("/memberform", forceLoad:true);})">회원가입</button>
-                    <button type="submit" class="btn btn-success">Login</button>
+                    <button type="button" class="btn btn-secondary" @onclick="@(() => {navigationManager.NavigateTo("/memberform", forceLoad:true);})">회원가입</button>
+                    <button type="submit" class="btn btn-secondary">Login</button>
                     <button type="button" class="btn btn-secondary" data-dismiss="modal"ismiss @onclick="Close">Close</button>
                 </div>
             </EditForm>

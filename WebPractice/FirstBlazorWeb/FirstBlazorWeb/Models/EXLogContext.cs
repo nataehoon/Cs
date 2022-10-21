@@ -59,10 +59,7 @@ namespace FirstBlazorWeb.Models
                     .IsUnicode(false)
                     .HasColumnName("COMMENT");
 
-                entity.Property(e => e.Content)
-                    .HasMaxLength(255)
-                    .IsUnicode(false)
-                    .HasColumnName("CONTENT");
+                entity.Property(e => e.Content).HasColumnName("CONTENT");
 
                 entity.Property(e => e.Id)
                     .HasMaxLength(10)
@@ -112,10 +109,7 @@ namespace FirstBlazorWeb.Models
 
                 entity.Property(e => e.Bono).HasColumnName("bono");
 
-                entity.Property(e => e.Comment1)
-                    .HasMaxLength(255)
-                    .IsUnicode(false)
-                    .HasColumnName("COMMENT");
+                entity.Property(e => e.Comment1).HasColumnName("COMMENT");
 
                 entity.Property(e => e.Depthno).HasColumnName("DEPTHNO");
 
@@ -234,10 +228,7 @@ namespace FirstBlazorWeb.Models
                     .IsUnicode(false)
                     .HasColumnName("ID");
 
-                entity.Property(e => e.Memo)
-                    .HasMaxLength(255)
-                    .IsUnicode(false)
-                    .HasColumnName("MEMO");
+                entity.Property(e => e.Memo).HasColumnName("MEMO");
 
                 entity.Property(e => e.Remark)
                     .HasMaxLength(255)
@@ -288,10 +279,7 @@ namespace FirstBlazorWeb.Models
 
                 entity.Property(e => e.Ldl).HasColumnName("LDL");
 
-                entity.Property(e => e.Memo)
-                    .HasMaxLength(255)
-                    .IsUnicode(false)
-                    .HasColumnName("MEMO");
+                entity.Property(e => e.Memo).HasColumnName("MEMO");
 
                 entity.Property(e => e.Muscle).HasColumnName("MUSCLE");
 
@@ -348,10 +336,7 @@ namespace FirstBlazorWeb.Models
                     .IsUnicode(false)
                     .HasColumnName("mehistory");
 
-                entity.Property(e => e.Memo)
-                    .HasMaxLength(255)
-                    .IsUnicode(false)
-                    .HasColumnName("MEMO");
+                entity.Property(e => e.Memo).HasColumnName("MEMO");
 
                 entity.Property(e => e.Name)
                     .HasMaxLength(20)

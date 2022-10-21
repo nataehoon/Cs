@@ -8,8 +8,8 @@ else
 {
     @exerciselog.Exdate
 
-    <button class="btn btn-warning" @onclick="@(() => navigationManager.NavigateTo("/logform/"+loginfo.Id+"/"+exerciselog.Exno))">수정</button>
-    <button class="btn btn-danger" @onclick="async () => {await ExerciselogService.DeleteExerciselogAsync(exerciselog.Exno);}">삭제</button>
+    <button class="btn btn-secondary" @onclick="@(() => navigationManager.NavigateTo("/logform/"+loginfo.Id+"/"+exerciselog.Exno))">수정</button>
+    <button class="btn btn-secondary" @onclick="async () => {await ExerciselogService.DeleteExerciselogAsync(exerciselog.Exno);}">삭제</button>
 }
 @code {
     [Parameter]

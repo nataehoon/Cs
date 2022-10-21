@@ -1,7 +1,9 @@
 ﻿@page "/logform"
 @page "/logform/{exno:int}"
 
-<h3>ExerciselogForm</h3>
+<div class="title">
+    <h3>ExerciselogForm</h3>
+</div>
 
 <EditForm Model="exerciselog" OnValidSubmit="HandleSubmit">
     <DataAnnotationsValidator/>
@@ -39,10 +41,10 @@
                     <td></td>
                     <td></td>
                     <td align="right">
-                        <button type="button" class="btn btn-success" @onclick="@(() => {if(cnt < 20){cnt++;}})"><span class="oi oi-plus"></span></button>
+                        <button type="button" class="btn btn-secondary" @onclick="@(() => {if(cnt < 20){cnt++;}})"><span class="oi oi-plus"></span></button>
                         @if (cnt > 1)
                         {
-                            <button type="button" class="btn btn-danger" @onclick="@(() => {if(cnt > 1){cnt--;}})"><span class="oi oi-minus"></span></button>
+                            <button type="button" class="btn btn-secondary" @onclick="@(() => {if(cnt > 1){cnt--;}})"><span class="oi oi-minus"></span></button>
                         }
                     </td>
                 </tr>
@@ -504,7 +506,7 @@
     </div>
     <hr />
     <div>
-        <button type="submit" class="btn btn-primary">@btnText</button>
+        <button type="submit" class="btn btn-secondary">@btnText</button>
     </div>
     
 </EditForm>

@@ -22,357 +22,34 @@
 }
 else
 {
-    <h3>Healthchart</h3>
+    <div class="title">
+        <h3>Healthchart</h3>
+    </div>
     <div style="display:flex;justify-content:flex-end;margin-right: 2%">
-        <button type="button" class="btn btn-primary" @onclick=@(() => navigationManager.NavigateTo("/healthchartform/"+loginfo.Id))>등록</button>
+        <button type="button" class="btn btn-secondary" @onclick=@(() => navigationManager.NavigateTo("/healthchartform/"+loginfo.Id))>등록</button>
     </div>
-    <br />
-    <br />
-    <div class="card-group">
-        @if (healthcharts[0] != null)
-        {
-        <div class="card-body" style="width:45%">
-            <div style="width:100%;height:450px;">
-                <div style="margin-bottom:5px">
-                    <div style="width:99%;height:50px;border:solid 1px;position:relative;background-color:burlywood">
-                        <span class="h4" style="left:5%;top:22%;position:absolute">@(healthcharts[0].Regdate.ToShortDateString()) 최근 회차</span>
-                    </div>
-                </div>
-                <div>
-                    <div style="display:inline-block;width:49%;height:50px;border:solid 1px;position:relative">
-                        <div style="border:solid 1px;width:45%;height:49px;background-color:burlywood">
-                            <span style="left:16%;top:25%;position:absolute;">이름</span>
-                        </div>
-                        <div>
-                            <span style="left:60%;top:25%;position:absolute">@member.Name</span>
-                        </div>
-                    </div>
-                    <div style="display:inline-block;width:49%;height:50px;border:solid 1px;position:relative">
-                        <div style="border:solid 1px;width:45%;height:49px;background-color:burlywood">
-                            <span style="left:16%;top:25%;position:absolute;">나이</span>
-                        </div>
-                        <div>
-                            <span style="left:60%;top:25%;position:absolute">@member.Age 세</span>
-                        </div>
-                    </div>
-                </div>
-                <div>
-                    <div style="display:inline-block;width:49%;height:50px;border:solid 1px;position:relative">
-                        <div style="border:solid 1px;width:45%;height:49px;background-color:burlywood">
-                            <span style="left:16%;top:25%;position:absolute;">성별</span>
-                        </div>
-                        <div>
-                            <span style="left:60%;top:25%;position:absolute">@member.Gender</span>
-                        </div>
-                    </div>
-                    <div style="display:inline-block;width:49%;height:50px;border:solid 1px;position:relative">
-                            <div style="border:solid 1px;width:45%;height:49px;background-color:burlywood">
-                            <span style="left:14%;top:25%;position:absolute;">몸무게</span>    
-                        </div>
-                        <div>
-                            <span style="left:60%;top:25%;position:absolute">@healthcharts[0].Weight kg</span>
-                        </div>
-                    </div>
-                </div>
-                <div>
-                    <div style="display:inline-block;width:49%;height:50px;border:solid 1px;position:relative">
-                            <div style="border:solid 1px;width:45%;height:49px;background-color:burlywood">
-                            <span style="left:19%;top:25%;position:absolute;">키</span>
-                        </div>
-                        <div>
-                            <span style="left:60%;top:25%;position:absolute">@healthcharts[0].Height cm</span>
-                        </div>
-                    </div>
-                    <div style="display:inline-block;width:49%;height:50px;border:solid 1px;position:relative">
-                        <div style="border:solid 1px;width:45%;height:49px;background-color:burlywood">
-                            <span style="left:11%;top:25%;position:absolute;">근무 형태</span>    
-                        </div>
-                        <div>
-                            <span style="left:60%;top:25%;position:absolute">@healthcharts[0].Jobtype</span>
-                        </div>
-                    </div>
-                </div>
-                <div>
-                    <div style="display:inline-block;width:49%;height:50px;border:solid 1px;position:relative">
-                        <div style="border:solid 1px;width:45%;height:49px;background-color:burlywood">
-                            <span style="left:14%;top:25%;position:absolute;">지방량</span>
-                        </div>
-                        <div>
-                            <span style="left:60%;top:25%;position:absolute">@healthcharts[0].Fat kg</span>
-                        </div>
-                    </div>
-                    <div style="display:inline-block;width:49%;height:50px;border:solid 1px;position:relative">
-                        <div style="border:solid 1px;width:45%;height:49px;background-color:burlywood">
-                            <span style="left:14%;top:25%;position:absolute;">근육량</span>    
-                        </div>
-                        <div>
-                            <span style="left:60%;top:25%;position:absolute">@healthcharts[0].Muscle kg</span>
-                        </div>
-                    </div>
-                </div>
-                <div>
-                    <div style="display:inline-block;width:49%;height:50px;border:solid 1px;position:relative">
-                        <div style="border:solid 1px;width:45%;height:49px;background-color:burlywood">
-                            <span style="left:11%;top:25%;position:absolute;">체지방률</span>
-                        </div>
-                        <div>
-                                <span style="left:60%;top:25%;position:absolute">@BodyFat((double)@healthcharts[0].Fat, (double)@healthcharts[0].Weight) %</span>
-                        </div>
-                    </div>
-                    <div style="display:inline-block;width:49%;height:50px;border:solid 1px;position:relative">
-                        <div style="border:solid 1px;width:45%;height:49px;background-color:burlywood">
-                            <span style="left:1%;top:25%;position:absolute;">Total Cholesterol</span>    
-                        </div>
-                        <div>
-                            <span style="left:60%;top:25%;position:absolute">@healthcharts[0].Totalcho mg/dl</span>
-                        </div>
-                    </div>
-                </div>
-                <div>
-                    <div style="display:inline-block;width:49%;height:50px;border:solid 1px;position:relative">
-                            <div style="border:solid 1px;width:45%;height:49px;background-color:burlywood">
-                            <span style="left:16%;top:25%;position:absolute;">HDL</span>
-                        </div>
-                        <div>
-                            <span style="left:60%;top:25%;position:absolute">@healthcharts[0].Hdl mg/dl</span>
-                        </div>
-                    </div>
-                    <div style="display:inline-block;width:49%;height:50px;border:solid 1px;position:relative">
-                        <div style="border:solid 1px;width:45%;height:49px;background-color:burlywood">
-                            <span style="left:16%;top:25%;position:absolute;">LDL</span>    
-                        </div>
-                        <div>
-                            <span style="left:60%;top:25%;position:absolute">@healthcharts[0].Ldl mg/dl</span>
-                        </div>
-                    </div>
-                </div>
-                <div>
-                    <div style="display:inline-block;width:49%;height:50px;border:solid 1px;position:relative">
-                        <div style="border:solid 1px;width:45%;height:49px;background-color:burlywood">
-                            <span style="left:16%;top:25%;position:absolute;">BUN</span>
-                        </div>
-                        <div>
-                                <span style="left:60%;top:25%;position:absolute">@healthcharts[0].Bun mg/dl</span>
-                        </div>
-                    </div>
-                    <div style="display:inline-block;width:49%;height:50px;border:solid 1px;position:relative">
-                            <div style="border:solid 1px;width:45%;height:49px;background-color:burlywood">
-                            <span style="left:10%;top:25%;position:absolute;">Creatinine</span>    
-                        </div>
-                        <div>
-                            <span style="left:60%;top:25%;position:absolute">@healthcharts[0].Crtn mg/dl</span>
-                        </div>
-                    </div>
-                    </div>
-                    <div>
-                        <div style="display:inline-block;width:49%;height:50px;border:solid 1px;position:relative">
-                            <div style="border:solid 1px;width:45%;height:49px;background-color:burlywood">
-                                <span style="left:2%;top:25%;position:absolute;">Glucose Fasting</span>
-                            </div>
-                            <div>
-                                <span style="left:60%;top:25%;position:absolute">@healthcharts[0].Glufa mg/dl</span>
-                            </div>
-                        </div>
-                        <div style="display:inline-block;width:49%;height:50px;border:solid 1px;position:relative">
-                            <div style="border:solid 1px;width:45%;height:49px;background-color:burlywood">
-                                <span style="left:8%;top:25%;position:absolute;">Hemoglobin</span>
-                            </div>
-                            <div>
-                                <span style="left:60%;top:25%;position:absolute">@healthcharts[0].Gluhemo %</span>
-                            </div>
-                        </div>
-                    </div>
-            </div>
-            <br/>
-            <br/>
-            <br />
-            <div class="btns">
-                <button type="button" class="btn btn-warning" @onclick=@(() => navigationManager.NavigateTo("/healthchartform/"+loginfo.Id+"/"+healthcharts[0].Heno))>수정</button>
-                <button type="button" class="btn btn-danger" @onclick=@(async () => {await HealthchartService.DeleteHealthchartAsync(healthcharts[0].Heno);})>삭제</button>
-            </div>
-        </div>
-        }
-        <div class="card-body" style="width:45%">
-        @if (healthcharts[1] != null)
-        {
-            <div style="width:100%;height:450px;">
-                <div style="margin-bottom:5px">
-                    <div style="width:99%;height:50px;border:solid 1px;position:relative;background-color:burlywood">
-                        <span class="h4" style="left:5%;top:22%;position:absolute;">@(healthcharts[1].Regdate.ToShortDateString()) 직전 회차</span>
-                    </div>
-                </div>
-                <div>
-                    <div style="display:inline-block;width:49%;height:50px;border:solid 1px;position:relative">
-                        <div style="border:solid 1px;width:45%;height:49px;background-color:burlywood">
-                            <span style="left:16%;top:25%;position:absolute;">이름</span>
-                        </div>
-                        <div>
-                            <span style="left:60%;top:25%;position:absolute">@member.Name</span>
-                        </div>
-                    </div>
-                    <div style="display:inline-block;width:49%;height:50px;border:solid 1px;position:relative">
-                        <div style="border:solid 1px;width:45%;height:49px;background-color:burlywood">
-                            <span style="left:16%;top:25%;position:absolute;">나이</span>
-                        </div>
-                        <div>
-                            <span style="left:60%;top:25%;position:absolute">@member.Age 세</span>
-                        </div>
-                    </div>
-                </div>
-                <div>
-                    <div style="display:inline-block;width:49%;height:50px;border:solid 1px;position:relative">
-                        <div style="border:solid 1px;width:45%;height:49px;background-color:burlywood">
-                            <span style="left:16%;top:25%;position:absolute;">성별</span>
-                        </div>
-                        <div>
-                            <span style="left:60%;top:25%;position:absolute">@member.Gender</span>
-                        </div>
-                    </div>
-                    <div style="display:inline-block;width:49%;height:50px;border:solid 1px;position:relative">
-                        <div style="border:solid 1px;width:45%;height:49px;background-color:burlywood">
-                            <span style="left:14%;top:25%;position:absolute;">몸무게</span>    
-                        </div>
-                        <div>
-                            <span style="left:60%;top:25%;position:absolute">@healthcharts[1].Weight kg</span>
-                        </div>
-                    </div>
-                </div>
-                <div>
-                    <div style="display:inline-block;width:49%;height:50px;border:solid 1px;position:relative">
-                        <div style="border:solid 1px;width:45%;height:49px;background-color:burlywood">
-                            <span style="left:19%;top:25%;position:absolute;">키</span>
-                        </div>
-                        <div>
-                            <span style="left:60%;top:25%;position:absolute">@healthcharts[1].Height cm</span>
-                        </div>
-                    </div>
-                    <div style="display:inline-block;width:49%;height:50px;border:solid 1px;position:relative">
-                        <div style="border:solid 1px;width:45%;height:49px;background-color:burlywood">
-                            <span style="left:11%;top:25%;position:absolute;">근무 형태</span>    
-                        </div>
-                        <div>
-                            <span style="left:60%;top:25%;position:absolute">@healthcharts[1].Jobtype</span>
-                        </div>
-                    </div>
-                </div>
-                <div>
-                    <div style="display:inline-block;width:49%;height:50px;border:solid 1px;position:relative">
-                        <div style="border:solid 1px;width:45%;height:49px;background-color:burlywood">
-                            <span style="left:14%;top:25%;position:absolute;">지방량</span>
-                        </div>
-                        <div>
-                            <span style="left:60%;top:25%;position:absolute">@healthcharts[1].Fat kg</span>
-                        </div>
-                    </div>
-                    <div style="display:inline-block;width:49%;height:50px;border:solid 1px;position:relative">
-                        <div style="border:solid 1px;width:45%;height:49px;background-color:burlywood">
-                            <span style="left:14%;top:25%;position:absolute;">근육량</span>    
-                        </div>
-                        <div>
-                            <span style="left:60%;top:25%;position:absolute">@healthcharts[1].Muscle kg</span>
-                        </div>
-                    </div>
-                </div>
-                <div>
-                    <div style="display:inline-block;width:49%;height:50px;border:solid 1px;position:relative">
-                        <div style="border:solid 1px;width:45%;height:49px;background-color:burlywood">
-                            <span style="left:11%;top:25%;position:absolute;">체지방률</span>
-                        </div>
-                        <div>
-                                <span style="left:60%;top:25%;position:absolute">@BodyFat((double)@healthcharts[1].Fat, (double)@healthcharts[1].Weight) %</span>
-                        </div>
-                    </div>
-                    <div style="display:inline-block;width:49%;height:50px;border:solid 1px;position:relative">
-                        <div style="border:solid 1px;width:45%;height:49px;background-color:burlywood">
-                            <span style="left:1%;top:25%;position:absolute;">Total Cholesterol</span>    
-                        </div>
-                        <div>
-                            <span style="left:60%;top:25%;position:absolute">@healthcharts[1].Totalcho mg/dl</span>
-                        </div>
-                    </div>
-                </div>
-                <div>
-                    <div style="display:inline-block;width:49%;height:50px;border:solid 1px;position:relative">
-                        <div style="border:solid 1px;width:45%;height:49px;background-color:burlywood">
-                            <span style="left:16%;top:25%;position:absolute;">HDL</span>
-                        </div>
-                        <div>
-                            <span style="left:60%;top:25%;position:absolute">@healthcharts[1].Hdl mg/dl</span>
-                        </div>
-                    </div>
-                    <div style="display:inline-block;width:49%;height:50px;border:solid 1px;position:relative">
-                        <div style="border:solid 1px;width:45%;height:49px;background-color:burlywood">
-                            <span style="left:16%;top:25%;position:absolute;">LDL</span>    
-                        </div>
-                        <div>
-                            <span style="left:60%;top:25%;position:absolute">@healthcharts[1].Ldl mg/dl</span>
-                        </div>
-                    </div>
-                </div>
-                <div>
-                    <div style="display:inline-block;width:49%;height:50px;border:solid 1px;position:relative">
-                        <div style="border:solid 1px;width:45%;height:49px;background-color:burlywood">
-                            <span style="left:16%;top:25%;position:absolute;">BUN</span>
-                        </div>
-                        <div>
-                                <span style="left:60%;top:25%;position:absolute">@healthcharts[1].Bun mg/dl</span>
-                        </div>
-                    </div>
-                    <div style="display:inline-block;width:49%;height:50px;border:solid 1px;position:relative">
-                        <div style="border:solid 1px;width:45%;height:49px;background-color:burlywood">
-                            <span style="left:10%;top:25%;position:absolute;">Creatinine</span>    
-                        </div>
-                        <div>
-                            <span style="left:60%;top:25%;position:absolute">@healthcharts[1].Crtn mg/dl</span>
-                        </div>
-                    </div>
-                    </div>
-                    <div>
-                        <div style="display:inline-block;width:49%;height:50px;border:solid 1px;position:relative">
-                            <div style="border:solid 1px;width:45%;height:49px;background-color:burlywood">
-                                <span style="left:2%;top:25%;position:absolute;">Glucose Fasting</span>
-                            </div>
-                            <div>
-                                <span style="left:60%;top:25%;position:absolute">@healthcharts[1].Glufa mg/dl</span>
-                            </div>
-                        </div>
-                        <div style="display:inline-block;width:49%;height:50px;border:solid 1px;position:relative">
-                            <div style="border:solid 1px;width:45%;height:49px;background-color:burlywood">
-                                <span style="left:8%;top:25%;position:absolute;">Hemoglobin</span>
-                            </div>
-                            <div>
-                                <span style="left:60%;top:25%;position:absolute">@healthcharts[1].Gluhemo %</span>
-                            </div>
-                        </div>
-                    </div>
-            </div>
-            <br/>
-            <br/>
-            <br />
-        }
-        </div>
-    </div>
-    <hr />
-    <div class="card-group">
-        <div class="card-body" style="width:45%">
-            @if(selectedchart != null && flag == true){
+    <div class="container">
+        <div class="card-group">
+            @if (healthcharts[0] != null)
+            {
+            <div class="card-body" style="width:45%">
                 <div style="width:100%;height:450px;">
                     <div style="margin-bottom:5px">
-                        <div style="width:99%;height:50px;border:solid 1px;position:relative;background-color:burlywood">
-                            <span class="h4" style="left:5%;top:22%;position:absolute">@(selectedchart.Regdate.ToShortDateString()) 최근 회차</span>
+                        <div style="width:99%;height:50px;border:solid 1px;position:relative;" class="column">
+                            <span class="h4" style="left:5%;top:22%;position:absolute">@(healthcharts[0].Regdate.ToShortDateString()) 최근 회차</span>
                         </div>
                     </div>
                     <div>
                         <div style="display:inline-block;width:49%;height:50px;border:solid 1px;position:relative">
-                            <div style="border:solid 1px;width:45%;height:49px;background-color:burlywood">
-                                <span style="left:16%;top:25%;position:absolute;">이름</span>
+                            <div style="border:solid 1px;width:45%;height:49px;" class="column">
+                                <span style="left:16%;top:25%;position:absolute">이름</span>
                             </div>
                             <div>
                                 <span style="left:60%;top:25%;position:absolute">@member.Name</span>
                             </div>
                         </div>
                         <div style="display:inline-block;width:49%;height:50px;border:solid 1px;position:relative">
-                            <div style="border:solid 1px;width:45%;height:49px;background-color:burlywood">
+                            <div style="border:solid 1px;width:45%;height:49px;" class="column">
                                 <span style="left:16%;top:25%;position:absolute;">나이</span>
                             </div>
                             <div>
@@ -382,7 +59,7 @@ else
                     </div>
                     <div>
                         <div style="display:inline-block;width:49%;height:50px;border:solid 1px;position:relative">
-                            <div style="border:solid 1px;width:45%;height:49px;background-color:burlywood">
+                            <div style="border:solid 1px;width:45%;height:49px;" class="column">
                                 <span style="left:16%;top:25%;position:absolute;">성별</span>
                             </div>
                             <div>
@@ -390,164 +67,489 @@ else
                             </div>
                         </div>
                         <div style="display:inline-block;width:49%;height:50px;border:solid 1px;position:relative">
-                            <div style="border:solid 1px;width:45%;height:49px;background-color:burlywood">
-                                <span style="left:14%;top:25%;position:absolute;">몸무게</span>
+                                <div style="border:solid 1px;width:45%;height:49px;" class="column">
+                                <span style="left:14%;top:25%;position:absolute;">몸무게</span>    
                             </div>
                             <div>
-                                <span style="left:60%;top:25%;position:absolute">@selectedchart.Weight kg</span>
+                                <span style="left:60%;top:25%;position:absolute">@healthcharts[0].Weight kg</span>
                             </div>
                         </div>
                     </div>
                     <div>
                         <div style="display:inline-block;width:49%;height:50px;border:solid 1px;position:relative">
-                            <div style="border:solid 1px;width:45%;height:49px;background-color:burlywood">
+                                <div style="border:solid 1px;width:45%;height:49px;" class="column">
                                 <span style="left:19%;top:25%;position:absolute;">키</span>
                             </div>
                             <div>
-                                <span style="left:60%;top:25%;position:absolute">@selectedchart.Height cm</span>
+                                <span style="left:60%;top:25%;position:absolute">@healthcharts[0].Height cm</span>
                             </div>
                         </div>
                         <div style="display:inline-block;width:49%;height:50px;border:solid 1px;position:relative">
-                            <div style="border:solid 1px;width:45%;height:49px;background-color:burlywood">
-                                <span style="left:11%;top:25%;position:absolute;">근무 형태</span>
+                            <div style="border:solid 1px;width:45%;height:49px;" class="column">
+                                <span style="left:11%;top:25%;position:absolute;">근무 형태</span>    
                             </div>
                             <div>
-                                <span style="left:60%;top:25%;position:absolute">@selectedchart.Jobtype</span>
+                                <span style="left:60%;top:25%;position:absolute">@healthcharts[0].Jobtype</span>
                             </div>
                         </div>
                     </div>
                     <div>
                         <div style="display:inline-block;width:49%;height:50px;border:solid 1px;position:relative">
-                            <div style="border:solid 1px;width:45%;height:49px;background-color:burlywood">
+                            <div style="border:solid 1px;width:45%;height:49px;" class="column">
                                 <span style="left:14%;top:25%;position:absolute;">지방량</span>
                             </div>
                             <div>
-                                <span style="left:60%;top:25%;position:absolute">@selectedchart.Fat kg</span>
+                                <span style="left:60%;top:25%;position:absolute">@healthcharts[0].Fat kg</span>
                             </div>
                         </div>
                         <div style="display:inline-block;width:49%;height:50px;border:solid 1px;position:relative">
-                            <div style="border:solid 1px;width:45%;height:49px;background-color:burlywood">
-                                <span style="left:14%;top:25%;position:absolute;">근육량</span>
+                            <div style="border:solid 1px;width:45%;height:49px;" class="column">
+                                <span style="left:14%;top:25%;position:absolute;">근육량</span>    
                             </div>
                             <div>
-                                <span style="left:60%;top:25%;position:absolute">@selectedchart.Muscle kg</span>
+                                <span style="left:60%;top:25%;position:absolute">@healthcharts[0].Muscle kg</span>
                             </div>
                         </div>
                     </div>
                     <div>
                         <div style="display:inline-block;width:49%;height:50px;border:solid 1px;position:relative">
-                            <div style="border:solid 1px;width:45%;height:49px;background-color:burlywood">
+                            <div style="border:solid 1px;width:45%;height:49px;" class="column">
                                 <span style="left:11%;top:25%;position:absolute;">체지방률</span>
                             </div>
                             <div>
-                                <span style="left:60%;top:25%;position:absolute">@BodyFat((double)@selectedchart.Fat, (double)@selectedchart.Weight) %</span>
+                                    <span style="left:60%;top:25%;position:absolute">@BodyFat((double)@healthcharts[0].Fat, (double)@healthcharts[0].Weight) %</span>
                             </div>
                         </div>
                         <div style="display:inline-block;width:49%;height:50px;border:solid 1px;position:relative">
-                            <div style="border:solid 1px;width:45%;height:49px;background-color:burlywood">
-                                <span style="left:1%;top:25%;position:absolute;">Total Cholesterol</span>
+                            <div style="border:solid 1px;width:45%;height:49px;" class="column">
+                                <span style="left:1%;top:25%;position:absolute;">Total Cholesterol</span>    
                             </div>
                             <div>
-                                <span style="left:60%;top:25%;position:absolute">@selectedchart.Totalcho mg/dl</span>
+                                <span style="left:60%;top:25%;position:absolute">@healthcharts[0].Totalcho mg/dl</span>
                             </div>
                         </div>
                     </div>
                     <div>
                         <div style="display:inline-block;width:49%;height:50px;border:solid 1px;position:relative">
-                            <div style="border:solid 1px;width:45%;height:49px;background-color:burlywood">
+                                <div style="border:solid 1px;width:45%;height:49px;" class="column">
                                 <span style="left:16%;top:25%;position:absolute;">HDL</span>
                             </div>
                             <div>
-                                <span style="left:60%;top:25%;position:absolute">@selectedchart.Hdl mg/dl</span>
+                                <span style="left:60%;top:25%;position:absolute">@healthcharts[0].Hdl mg/dl</span>
                             </div>
                         </div>
                         <div style="display:inline-block;width:49%;height:50px;border:solid 1px;position:relative">
-                            <div style="border:solid 1px;width:45%;height:49px;background-color:burlywood">
-                                <span style="left:16%;top:25%;position:absolute;">LDL</span>
+                            <div style="border:solid 1px;width:45%;height:49px;" class="column">
+                                <span style="left:16%;top:25%;position:absolute;">LDL</span>    
                             </div>
                             <div>
-                                <span style="left:60%;top:25%;position:absolute">@selectedchart.Ldl mg/dl</span>
+                                <span style="left:60%;top:25%;position:absolute">@healthcharts[0].Ldl mg/dl</span>
                             </div>
                         </div>
                     </div>
                     <div>
                         <div style="display:inline-block;width:49%;height:50px;border:solid 1px;position:relative">
-                            <div style="border:solid 1px;width:45%;height:49px;background-color:burlywood">
+                            <div style="border:solid 1px;width:45%;height:49px;" class="column">
                                 <span style="left:16%;top:25%;position:absolute;">BUN</span>
                             </div>
                             <div>
-                                <span style="left:60%;top:25%;position:absolute">@selectedchart.Bun mg/dl</span>
+                                    <span style="left:60%;top:25%;position:absolute">@healthcharts[0].Bun mg/dl</span>
                             </div>
                         </div>
                         <div style="display:inline-block;width:49%;height:50px;border:solid 1px;position:relative">
-                            <div style="border:solid 1px;width:45%;height:49px;background-color:burlywood">
-                                <span style="left:10%;top:25%;position:absolute;">Creatinine</span>
+                                <div style="border:solid 1px;width:45%;height:49px;" class="column">
+                                <span style="left:10%;top:25%;position:absolute;">Creatinine</span>    
                             </div>
                             <div>
-                                <span style="left:60%;top:25%;position:absolute">@selectedchart.Crtn mg/dl</span>
+                                <span style="left:60%;top:25%;position:absolute">@healthcharts[0].Crtn mg/dl</span>
+                            </div>
+                        </div>
+                        </div>
+                        <div>
+                            <div style="display:inline-block;width:49%;height:50px;border:solid 1px;position:relative">
+                                <div style="border:solid 1px;width:45%;height:49px;" class="column">
+                                    <span style="left:2%;top:25%;position:absolute;">Glucose Fasting</span>
+                                </div>
+                                <div>
+                                    <span style="left:60%;top:25%;position:absolute">@healthcharts[0].Glufa mg/dl</span>
+                                </div>
+                            </div>
+                            <div style="display:inline-block;width:49%;height:50px;border:solid 1px;position:relative">
+                                <div style="border:solid 1px;width:45%;height:49px;" class="column">
+                                    <span style="left:8%;top:25%;position:absolute;">Hemoglobin</span>
+                                </div>
+                                <div>
+                                    <span style="left:60%;top:25%;position:absolute">@healthcharts[0].Gluhemo %</span>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+                <br/>
+                <br/>
+                <br />
+                <div class="btns">
+                    <button type="button" class="btn btn-secondary" @onclick=@(() => navigationManager.NavigateTo("/healthchartform/"+loginfo.Id+"/"+healthcharts[0].Heno))>수정</button>
+                    <button type="button" class="btn btn-secondary" @onclick=@(async () => {await HealthchartService.DeleteHealthchartAsync(healthcharts[0].Heno);})>삭제</button>
+                </div>
+            </div>
+            }
+            <div class="card-body" style="width:45%">
+            @if (healthcharts[1] != null)
+            {
+                <div style="width:100%;height:450px;">
+                    <div style="margin-bottom:5px">
+                        <div style="width:99%;height:50px;border:solid 1px;position:relative;" class="column">
+                            <span class="h4" style="left:5%;top:22%;position:absolute;">@(healthcharts[1].Regdate.ToShortDateString()) 직전 회차</span>
+                        </div>
+                    </div>
+                    <div>
+                        <div style="display:inline-block;width:49%;height:50px;border:solid 1px;position:relative">
+                            <div style="border:solid 1px;width:45%;height:49px;" class="column">
+                                <span style="left:16%;top:25%;position:absolute;">이름</span>
+                            </div>
+                            <div>
+                                <span style="left:60%;top:25%;position:absolute">@member.Name</span>
+                            </div>
+                        </div>
+                        <div style="display:inline-block;width:49%;height:50px;border:solid 1px;position:relative">
+                            <div style="border:solid 1px;width:45%;height:49px;" class="column">
+                                <span style="left:16%;top:25%;position:absolute;">나이</span>
+                            </div>
+                            <div>
+                                <span style="left:60%;top:25%;position:absolute">@member.Age 세</span>
                             </div>
                         </div>
                     </div>
                     <div>
                         <div style="display:inline-block;width:49%;height:50px;border:solid 1px;position:relative">
-                            <div style="border:solid 1px;width:45%;height:49px;background-color:burlywood">
-                                <span style="left:2%;top:25%;position:absolute;">Glucose Fasting</span>
+                            <div style="border:solid 1px;width:45%;height:49px;" class="column">
+                                <span style="left:16%;top:25%;position:absolute;">성별</span>
                             </div>
                             <div>
-                                <span style="left:60%;top:25%;position:absolute">@selectedchart.Glufa mg/dl</span>
+                                <span style="left:60%;top:25%;position:absolute">@member.Gender</span>
                             </div>
                         </div>
                         <div style="display:inline-block;width:49%;height:50px;border:solid 1px;position:relative">
-                            <div style="border:solid 1px;width:45%;height:49px;background-color:burlywood">
-                                <span style="left:8%;top:25%;position:absolute;">Hemoglobin</span>
+                            <div style="border:solid 1px;width:45%;height:49px;" class="column">
+                                <span style="left:14%;top:25%;position:absolute;">몸무게</span>    
                             </div>
                             <div>
-                                <span style="left:60%;top:25%;position:absolute">@selectedchart.Gluhemo %</span>
+                                <span style="left:60%;top:25%;position:absolute">@healthcharts[1].Weight kg</span>
                             </div>
                         </div>
                     </div>
+                    <div>
+                        <div style="display:inline-block;width:49%;height:50px;border:solid 1px;position:relative">
+                            <div style="border:solid 1px;width:45%;height:49px;" class="column">
+                                <span style="left:19%;top:25%;position:absolute;">키</span>
+                            </div>
+                            <div>
+                                <span style="left:60%;top:25%;position:absolute">@healthcharts[1].Height cm</span>
+                            </div>
+                        </div>
+                        <div style="display:inline-block;width:49%;height:50px;border:solid 1px;position:relative">
+                            <div style="border:solid 1px;width:45%;height:49px;" class="column">
+                                <span style="left:11%;top:25%;position:absolute;">근무 형태</span>    
+                            </div>
+                            <div>
+                                <span style="left:60%;top:25%;position:absolute">@healthcharts[1].Jobtype</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div style="display:inline-block;width:49%;height:50px;border:solid 1px;position:relative">
+                            <div style="border:solid 1px;width:45%;height:49px;" class="column">
+                                <span style="left:14%;top:25%;position:absolute;">지방량</span>
+                            </div>
+                            <div>
+                                <span style="left:60%;top:25%;position:absolute">@healthcharts[1].Fat kg</span>
+                            </div>
+                        </div>
+                        <div style="display:inline-block;width:49%;height:50px;border:solid 1px;position:relative">
+                            <div style="border:solid 1px;width:45%;height:49px;" class="column">
+                                <span style="left:14%;top:25%;position:absolute;">근육량</span>    
+                            </div>
+                            <div>
+                                <span style="left:60%;top:25%;position:absolute">@healthcharts[1].Muscle kg</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div style="display:inline-block;width:49%;height:50px;border:solid 1px;position:relative">
+                            <div style="border:solid 1px;width:45%;height:49px;" class="column">
+                                <span style="left:11%;top:25%;position:absolute;">체지방률</span>
+                            </div>
+                            <div>
+                                    <span style="left:60%;top:25%;position:absolute">@BodyFat((double)@healthcharts[1].Fat, (double)@healthcharts[1].Weight) %</span>
+                            </div>
+                        </div>
+                        <div style="display:inline-block;width:49%;height:50px;border:solid 1px;position:relative">
+                            <div style="border:solid 1px;width:45%;height:49px;" class="column">
+                                <span style="left:1%;top:25%;position:absolute;">Total Cholesterol</span>    
+                            </div>
+                            <div>
+                                <span style="left:60%;top:25%;position:absolute">@healthcharts[1].Totalcho mg/dl</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div style="display:inline-block;width:49%;height:50px;border:solid 1px;position:relative">
+                            <div style="border:solid 1px;width:45%;height:49px;" class="column">
+                                <span style="left:16%;top:25%;position:absolute;">HDL</span>
+                            </div>
+                            <div>
+                                <span style="left:60%;top:25%;position:absolute">@healthcharts[1].Hdl mg/dl</span>
+                            </div>
+                        </div>
+                        <div style="display:inline-block;width:49%;height:50px;border:solid 1px;position:relative">
+                            <div style="border:solid 1px;width:45%;height:49px;" class="column">
+                                <span style="left:16%;top:25%;position:absolute;">LDL</span>    
+                            </div>
+                            <div>
+                                <span style="left:60%;top:25%;position:absolute">@healthcharts[1].Ldl mg/dl</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div style="display:inline-block;width:49%;height:50px;border:solid 1px;position:relative">
+                            <div style="border:solid 1px;width:45%;height:49px;" class="column">
+                                <span style="left:16%;top:25%;position:absolute;">BUN</span>
+                            </div>
+                            <div>
+                                    <span style="left:60%;top:25%;position:absolute">@healthcharts[1].Bun mg/dl</span>
+                            </div>
+                        </div>
+                        <div style="display:inline-block;width:49%;height:50px;border:solid 1px;position:relative">
+                            <div style="border:solid 1px;width:45%;height:49px;" class="column">
+                                <span style="left:10%;top:25%;position:absolute;">Creatinine</span>    
+                            </div>
+                            <div>
+                                <span style="left:60%;top:25%;position:absolute">@healthcharts[1].Crtn mg/dl</span>
+                            </div>
+                        </div>
+                        </div>
+                        <div>
+                            <div style="display:inline-block;width:49%;height:50px;border:solid 1px;position:relative">
+                                <div style="border:solid 1px;width:45%;height:49px;" class="column">
+                                    <span style="left:2%;top:25%;position:absolute;">Glucose Fasting</span>
+                                </div>
+                                <div>
+                                    <span style="left:60%;top:25%;position:absolute">@healthcharts[1].Glufa mg/dl</span>
+                                </div>
+                            </div>
+                            <div style="display:inline-block;width:49%;height:50px;border:solid 1px;position:relative">
+                                <div style="border:solid 1px;width:45%;height:49px;" class="column">
+                                    <span style="left:8%;top:25%;position:absolute;">Hemoglobin</span>
+                                </div>
+                                <div>
+                                    <span style="left:60%;top:25%;position:absolute">@healthcharts[1].Gluhemo %</span>
+                                </div>
+                            </div>
+                        </div>
                 </div>
+                <br/>
+                <br/>
                 <br />
-                <br />
-                <br />
-                <div class="btns">
-                    <button type="button" class="btn btn-warning" @onclick=@(() => navigationManager.NavigateTo("/healthchartform/"+loginfo.Id+"/"+selectedchart.Heno))>수정</button>
-                    @*<button type="button" class="btn btn-danger" @onclick=@(async () => {await HealthchartService.DeleteHealthchartAsync(selectedchart.Heno);})>삭제</button>*@
-                </div>
             }
-            else
-            {
-                <div style="border:dashed 2px;width:100%;height:550px;position:relative">
-                    <h4 style="text-align:center;left:5%;top:50%;position:absolute">옆에 리스트에서 확인하실 정보를 클릭해 주세요.</h4>
-                </div>
-            }
+            </div>
         </div>
-        <div class="card-body" style="width:45%">
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>측정 날짜</th>
-                        <th>몸무게</th>
-                        <th>체지방률</th>
-                    </tr>
-                </thead>
-                @if(healthcharts != null){
-                    <tbody>
-                        @foreach (var item in healthchartpage)
-                        {
-                        <tr style="cursor:pointer" @onclick="@(async () => {flag = true; selectedchart = await HealthchartService.GetHealthchartByHenoAsync(item.Heno);})">
-                            <td>@item.Regdate.ToShortDateString()</td>
-                            <td>@item.Weight kg</td>
-                            @if(item.Fat != null && item.Weight != null){
-                                <td>@BodyFat((double)@item.Fat, (double)@item.Weight) %</td>
-                            }
-                        </tr>
-                        }
-                    </tbody>
+        <hr />
+        <div class="card-group">
+            <div class="card-body" style="width:45%">
+                @if(selectedchart != null && flag == true){
+                    <div style="width:100%;height:450px;">
+                        <div style="margin-bottom:5px">
+                            <div style="width:99%;height:50px;border:solid 1px;position:relative;" class="column">
+                                <span class="h4" style="left:5%;top:22%;position:absolute">@(selectedchart.Regdate.ToShortDateString()) 최근 회차</span>
+                            </div>
+                        </div>
+                        <div>
+                            <div style="display:inline-block;width:49%;height:50px;border:solid 1px;position:relative">
+                                <div style="border:solid 1px;width:45%;height:49px;" class="column">
+                                    <span style="left:16%;top:25%;position:absolute;">이름</span>
+                                </div>
+                                <div>
+                                    <span style="left:60%;top:25%;position:absolute">@member.Name</span>
+                                </div>
+                            </div>
+                            <div style="display:inline-block;width:49%;height:50px;border:solid 1px;position:relative">
+                                <div style="border:solid 1px;width:45%;height:49px;" class="column">
+                                    <span style="left:16%;top:25%;position:absolute;">나이</span>
+                                </div>
+                                <div>
+                                    <span style="left:60%;top:25%;position:absolute">@member.Age 세</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <div style="display:inline-block;width:49%;height:50px;border:solid 1px;position:relative">
+                                <div style="border:solid 1px;width:45%;height:49px;" class="column">
+                                    <span style="left:16%;top:25%;position:absolute;">성별</span>
+                                </div>
+                                <div>
+                                    <span style="left:60%;top:25%;position:absolute">@member.Gender</span>
+                                </div>
+                            </div>
+                            <div style="display:inline-block;width:49%;height:50px;border:solid 1px;position:relative">
+                                <div style="border:solid 1px;width:45%;height:49px;" class="column">
+                                    <span style="left:14%;top:25%;position:absolute;">몸무게</span>
+                                </div>
+                                <div>
+                                    <span style="left:60%;top:25%;position:absolute">@selectedchart.Weight kg</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <div style="display:inline-block;width:49%;height:50px;border:solid 1px;position:relative">
+                                <div style="border:solid 1px;width:45%;height:49px;" class="column">
+                                    <span style="left:19%;top:25%;position:absolute;">키</span>
+                                </div>
+                                <div>
+                                    <span style="left:60%;top:25%;position:absolute">@selectedchart.Height cm</span>
+                                </div>
+                            </div>
+                            <div style="display:inline-block;width:49%;height:50px;border:solid 1px;position:relative">
+                                <div style="border:solid 1px;width:45%;height:49px;" class="column">
+                                    <span style="left:11%;top:25%;position:absolute;">근무 형태</span>
+                                </div>
+                                <div>
+                                    <span style="left:60%;top:25%;position:absolute">@selectedchart.Jobtype</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <div style="display:inline-block;width:49%;height:50px;border:solid 1px;position:relative">
+                                <div style="border:solid 1px;width:45%;height:49px;" class="column">
+                                    <span style="left:14%;top:25%;position:absolute;">지방량</span>
+                                </div>
+                                <div>
+                                    <span style="left:60%;top:25%;position:absolute">@selectedchart.Fat kg</span>
+                                </div>
+                            </div>
+                            <div style="display:inline-block;width:49%;height:50px;border:solid 1px;position:relative">
+                                <div style="border:solid 1px;width:45%;height:49px;" class="column">
+                                    <span style="left:14%;top:25%;position:absolute;">근육량</span>
+                                </div>
+                                <div>
+                                    <span style="left:60%;top:25%;position:absolute">@selectedchart.Muscle kg</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <div style="display:inline-block;width:49%;height:50px;border:solid 1px;position:relative">
+                                <div style="border:solid 1px;width:45%;height:49px;" class="column">
+                                    <span style="left:11%;top:25%;position:absolute;">체지방률</span>
+                                </div>
+                                <div>
+                                    <span style="left:60%;top:25%;position:absolute">@BodyFat((double)@selectedchart.Fat, (double)@selectedchart.Weight) %</span>
+                                </div>
+                            </div>
+                            <div style="display:inline-block;width:49%;height:50px;border:solid 1px;position:relative">
+                                <div style="border:solid 1px;width:45%;height:49px;" class="column">
+                                    <span style="left:1%;top:25%;position:absolute;">Total Cholesterol</span>
+                                </div>
+                                <div>
+                                    <span style="left:60%;top:25%;position:absolute">@selectedchart.Totalcho mg/dl</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <div style="display:inline-block;width:49%;height:50px;border:solid 1px;position:relative">
+                                <div style="border:solid 1px;width:45%;height:49px;" class="column">
+                                    <span style="left:16%;top:25%;position:absolute;">HDL</span>
+                                </div>
+                                <div>
+                                    <span style="left:60%;top:25%;position:absolute">@selectedchart.Hdl mg/dl</span>
+                                </div>
+                            </div>
+                            <div style="display:inline-block;width:49%;height:50px;border:solid 1px;position:relative">
+                                <div style="border:solid 1px;width:45%;height:49px;" class="column">
+                                    <span style="left:16%;top:25%;position:absolute;">LDL</span>
+                                </div>
+                                <div>
+                                    <span style="left:60%;top:25%;position:absolute">@selectedchart.Ldl mg/dl</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <div style="display:inline-block;width:49%;height:50px;border:solid 1px;position:relative">
+                                <div style="border:solid 1px;width:45%;height:49px;" class="column">
+                                    <span style="left:16%;top:25%;position:absolute;">BUN</span>
+                                </div>
+                                <div>
+                                    <span style="left:60%;top:25%;position:absolute">@selectedchart.Bun mg/dl</span>
+                                </div>
+                            </div>
+                            <div style="display:inline-block;width:49%;height:50px;border:solid 1px;position:relative">
+                                <div style="border:solid 1px;width:45%;height:49px;" class="column">
+                                    <span style="left:10%;top:25%;position:absolute;">Creatinine</span>
+                                </div>
+                                <div>
+                                    <span style="left:60%;top:25%;position:absolute">@selectedchart.Crtn mg/dl</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <div style="display:inline-block;width:49%;height:50px;border:solid 1px;position:relative">
+                                <div style="border:solid 1px;width:45%;height:49px;" class="column">
+                                    <span style="left:2%;top:25%;position:absolute;">Glucose Fasting</span>
+                                </div>
+                                <div>
+                                    <span style="left:60%;top:25%;position:absolute">@selectedchart.Glufa mg/dl</span>
+                                </div>
+                            </div>
+                            <div style="display:inline-block;width:49%;height:50px;border:solid 1px;position:relative">
+                                <div style="border:solid 1px;width:45%;height:49px;" class="column">
+                                    <span style="left:8%;top:25%;position:absolute;">Hemoglobin</span>
+                                </div>
+                                <div>
+                                    <span style="left:60%;top:25%;position:absolute">@selectedchart.Gluhemo %</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br />
+                    <br />
+                    <br />
+                    <div class="btns">
+                        <button type="button" class="btn btn-secondary" @onclick=@(() => navigationManager.NavigateTo("/healthchartform/"+loginfo.Id+"/"+selectedchart.Heno))>수정</button>
+                        @*<button type="button" class="btn btn-secondary" @onclick=@(async () => {await HealthchartService.DeleteHealthchartAsync(selectedchart.Heno);})>삭제</button>*@
+                    </div>
                 }
-            </table>
-            <div>
-                <Paging totalpages="totalpage" pageindex="pageindex" radius="5" OnSelectedPage="@OnSelectedPage"></Paging>
+                else
+                {
+                    <div style="border:dashed 2px;width:100%;height:550px;position:relative">
+                        <h4 style="text-align:center;left:5%;top:50%;position:absolute">옆에 리스트에서 확인하실 정보를 클릭해 주세요.</h4>
+                    </div>
+                }
+            </div>
+            <div class="card-body" style="width:45%">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>측정 날짜</th>
+                            <th>몸무게</th>
+                            <th>체지방률</th>
+                        </tr>
+                    </thead>
+                    @if(healthcharts != null){
+                        <tbody>
+                            @foreach (var item in healthchartpage)
+                            {
+                            <tr style="cursor:pointer" @onclick="@(async () => {flag = true; selectedchart = await HealthchartService.GetHealthchartByHenoAsync(item.Heno);})">
+                                <td>@item.Regdate.ToShortDateString()</td>
+                                <td>@item.Weight kg</td>
+                                @if(item.Fat != null && item.Weight != null){
+                                    <td>@BodyFat((double)@item.Fat, (double)@item.Weight) %</td>
+                                }
+                            </tr>
+                            }
+                        </tbody>
+                    }
+                </table>
+                <div>
+                    <Paging totalpages="totalpage" pageindex="pageindex" radius="5" OnSelectedPage="@OnSelectedPage"></Paging>
+                </div>
             </div>
         </div>
     </div>
@@ -564,7 +566,7 @@ else
     private bool flag = false;
 
     //pagination
-    private int itemsperpage = 7;
+    private int itemsperpage = 9;
     private int totalpage = 1;
     private int pageindex = 1;
 

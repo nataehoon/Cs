@@ -2,14 +2,43 @@
 
 @if (loginfo != null)
 {
-    <h3>My Infomation</h3>
+    <div class="title">
+        <h3>My Infomation</h3>
+    </div>
 
-    <p>@loginfo.Id</p>
-    <p>@loginfo.Name</p>
-    <p>@loginfo.Nick</p>
-    <p>@loginfo.Resposibility</p>
-
-    <button type="button" @onclick="@(() => {navigationManager.NavigateTo("/memberform", forceLoad:true);})">정보 수정</button>
+    <div class="container">
+        <div class="profile-image">
+            <a>
+                <img src="@loginfo.Pimage" alt="profileimage" class="profile" />
+            </a>
+        </div>
+        <div class="profile-information card-group">
+            <div class="account card-body">
+                <span class="oi oi-person"></span><span class="h4">계정</span>
+                <div class="mt-3">
+                    <p class="pinformation">@loginfo.Id</p>
+                    <p class="pinformation">@loginfo.Name</p>
+                    <p class="pinformation">@loginfo.Gender</p>
+                    <p class="pinformation">@loginfo.Age</p>
+                    <p class="pinformation">@loginfo.Nick</p>
+                    <p class="pinformation">@loginfo.Resposibility</p>
+                    <p class="pinformation">@loginfo.Hp</p>
+                    <p class="pinformation">@loginfo.Email</p>
+                </div>
+            </div>
+            <div class="healthinfo card-body">
+                <span class="oi oi-plus"></span><span class="h4">Health</span>
+                <div class="mt-3">
+                    <p class="pinformation">@loginfo.Mehistory</p>
+                    <p class="pinformation">@loginfo.Exhistory</p>
+                </div>
+            </div>
+        </div>
+        <div class="infobtn btn-secondary">
+            <button type="button" class="btn btn-secondary" @onclick="@(() => {navigationManager.NavigateTo("/memberform", forceLoad:true);})">정보 수정</button>
+        </div>
+    </div>
+    
 }
 else
 {
@@ -19,12 +48,9 @@ else
 @code {
     public Member? loginfo { get; set; }
 
-    private List<Member> members { get; set; } = null!;
-
     protected override async Task OnInitializedAsync()
     {
         loginfo = await sessionStorage.GetItemAsync<Member>("loginfo");
         await Task.Delay(100);
-        members = await MemberService.GetMembersAsync();
     }
 }

@@ -1,7 +1,10 @@
 ﻿@page "/healthchartform"
 @page "/healthchartform/{heno:int}"
 
-<h3>Healthchartform</h3>
+<div class="title">
+    <h3>Healthchartform</h3>
+</div>
+
 <EditForm Model="healthchart" OnValidSubmit="HandleSubmit">
     <DataAnnotationsValidator/>
     <InputNumber id="heno" @bind-Value="healthchart.Heno"></InputNumber>
@@ -71,7 +74,7 @@
         </div>
         <hr />
         <div>
-            <button type="submit" class="btn btn-primary">@btnText</button>
+            <button type="submit" class="btn btn-secondary">@btnText</button>
         </div>
     </div>
 </EditForm>

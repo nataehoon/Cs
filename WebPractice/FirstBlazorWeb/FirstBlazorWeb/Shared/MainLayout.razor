@@ -1,28 +1,37 @@
 ﻿@inherits LayoutComponentBase
 
+<style>
+   .logo{
+       width:120px;
+       height:60px;
+   } 
+</style>
+
 <PageTitle>건강 관리 웹</PageTitle>
 
-<div class="container">
-    <main>
-        <div class="top-row px-4">
-            <div class="container-fluid">
-                <button title="Navigation menu" style="cursor:pointer" class="navbar-toggler" @onclick="@(() => {navigationManager.NavigateTo("/", forceLoad:true);})">
-                    <img src="" alt="logo" />
-                </button>
-            </div>
-            <div>
-                <FirstBlazorWeb.Pages.Login></FirstBlazorWeb.Pages.Login>
-            </div>
+<div class="main-background-class">
+<main>
+    <div class="top-row px-4">
+        <div class="container-fluid">
+            <img class="logo" src="/image/Exlogo.png" alt="logo" />
+            @*<button title="Navigation menu" style="cursor:pointer" class="navbar-toggler" @onclick="@(() => {navigationManager.NavigateTo("/", forceLoad:true);})">
+                
+            </button>*@
         </div>
-        <div style="display:flex;justify-content:center">
-            <NavMenu></NavMenu>
+        <div>
+            <FirstBlazorWeb.Pages.Login></FirstBlazorWeb.Pages.Login>
         </div>
-        <article class="content px-4">
+    </div>
+    <div style="display:flex;justify-content:center">
+        <NavMenu></NavMenu>
+    </div>
+    <article class="content px-4">
+        <div class="page-background-class">
             @Body
-        </article>
-    </main>
+        </div>
+    </article>
+</main>
 </div>
-
 
 @code{
     private int cnt = 0;

@@ -1,4 +1,41 @@
-﻿
+﻿<style>
+    .deletebtn{
+        cursor: pointer;
+        color: red;
+    }
+    .addbtn{
+        cursor:pointer;
+        color:black;
+    }
+
+    .firstcon{
+        background-color: antiquewhite;
+        width: 90%;
+        height: 10%;
+        border-bottom: solid 1px;
+        border-block-color: white;
+    }
+    .seconcon{
+        background-color: white;
+        width: 100%;
+        height: 10%;
+        word-break: break-word;
+    }
+    .thcon{
+        display: flex;
+        justify-content: flex-end;
+    }
+    .fcontent{
+        display: inline-block;
+        width: 100%;
+    }
+
+    .paging{
+        display: flex;
+        justify-content: center;
+    }
+</style>
+
 <div class="container">
     <div>
         <EditForm Model="comment" OnValidSubmit="HandleSumit">
@@ -8,7 +45,7 @@
             <InputNumber id="bono" class="form-control" @bind-Value="comment.Groupno" hidden></InputNumber>
             <div class="px-5" style="margin-left:2%;height:150px">
                 <div style="display:inline-block;width:92%;">
-                    <InputTextArea id="comment" class="form-control" style="height:140px;" @bind-Value="comment.Comment1"></InputTextArea>
+                    <InputTextArea id="comment" class="form-control" style="height:140px;word-break:break-word" @bind-Value="comment.Comment1"></InputTextArea>
                 </div>
                 <div style="display:inline-block;width:7%">
                     <button type="submit" class="btn btn-secondary mb-4">등록</button>
@@ -21,8 +58,8 @@
         {
             @foreach (var item in comments)
             {
-                <div class="container" style="background-color:antiquewhite;width:90%;height:130px;border-bottom:solid 1px;border-block-color:white;">
-                    <div style="display:inline-block;width:100%">
+                <div class="container firstcon">
+                    <div class="fcontent">
                         <div>
                             <div style="text-align:left">
                                 @item.Id / 추천수 : @item.Recommend
@@ -31,28 +68,28 @@
                                 @if (loginfo != null && item.Id == loginfo.Id)
                                 {
                                     <div>
-                                        <span class="oi oi-delete" style="cursor:pointer;color:red" @onclick="@(async () => {await CommentService.DeleteCommentAsync(item.Cono);})"></span>
+                                        <span class="deletebtn oi oi-delete" @onclick="@(async () => {await CommentService.DeleteCommentAsync(item.Cono);})"></span>
                                     </div>
                                 }
                             </div>
                         </div>
-                        <div class="container" style="background-color:white;width:100%;height:50px">
+                        <div class="container seconcon">
                             @item.Comment1
                         </div>
                     </div>
-                    <div class="container" style="display:flex;justify-content:flex-end;">
+                    <div class="container thcon">
                         <div style="margin-right:2%;">
-                            <span class="oi oi-plus" style="cursor:pointer;color:black"></span>
+                            <span class="addbtn oi oi-plus"></span>
                         </div>
                         <div>
-                            <span class="oi oi-thumb-up" style="cursor:pointer;color:black" @onclick="@(async () => {await CommentService.UpdateRecommenedAsync(item.Cono);})"></span>
+                            <span class="addbtn oi oi-thumb-up" @onclick="@(async () => {await CommentService.UpdateRecommenedAsync(item.Cono);})"></span>
                         </div>
                     </div>
                 </div>
             }
             <br />
             <br />
-            <div style="display:flex;justify-content:center">
+            <div class="paging">
                 <Paging totalpages="totalpage" pageindex="pageindex" radius="5" OnSelectedPage="@OnSelectedPage"></Paging>
             </div>
         }

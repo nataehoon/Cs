@@ -1,6 +1,8 @@
 ﻿@page "/memberform"
 
-<h3>Memberform</h3>
+<div class="title">
+    <h3>Memberform</h3>
+</div>
 
 <EditForm Model="member" OnValidSubmit="Handlesubmit">
     <DataAnnotationsValidator/>
@@ -13,7 +15,7 @@
             </div>
             @if(@Isdisabled == false){
                 <div style="display:inline-block;margin-left:2%;width:30%">
-                    <button type="button" class="btn btn-primary" @onclick="@(async () => {idcheck = await MemberService.GetMemberByIdAsync(member.Id) == null ? "사용 가능한 아이디 입니다.":"이미 사용중인 아이디 입니다.";})">중복검사</button>
+                    <button type="button" class="btn btn-secondary" @onclick="@(async () => {idcheck = await MemberService.GetMemberByIdAsync(member.Id) == null ? "사용 가능한 아이디 입니다.":"이미 사용중인 아이디 입니다.";})">중복검사</button>
                 </div>
             }
             <div style="display:inline-block;">
@@ -62,7 +64,7 @@
             </div>
             @if(@Isdisabled == false){
                 <div style="display:inline-block;margin-left:2%;width:30%">
-                    <button type="button" class="btn btn-primary" @onclick="@(async () => {nickcheck = (await MemberService.GetMemberNickAsync(member.Nick)) == null ? "사용 가능한 닉네임 입니다.":"이미 사용중인 닉네임 입니다.";})">중복검사</button>
+                    <button type="button" class="btn btn-secondary" @onclick="@(async () => {nickcheck = (await MemberService.GetMemberNickAsync(member.Nick)) == null ? "사용 가능한 닉네임 입니다.":"이미 사용중인 닉네임 입니다.";})">중복검사</button>
                 </div>
             }
             <div style="display:inline-block">
@@ -183,7 +185,7 @@
         </div>
         <br />
         <div style="display:flex;justify-content:flex-end">
-            <button type="submit" class="btn btn-primary">@btnText</button>
+            <button type="submit" class="btn btn-secondary">@btnText</button>
         </div>
     </div>
 </EditForm>
@@ -234,6 +236,7 @@
         {
             if ((idcheck != null && idcheck.Equals("사용 가능한 아이디 입니다.")) && (nickcheck != null && nickcheck.Equals("사용 가능한 닉네임 입니다.")))
             {
+                member.Pimage = "/image/profile.jpg";
                 await MemberService.CreateMemberAsync(member);
             }
             else if ((idcheck == null || !idcheck.Equals("이미 사용중인 아이디 입니다.")) && (nickcheck != null && nickcheck.Equals("사용 가능한 닉네임 입니다.")))

@@ -1,256 +1,257 @@
 ﻿@page "/adminpage"
 @page "/adminpage/{chagedid}"
 
-@if(@member.Resposibility != responsibility[0]){
-    <h3>Adminpage</h3>
-}
-else
-{
-    <h3>Adminpage</h3>
-
-    <div>
-        <button type="button" class="btn btn-secondary" @onclick="@(() => {user = false; ex = true;navigationManager.NavigateTo("/adminpage");})">운동목록 관리</button>
-        <button type="button" class="btn btn-secondary" @onclick="@(async () => {members = await MemberService.GetMembersAsync(); user = true; ex = false;navigationManager.NavigateTo("/adminpage");})">회원 관리</button>
-    </div>
-    
-    // 회원 관리
-    @if (user == true && ex == false)
-    {
-        <hr />
-        if (chagedid != null)
-        {
-            <div class="container">
-                <table class="table" border="1">
-                    <tr>
-                        <td rowspan="5">
-                            <img src="@detailmember.Pimage" alt="프로필사진">
-                        </td>
-                        <td>ID : @detailmember.Id</td>
-                        <td>이름 : @detailmember.Name</td>
-                        <td>성별 : @detailmember.Gender</td>
-                    </tr>
-                    <tr>
-                        <td>닉네임 : @detailmember.Nick</td>
-                        <td>이메일 : @detailmember.Email</td>
-                        <td>HP: @detailmember.Hp</td>
-                    </tr>
-                    <tr>
-                        <td>직책 :
-                            <select @onchange="OnChangedValue">
-                                <option value="@detailmember.Resposibility" selected>@detailmember.Resposibility</option>
-                                @foreach(var item in responsibility){
-                                    if(!detailmember.Resposibility.Equals(item)){
-                                        <option value="@item">@item</option>
-                                    }
-                                }
-                            </select>
-                        </td>
-                        <td>운동일지 등록 수 : @detailexcount</td>
-                        <td>건강일지 등록 수 : @detailhealthcount</td>
-                    </tr>
-                    
-                </table>
-                <div style="display:flex;justify-content:flex-end">
-                    @if (!detailmember.Resposibility.Equals(changedres))
-                    {
-                        <button type="button" class="btn btn-warning" @onclick="@(async () => { await MemberService.UpdateMemberResponsibilityAsync(changedres, detailmember.Id); await Task.Delay(50);
-                                                                                                detailmember = await MemberService.GetMemberByIdAsync(detailmember.Id); await Task.Delay(50);
-                                                                                                members = await MemberService.GetMembersAsync();changedres = null;chagedid = null; user = true; ex = false;
-                                                                                                navigationManager.NavigateTo("/adminpage");})">
-                            적용
-                        </button>
-                    }
-                    <button type="button" class="btn btn-secondary" @onclick="@(() => navigationManager.NavigateTo("/adminpage"))">목록</button>
-                </div>
-            </div>
-            
-        }
-        else
-        {
-            <div class="container" style="width:50%">
-                <button type="button" style="margin-right:1%" class="btn btn-secondary" @onclick="@(async () => {members = await MemberService.GetMembersAsync();})">전체</button>
-                @foreach (var item in responsibility)
-                {
-                    <button type="button" style="margin-right:1%" class="btn btn-secondary" @onclick="@(async () => {members = await MemberService.GetMemberByResAsync(item);})">@item</button>
-                }
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th style="text-align:center">아이디</th>
-                            <th style="text-align:center">이름</th>
-                            <th style="text-align:center">성별</th>
-                            <th style="text-align:center">직책</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var item in members)
-                        {
-                            @if(!item.Id.Equals("admin")){
-                                @if (!item.Id.Equals(loginfo.Id))
-                                {
-                                    <tr style="cursor:pointer" @onclick="@(async () => {detailmember = await MemberService.GetMemberByIdAsync(item.Id);
-                                                                                        detailexcount = await ExerciselogService.GetExerciselogCountAsync(item.Id);
-                                                                                        detailhealthcount = await HealthchartService.GetHealthchartCountAsync(item.Id);
-                                                                                                             navigationManager.NavigateTo("/adminpage/" + item.Id);})">
-                                        <td style="text-align:center">@item.Id</td>
-                                        <td style="text-align:center">@item.Name</td>
-                                        <td style="text-align:center">@item.Gender</td>
-                                        <td style="text-align:center">@item.Resposibility</td>
-                                    </tr>
-                                }
-                            }
-                        }
-                    </tbody>
-                </table>
-            </div>
-            <div class="container" style="width:50%">
-
-            </div>
-        }
+<style>
+    .defaultbtn{
+        display: flex;
+        justify-content: flex-end;
     }
+</style>
 
-    // 운동 등록
-    @if (user == false && ex == true)
+<div class="title">
+    <h3>Adminpage</h3>
+</div>
+
+<div>
+    <button type="button" class="btn btn-secondary" @onclick="@(() => {user = false; ex = true;navigationManager.NavigateTo("/adminpage");})">운동목록 관리</button>
+    <button type="button" class="btn btn-secondary" @onclick="@(async () => {members = await MemberService.GetMembersAsync(); user = true; ex = false;navigationManager.NavigateTo("/adminpage");})">회원 관리</button>
+</div>
+    
+@if (user == true && ex == false)
+{
+    <hr />
+    if (chagedid != null)
     {
-        <hr />
-        <div>
-            <EditForm Model="exercise" OnValidSubmit="HandleSubmit">
-                <DataAnnotationsValidator/>
-                <div class="container" style="width:45%;float:left">
-                    <div style="margin:5%">
-                        <h4>운동 추가</h4>
-                        <div>
-                            <label for="type">운동 타입</label>
-                            <InputSelect id="type" @bind-Value="@exercise.Extype" class="form-control">
-                                <option value="-" selected>선택하세요</option>
-                                @foreach (var item in extypes)
-                                {
+        <div class="container">
+            <table class="table" border="1">
+                <tr>
+                    <td rowspan="5">
+                        <img src="@detailmember.Pimage" alt="프로필사진">
+                    </td>
+                    <td>ID : @detailmember.Id</td>
+                    <td>이름 : @detailmember.Name</td>
+                    <td>성별 : @detailmember.Gender</td>
+                </tr>
+                <tr>
+                    <td>닉네임 : @detailmember.Nick</td>
+                    <td>이메일 : @detailmember.Email</td>
+                    <td>HP: @detailmember.Hp</td>
+                </tr>
+                <tr>
+                    <td>직책 :
+                        <select @onchange="OnChangedValue">
+                            <option value="@detailmember.Resposibility" selected>@detailmember.Resposibility</option>
+                            @foreach(var item in responsibility){
+                                if(!detailmember.Resposibility.Equals(item)){
                                     <option value="@item">@item</option>
                                 }
-                            </InputSelect>
-                            <ValidationMessage For="(() => exercise.Extype)"/>
-                        </div>
+                            }
+                        </select>
+                    </td>
+                    <td>운동일지 등록 수 : @detailexcount</td>
+                    <td>건강일지 등록 수 : @detailhealthcount</td>
+                </tr>
+                    
+            </table>
+            <div class="defaultbtn">
+                @if (!detailmember.Resposibility.Equals(changedres))
+                {
+                    <button type="button" class="btn btn-warning" @onclick="@(async () => { await MemberService.UpdateMemberResponsibilityAsync(changedres, detailmember.Id); await Task.Delay(50);
+                                                                                            detailmember = await MemberService.GetMemberByIdAsync(detailmember.Id); await Task.Delay(50);
+                                                                                            members = await MemberService.GetMembersAsync();changedres = null;chagedid = null; user = true; ex = false;
+                                                                                            navigationManager.NavigateTo("/adminpage");})">
+                        적용
+                    </button>
+                }
+                <button type="button" class="btn btn-secondary" @onclick="@(() => navigationManager.NavigateTo("/adminpage"))">목록</button>
+            </div>
+        </div>
+            
+    }
+    else
+    {
+        <div class="container" style="width:50%">
+            <button type="button" style="margin-right:1%" class="btn btn-secondary" @onclick="@(async () => {members = await MemberService.GetMembersAsync();})">전체</button>
+            @foreach (var item in responsibility)
+            {
+                <button type="button" style="margin-right:1%" class="btn btn-secondary" @onclick="@(async () => {members = await MemberService.GetMemberByResAsync(item);})">@item</button>
+            }
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th style="text-align:center">아이디</th>
+                        <th style="text-align:center">이름</th>
+                        <th style="text-align:center">성별</th>
+                        <th style="text-align:center">직책</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in members)
+                    {
+                        @if(!item.Id.Equals("admin")){
+                            @if (!item.Id.Equals(loginfo.Id))
+                            {
+                                <tr style="cursor:pointer" @onclick="@(async () => {detailmember = await MemberService.GetMemberByIdAsync(item.Id);
+                                                                                    detailexcount = await ExerciselogService.GetExerciselogCountAsync(item.Id);
+                                                                                    detailhealthcount = await HealthchartService.GetHealthchartCountAsync(item.Id);
+                                                                                                            navigationManager.NavigateTo("/adminpage/" + item.Id);})">
+                                    <td style="text-align:center">@item.Id</td>
+                                    <td style="text-align:center">@item.Name</td>
+                                    <td style="text-align:center">@item.Gender</td>
+                                    <td style="text-align:center">@item.Resposibility</td>
+                                </tr>
+                            }
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+        <div class="container" style="width:50%">
+
+        </div>
+    }
+}
+
+@if (user == false && ex == true)
+{
+    <hr />
+    <div>
+        <EditForm Model="exercise" OnValidSubmit="HandleSubmit">
+            <DataAnnotationsValidator/>
+            <div class="container" style="width:45%;float:left">
+                <div style="margin:5%">
+                    <h4>운동 추가</h4>
+                    <div>
+                        <label for="type">운동 타입</label>
+                        <InputSelect id="type" @bind-Value="@exercise.Extype" class="form-control">
+                            <option value="-" selected>선택하세요</option>
+                            @foreach (var item in extypes)
+                            {
+                                <option value="@item">@item</option>
+                            }
+                        </InputSelect>
+                        <ValidationMessage For="(() => exercise.Extype)"/>
+                    </div>
+                    <div>
+                        <label for="name">운동 이름</label>
+                        <InputText id="name" @bind-Value="@exercise.Exname" class="form-control"></InputText>
+                        <ValidationMessage For="(() => exercise.Extype)"/>
+                    </div>
                         <div>
-                            <label for="name">운동 이름</label>
-                            <InputText id="name" @bind-Value="@exercise.Exname" class="form-control"></InputText>
-                            <ValidationMessage For="(() => exercise.Extype)"/>
+                            <label for="equip">사용 장비</label>
+                            <InputText id="equip" @bind-Value="@exercise.Equipment" class="form-control"></InputText>
                         </div>
-                            <div>
-                                <label for="equip">사용 장비</label>
-                                <InputText id="equip" @bind-Value="@exercise.Equipment" class="form-control"></InputText>
-                            </div>
-                        <div style="display:flex;justify-content:flex-end;margin-top:10px">
-                            <button type="submit" class="btn btn-primary">추가</button>
-                        </div>
+                    <div style="display:flex;justify-content:flex-end;margin-top:10px">
+                        <button type="submit" class="btn btn-primary">추가</button>
                     </div>
                 </div>
-                <div class="container" style="width:45%;float:left">
-                    <div style="margin:5%">
-                        <h4>운동 삭제</h4>
+            </div>
+            <div class="container" style="width:45%;float:left">
+                <div style="margin:5%">
+                    <h4>운동 삭제</h4>
+                        <div>
                             <div>
-                                <div>
-                                    <label for="type">운동 타입</label>
-                                </div>
-                                <div style="float:left;width:75%;">
-                                    <InputSelect id="type" @bind-Value="@exn" class="form-control">
-                                        <option value="-" selected>선택하세요</option>
-                                    @foreach (var item in extypes)
-                                        {
-                                            <option value="@item">@item</option>
-                                        }
-                                    </InputSelect>
-                                </div>
-                                <div style="float:left;width:20%;margin-left:5%">
-                                    <button type="button" class="btn btn-success" @onclick="(async () => {dellist = await ExerciselogService.GetExerciseNameAsync(exn); name = true;})">적용</button>
-                                </div>
+                                <label for="type">운동 타입</label>
                             </div>
-                        @if (name == true)
-                        {
-                            <div>
-                                <label for="name">운동 이름</label>
-                            </div>
-                            <div style="float:left;width:85%;">
-                                <InputSelect id="name" @bind-Value="@exna" class="form-control">
+                            <div style="float:left;width:75%;">
+                                <InputSelect id="type" @bind-Value="@exn" class="form-control">
                                     <option value="-" selected>선택하세요</option>
-                                    @foreach (var item in dellist)
+                                @foreach (var item in extypes)
                                     {
-                                        <option value="@item.Exname">@item.Exname</option>
+                                        <option value="@item">@item</option>
                                     }
                                 </InputSelect>
                             </div>
-                            <div style="float:left;width:10%;margin-left:5%">
-                                    <button type="button" class="btn btn-danger" @onclick="(async () => {await ExerciselogService.DeleteExerciseAsync(exna); name = false;})">삭제</button>
+                            <div style="float:left;width:20%;margin-left:5%">
+                                <button type="button" class="btn btn-success" @onclick="(async () => {dellist = await ExerciselogService.GetExerciseNameAsync(exn); name = true;})">적용</button>
                             </div>
-                        }
-                    </div>
-                </div>
-            </EditForm>
-        </div>
-        
-        <div style="width:100%;float:left">
-            <hr />
-            <div class="container" style="width:80%;">
-                <div style="display:inline-block;width:50%">
-                    @foreach (var item in extypes)
+                        </div>
+                    @if (name == true)
                     {
-                        <button type="button" style="margin-right:1%" class="btn btn-secondary" @onclick="(async () => {dellist = await ExerciselogService.GetExerciseNameAsync(item);
-                                                                                                                        pageindex = 1;
-                                                                                                                        if(dellist != null){
-                                                                                                                            totalpage = (dellist.Count() / itemsperpage);
-                                                                                                                            if(totalpage%itemsperpage > 0){
-                                                                                                                                totalpage++;
-                                                                                                                            }
-                                                                                                                        }
-                                                                                                                        var skipData = itemsperpage * (pageindex - 1);
-                                                                                                                        pageex = dellist.Skip(skipData).Take(itemsperpage);
-                                                                                                                        list = true;})">
-                            @item
-                        </button>
-                    }
-                </div>
-                <div style="display:inline-block;width:20%">
-                    <div>
-                        <input type="text" @bind-value="keyword" class="form-control"></input>
-                    </div>
-                    
-                </div>
-                <div style="display:inline-block;width:10%">
-                    <button type="button" class="btn btn-primary" @onclick="SearchEX">검색</button>
-                </div>
-                @if(list == false){
-                    <div style="text-align:center;margin-left:20%">
-                        <p style="color:red">@errorm</p>
-                    </div>
-                }
-                <div>
-                    @if(list == true){
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th style="text-align:center">운동 타입</th>
-                                    <th style="text-align:center">운동 이름</th>
-                                    <th style="text-align:center">사용 기구</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach (var item in pageex)
-                                {
-                                    <tr>
-                                        <td style="text-align:center">@item.Extype</td>
-                                        <td style="text-align:center">@item.Exname</td>
-                                        <td style="text-align:center">@item.Equipment</td>
-                                    </tr>
-                                }
-                            </tbody>
-                        </table>
                         <div>
-                            <Paging totalpages="@totalpage" pageindex="@pageindex" radius="5" OnSelectedPage="@SelectedPage"></Paging>
+                            <label for="name">운동 이름</label>
+                        </div>
+                        <div style="float:left;width:85%;">
+                            <InputSelect id="name" @bind-Value="@exna" class="form-control">
+                                <option value="-" selected>선택하세요</option>
+                                @foreach (var item in dellist)
+                                {
+                                    <option value="@item.Exname">@item.Exname</option>
+                                }
+                            </InputSelect>
+                        </div>
+                        <div style="float:left;width:10%;margin-left:5%">
+                                <button type="button" class="btn btn-danger" @onclick="(async () => {await ExerciselogService.DeleteExerciseAsync(exna); name = false;})">삭제</button>
                         </div>
                     }
                 </div>
             </div>
+        </EditForm>
+    </div>
+        
+    <div style="width:100%;float:left">
+        <hr />
+        <div class="container" style="width:80%;">
+            <div style="display:inline-block;width:50%">
+                @foreach (var item in extypes)
+                {
+                    <button type="button" style="margin-right:1%" class="btn btn-secondary" @onclick="(async () => {dellist = await ExerciselogService.GetExerciseNameAsync(item);
+                                                                                                                    pageindex = 1;
+                                                                                                                    if(dellist != null){
+                                                                                                                        totalpage = (dellist.Count() / itemsperpage);
+                                                                                                                        if(totalpage%itemsperpage > 0){
+                                                                                                                            totalpage++;
+                                                                                                                        }
+                                                                                                                    }
+                                                                                                                    var skipData = itemsperpage * (pageindex - 1);
+                                                                                                                    pageex = dellist.Skip(skipData).Take(itemsperpage);
+                                                                                                                    list = true;})">
+                        @item
+                    </button>
+                }
+            </div>
+            <div style="display:inline-block;width:20%">
+                <div>
+                    <input type="text" @bind-value="keyword" class="form-control"></input>
+                </div>
+                    
+            </div>
+            <div style="display:inline-block;width:10%">
+                <button type="button" class="btn btn-primary" @onclick="SearchEX">검색</button>
+            </div>
+            @if(list == false){
+                <div style="text-align:center;margin-left:20%">
+                    <p style="color:red">@errorm</p>
+                </div>
+            }
+            <div>
+                @if(list == true){
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th style="text-align:center">운동 타입</th>
+                                <th style="text-align:center">운동 이름</th>
+                                <th style="text-align:center">사용 기구</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in pageex)
+                            {
+                                <tr>
+                                    <td style="text-align:center">@item.Extype</td>
+                                    <td style="text-align:center">@item.Exname</td>
+                                    <td style="text-align:center">@item.Equipment</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                    <div>
+                        <Paging totalpages="@totalpage" pageindex="@pageindex" radius="5" OnSelectedPage="@SelectedPage"></Paging>
+                    </div>
+                }
+            </div>
         </div>
-    }
+    </div>
 }
 
 
@@ -295,6 +296,7 @@ else
     {
         loginfo = await sessionStorage.GetItemAsync<Member>("loginfo");
         await Task.Delay(100);
+        Console.WriteLine(loginfo.Resposibility + "aaa");
         members = await MemberService.GetMembersAsync();
         await Task.Delay(100);
         exlist = await ExerciselogService.GetExercisesAsync();

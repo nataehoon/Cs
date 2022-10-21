@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "Zm7LG2ixAu/O8LH1tAnbITcvMp+DbgIV7+taFYBKp8s=",
+  "Hash": "4vmiBzjSDxZ6v2SHnv40/W3GixxjOcsM4sMfaRvlo7g=",
   "Source": "FirstBlazorWeb",
   "BasePath": "_content/FirstBlazorWeb",
   "Mode": "Default",
@@ -491,6 +491,57 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\favicon.ico"
+    },
+    {
+      "Identity": "D:\\workspace\\Cs\\WebPractice\\FirstBlazorWeb\\FirstBlazorWeb\\wwwroot\\image\\Exlogo.png",
+      "SourceId": "FirstBlazorWeb",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\workspace\\Cs\\WebPractice\\FirstBlazorWeb\\FirstBlazorWeb\\wwwroot\\",
+      "BasePath": "_content/FirstBlazorWeb",
+      "RelativePath": "image/Exlogo.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\image\\Exlogo.png"
+    },
+    {
+      "Identity": "D:\\workspace\\Cs\\WebPractice\\FirstBlazorWeb\\FirstBlazorWeb\\wwwroot\\image\\main.jpg",
+      "SourceId": "FirstBlazorWeb",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\workspace\\Cs\\WebPractice\\FirstBlazorWeb\\FirstBlazorWeb\\wwwroot\\",
+      "BasePath": "_content/FirstBlazorWeb",
+      "RelativePath": "image/main.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\image\\main.jpg"
+    },
+    {
+      "Identity": "D:\\workspace\\Cs\\WebPractice\\FirstBlazorWeb\\FirstBlazorWeb\\wwwroot\\image\\profile.jpg",
+      "SourceId": "FirstBlazorWeb",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\workspace\\Cs\\WebPractice\\FirstBlazorWeb\\FirstBlazorWeb\\wwwroot\\",
+      "BasePath": "_content/FirstBlazorWeb",
+      "RelativePath": "image/profile.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\image\\profile.jpg"
     }
   ]
 }
